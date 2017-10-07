@@ -1,10 +1,10 @@
-package towerDefense.controller;
+package MainMenu;
 
-import towerDefense.view.TowerDefenseView;
+import BoardMenu.BoardMenuView;
 
-public class TowerDefenseController {
+public class InitiateGameStart {
 
 	public static void main(String[] args){
-		TowerDefenseView t1 = new TowerDefenseView();
+		BoardMenuView t1 = new BoardMenuView();
 	}
 }

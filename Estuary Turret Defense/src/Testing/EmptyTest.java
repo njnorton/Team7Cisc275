@@ -1,4 +1,4 @@
-package testingTowerDefense;
+package Testing;
 
 public class EmptyTest {
 

@@ -1,4 +1,4 @@
-package towerDefense.controller;
+package Board;
 
 public class BoardController {
 

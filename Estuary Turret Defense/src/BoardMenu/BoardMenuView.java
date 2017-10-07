@@ -1,18 +1,18 @@
-package towerDefense.view;
+package BoardMenu;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-public class TowerDefenseView extends JFrame {
+public class BoardMenuView extends JFrame {
 	
 	final Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
 	final int WIDTH_OF_SCREEN = SCREEN_SIZE.width; // sets the width of screen from getPreferredSize method
 	final int HEIGHT_OF_SCREEN = SCREEN_SIZE.height; // set the height of screen from getPreferredSize method
 
 	// Constructor for TowerDefenseView Class 
-	public TowerDefenseView(){
+	public BoardMenuView(){
 		initGUI();
 	}
 	
