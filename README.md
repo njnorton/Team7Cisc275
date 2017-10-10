@@ -1,11 +1,14 @@
-# Team7Cisc275
-Intro to software engineering game
+# CISC 275: Team 7 
 
-Nick Norton has pushed the repo
+Estuary Tower Defense Game
+
+
+
+Nick Norton
 
 Grant Zhao
 
-Thomas 
+Thomas Pennington
 
 Ryan Barbera
 
