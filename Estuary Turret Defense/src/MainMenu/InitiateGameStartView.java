@@ -7,19 +7,21 @@ import javax.swing.JFrame;
 
 import BoardMenu.BoardMenuView;
 
-public class InitiateGameStart extends JFrame {
+public class InitiateGameStartView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
 	final static int SCREEN_WIDTH = 750; // sets up the sizing of the screen for width
 	final static int SCREEN_HEIGHT = 500; // sets up the sizing of the screen for height
 
-	public InitiateGameStart() {
+	// Constructor to initialize the graphical interface screens
+	public InitiateGameStartView() {
 		initGUI(); // makes GUI screen
 
 		setMainGraphicsUp(); // creates the main panel for viewing 
 	}
 
+	// private method to make the different panels on the main panel
 	private void initGUI() {
 
 		// creates the Title Panel that goes across the top of the screen
@@ -29,11 +31,13 @@ public class InitiateGameStart extends JFrame {
 		// creates the center screen with the buttons attached
 	}
 
+	// sets the preferred size for the screen
 	public Dimension getPreferredSize() {
 		Dimension size = new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT);
 		return size;
 	}
 	
+	// set the overall background panel that everything sits on
 	private void setMainGraphicsUp(){
 		setTitle("Main Menu"); // sets the title of the screen
 		setSize(SCREEN_WIDTH, SCREEN_HEIGHT); // sets the size of the screen
@@ -45,6 +49,6 @@ public class InitiateGameStart extends JFrame {
 
 	public static void main(String[] args) {
 		// BoardMenuView t1 = new BoardMenuView();
-		InitiateGameStart m1 = new InitiateGameStart();
+		InitiateGameStartView m1 = new InitiateGameStartView(); // starts the game up to main menu
 	}
 }
