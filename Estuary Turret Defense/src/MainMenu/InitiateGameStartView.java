@@ -29,6 +29,9 @@ public class InitiateGameStartView extends JFrame {
 		add(titlePanel, BorderLayout.PAGE_START);
 		
 		// creates the center screen with the buttons attached
+		StartGamePanel gamePanel = new StartGamePanel();
+		add(gamePanel, BorderLayout.CENTER);
+		
 	}
 
 	// sets the preferred size for the screen
@@ -48,7 +51,6 @@ public class InitiateGameStartView extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		// BoardMenuView t1 = new BoardMenuView();
 		InitiateGameStartView m1 = new InitiateGameStartView(); // starts the game up to main menu
 	}
 }
