@@ -5,15 +5,13 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import BoardMenu.BoardMenuView;
-
 public class InitiateGameStartView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
 	final static int SCREEN_WIDTH = 750; // sets up the sizing of the screen for width
 	final static int SCREEN_HEIGHT = 500; // sets up the sizing of the screen for height
-
+	
 	// Constructor to initialize the graphical interface screens
 	public InitiateGameStartView() {
 		initGUI(); // makes GUI screen
@@ -28,12 +26,15 @@ public class InitiateGameStartView extends JFrame {
 		TitlePanel titlePanel = new TitlePanel("Estuary Tower Defense");
 		add(titlePanel, BorderLayout.PAGE_START);
 		
-		// creates the center screen with the buttons attached
+		// creates the center panel with a picture of an estuary 
+		
+		
+		// creates the lower screen with the buttons attached
 		StartGamePanel gamePanel = new StartGamePanel();
-		add(gamePanel, BorderLayout.CENTER);
+		add(gamePanel, BorderLayout.PAGE_END);
 		
 	}
-
+	
 	// sets the preferred size for the screen
 	public Dimension getPreferredSize() {
 		Dimension size = new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT);

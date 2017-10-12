@@ -1,6 +1,7 @@
 package MainMenu;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JLabel;
@@ -18,5 +19,11 @@ public class TitlePanel extends JLabel{
 		setOpaque(true); // allows the colors to sit on top of each other
 		setHorizontalAlignment(JLabel.CENTER); // aligns to the center of the screen
 		setText(titleText); // sets the text for the tile based on given constructor input
+	}
+	
+	// sets the preferred size of the JPanel
+	public Dimension getPreferredSize(){
+		Dimension size = new Dimension(0, 47);
+		return size;
 	}
 }
