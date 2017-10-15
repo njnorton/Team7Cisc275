@@ -28,8 +28,7 @@ public class BoardMenuView extends JFrame {
 
 	JButton exitButton = new JButton("Return to Main Menu");
 
-	Dimension buttonSize = exitButton.getPreferredSize(); // sets the preferred
-															// size of buttons
+	Dimension buttonSize = exitButton.getPreferredSize(); // sets the preferred size of buttons
 
 	// Constructor for TowerDefenseView Class
 	public BoardMenuView() {
@@ -51,7 +50,6 @@ public class BoardMenuView extends JFrame {
 		add(buttonPanel, BorderLayout.PAGE_END);
 		
 		// adds the center panel to the screen
-		
 	}
 
 	private JPanel buttonPanel() {

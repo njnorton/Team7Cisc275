@@ -28,12 +28,12 @@ public class InitiateGameStartView extends JFrame {
 		add(titlePanel, BorderLayout.PAGE_START);
 		
 		// creates the center panel with a picture of an estuary 
-		
+		ImagePanelGame imagePanel = new ImagePanelGame();
+		add(imagePanel, BorderLayout.CENTER);
 		
 		// creates the lower screen with the buttons attached
-		StartGamePanel gamePanel = new StartGamePanel();
+		ButtonPanel gamePanel = new ButtonPanel();
 		add(gamePanel, BorderLayout.PAGE_END);
-		
 	}
 	
 	// sets the preferred size for the screen
