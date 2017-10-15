@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class InitiateGameStartView extends JFrame {
 
@@ -52,6 +53,11 @@ public class InitiateGameStartView extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		InitiateGameStartView m1 = new InitiateGameStartView(); // starts the game up to main menu
+		SwingUtilities.invokeLater(new Runnable(){
+			@Override
+			public void run() {
+				new InitiateGameStartView();
+			}
+		});		
 	}
 }
