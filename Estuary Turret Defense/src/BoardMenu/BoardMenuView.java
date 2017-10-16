@@ -1,34 +1,26 @@
 package BoardMenu;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Toolkit;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import MainMenu.TitlePanel;
 
 public class BoardMenuView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	final int ADJUST_SIDE = 20; // adjust the bottom of the screen
 	final Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
 	final int WIDTH_OF_SCREEN = SCREEN_SIZE.width; // sets the width of screen from getPreferredSize method
-	final int HEIGHT_OF_SCREEN = SCREEN_SIZE.height; // set the height of screen from getPreferredSize method
-	final int GAP_SIZE_WIDTH = 20; // sets the width of the JButtons
-	final int GAP_SIZE_HEIGHT = 10; // sets the height of the JButtons
-
+	final int HEIGHT_OF_SCREEN = SCREEN_SIZE.height-ADJUST_SIDE; // set the height of screen from getPreferredSize method
+	
 	TitlePanel title = new TitlePanel("Welcome to Estuary Tower Defense");
-	JPanel buttonPanel = new JPanel();
+	
 	BoardSideGamePanel sidePanel = new BoardSideGamePanel();
-
-	JButton exitButton = new JButton("Return to Main Menu");
-
-	Dimension buttonSize = exitButton.getPreferredSize(); // sets the preferred size of buttons
+	BoardButtonPanel buttonPanel = new BoardButtonPanel();
 
 	// Constructor for TowerDefenseView Class
 	public BoardMenuView() {
@@ -46,22 +38,9 @@ public class BoardMenuView extends JFrame {
 		add(sidePanel, BorderLayout.EAST);
 
 		// adds the button panel to the bottom of the screen
-		buttonPanel = buttonPanel();
 		add(buttonPanel, BorderLayout.PAGE_END);
 		
 		// adds the center panel to the screen
-	}
-
-	private JPanel buttonPanel() {
-		JPanel buttons = new JPanel();
-		buttons.setLayout(new GridLayout(1, 2));
-		buttons.setPreferredSize(new Dimension((int) (buttonSize.getWidth()) + GAP_SIZE_WIDTH,
-				(int) (buttonSize.getHeight()) + GAP_SIZE_HEIGHT));
-		buttons.setBackground(Color.CYAN);
-		buttons.add(exitButton);
-		buttonPanel.add(buttons);
-
-		return buttonPanel;
 	}
 
 	// sets up the main base panel for the game
@@ -76,7 +55,8 @@ public class BoardMenuView extends JFrame {
 
 	// gets the preferred size of the screen that we want to use
 	public Dimension getPreferredSize() {
-		Dimension size = new Dimension((int) SCREEN_SIZE.getWidth(), (int) SCREEN_SIZE.getHeight());
+		Dimension size = new Dimension((int) SCREEN_SIZE.getWidth(), 
+				(int) SCREEN_SIZE.getHeight());
 		return size;
 	}
 }
