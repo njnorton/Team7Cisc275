@@ -18,6 +18,7 @@ public class BoardButtonPanel extends JPanel{
 
 	Dimension buttonSize = exitButton.getPreferredSize(); // sets the preferred size of buttons
 	
+	// Constructor
 	public BoardButtonPanel(){
 		buttonPanel();
 	}
