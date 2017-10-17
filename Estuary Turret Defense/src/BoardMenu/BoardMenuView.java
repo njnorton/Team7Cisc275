@@ -13,19 +13,20 @@ public class BoardMenuView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	final int ADJUST_SIDE = 20; // adjust the bottom of the screen
-	final Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
-	final int WIDTH_OF_SCREEN = SCREEN_SIZE.width; // sets the width of screen from getPreferredSize method
-	final int HEIGHT_OF_SCREEN = SCREEN_SIZE.height-ADJUST_SIDE; // set the height of screen from getPreferredSize method
+	//final Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
+	final int WIDTH_OF_SCREEN = getPreferredSize().width; // sets the width of screen from getPreferredSize method
+	final int HEIGHT_OF_SCREEN = getPreferredSize().height-ADJUST_SIDE; // set the height of screen from getPreferredSize method
 	
 	TitlePanel title = new TitlePanel("Welcome to Estuary Tower Defense");
 	
-	BoardSideGamePanel sidePanel = new BoardSideGamePanel();
+	BoardMenuSideGamePanel sidePanel = new BoardMenuSideGamePanel();
 	BoardButtonPanel buttonPanel = new BoardButtonPanel();
 	
 	// Constructor for TowerDefenseView Class
 	public BoardMenuView() {
 		initGUI(); // calls the method to setup the rest of the screen
 		setMainScreen(); // creates the base of the game board
+		System.out.println(WIDTH_OF_SCREEN + " " + HEIGHT_OF_SCREEN);
 	}
 
 	// private method to set graphical interface up
@@ -55,8 +56,9 @@ public class BoardMenuView extends JFrame {
 
 	// gets the preferred size of the screen that we want to use
 	public Dimension getPreferredSize() {
-		Dimension size = new Dimension((int) SCREEN_SIZE.getWidth(), 
-				(int) SCREEN_SIZE.getHeight());
+		Dimension size = //new Dimension((int) SCREEN_SIZE.getWidth(), 
+				//(int) SCREEN_SIZE.getHeight());
+				new Dimension(1440,900);
 		return size;
 	}
 }

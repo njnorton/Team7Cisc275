@@ -9,8 +9,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import MainMenu.InitiateGameStartView;
-
 public class BoardButtonPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;

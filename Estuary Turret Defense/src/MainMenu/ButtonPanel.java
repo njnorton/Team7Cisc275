@@ -54,6 +54,7 @@ public class ButtonPanel extends JPanel {
 				BoardMenuView b1 = new BoardMenuView(); // calls the main board for interaction
 			}
 		});
+		
 		// design and call the method that will make this work
 		tutorialButton.addActionListener(new ActionListener() {
 			@Override
