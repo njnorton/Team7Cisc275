@@ -18,7 +18,7 @@ public class ButtonPanel extends JPanel {
 	final int GAP_SIZE_WIDTH = 300; // sets the width of the JButtons
 	final int GAP_SIZE_HEIGHT = 10; // sets the height of the JButtons 
 	final String IMAGE_FILE = "estuaryPhoto.png";
-	
+		
 	JPanel buttonPanel = new JPanel(); // panel for the buttons 
 	GridLayout buttonLayout = new GridLayout(1,3);
 	
@@ -27,7 +27,7 @@ public class ButtonPanel extends JPanel {
 	JButton tutorialButton = new JButton("Tutorial"); // creates the tutorial button
 	
 	Dimension buttonSize =  startButton.getPreferredSize(); // sets the preferred size of buttons
-		
+
 	// Constructor for the main game panel
 	public ButtonPanel(){
 		setButtonPanel(); // creates the button panel at the bottom of the screen

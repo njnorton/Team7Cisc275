@@ -17,12 +17,12 @@ public class BoardSideGamePanel extends JPanel{
 	
 	private void sidePanel(){
 		sidePanel.setPreferredSize(getPreferredSize());
-		sidePanel.setBackground(Color.BLUE);
+		sidePanel.setBackground(Color.WHITE);
 		add(sidePanel);
 	}
 	
 	public Dimension getPreferredSize(){
-		Dimension size = new Dimension(500,200);		
+		Dimension size = new Dimension(300,752);		
 		return size;
 	}
 }

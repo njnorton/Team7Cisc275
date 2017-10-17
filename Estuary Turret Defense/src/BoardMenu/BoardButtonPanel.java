@@ -3,9 +3,13 @@ package BoardMenu;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import MainMenu.InitiateGameStartView;
 
 public class BoardButtonPanel extends JPanel{
 	
@@ -28,9 +32,16 @@ public class BoardButtonPanel extends JPanel{
 		buttonPanel.setLayout(new GridLayout(1, 2));
 		buttonPanel.setPreferredSize(new Dimension((int) (buttonSize.getWidth()) + GAP_SIZE_WIDTH,
 				(int) (buttonSize.getHeight()) + GAP_SIZE_HEIGHT));
-		buttonPanel.setBackground(Color.CYAN);
-		setBackground(Color.CYAN);
+		buttonPanel.setBackground(Color.RED);
+		setBackground(Color.RED);
 		buttonPanel.add(exitButton);
 		add(buttonPanel);
+		
+		exitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BoardMenuView v2 = new BoardMenuView();
+			}
+		});
 	}
 }
