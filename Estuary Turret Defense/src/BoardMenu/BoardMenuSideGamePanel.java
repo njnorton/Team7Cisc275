@@ -1,4 +1,4 @@
-package BoardMenu;
+package boardMenu;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -92,14 +92,6 @@ public class BoardMenuSideGamePanel extends JPanel{
 	// creates the button images for the bottom panel
 	private BufferedImage[] estuaryEnemyButtonImages(String[] imageList){
 		BufferedImage[] imgList = new BufferedImage[imageList.length];
-		try{
-			for(int x = 0; x < imageList.length; x++){
-				
-			}
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
 		return imgList;
 	}
 }

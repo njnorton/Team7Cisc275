@@ -1,4 +1,4 @@
-package Tutorial;
+package tutorial;
 
 public class TutorialHolder {
 
