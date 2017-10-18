@@ -11,7 +11,8 @@ public class EnemyPoo extends EnemyModel {
 		setId(null);
 		setxCor(1);
 		setyCor(1);
-		setHealth(100);
+		setMaxHealth(100);
+		setCurrentHealth(100);
 		setScoreValue(50);
 		setSpeed(1000);
 	}

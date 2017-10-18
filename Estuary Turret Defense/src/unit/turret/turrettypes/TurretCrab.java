@@ -11,7 +11,8 @@ public class TurretCrab extends TurretModel {
 		setId(null);
 		setxCor(1);
 		setyCor(1);
-		setAttackSpeed(1);
+		setReloadCount(0);
+		setReloadTime(5);
 		setDamage(50);
 		setPrice(100);
 		setRange(20);

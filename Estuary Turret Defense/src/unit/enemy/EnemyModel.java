@@ -2,16 +2,24 @@ package unit.enemy;
 import unit.UnitModel;
 
 public abstract class EnemyModel extends UnitModel {
-	int health;
+	int maxHealth;
+	int currentHealth;
 	int speed;
 	int scoreValue;
 	
-	public int getHealth() {
-		return health;
+	public int getMaxHealth() {
+		return maxHealth;
 	}
-	public void setHealth(int health) {
-		this.health = health;
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
 	}
+	public int getCurrentHealth() {
+		return currentHealth;
+	}
+	public void setCurrentHealth(int currentHealth) {
+		this.currentHealth = currentHealth;
+	}
+	
 	public int getSpeed() {
 		return speed;
 	}
