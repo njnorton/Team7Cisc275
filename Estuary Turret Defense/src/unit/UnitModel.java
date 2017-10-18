@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 
 public abstract class UnitModel {
 	String Name;
-	String Id;
 	int xCor;
 	int yCor;
 	BufferedImage[] Icon;
@@ -15,12 +14,7 @@ public abstract class UnitModel {
 	public String getName() {
 		return Name;
 	}
-	public String getId() {
-		return Id;
-	}
-	public void setId(String id) {
-		Id = id;
-	}
+
 	public void setName(String name) {
 		Name = name;
 	}

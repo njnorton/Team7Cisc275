@@ -1,20 +1,21 @@
 package unit.enemy.enemytypes;
-
 import unit.enemy.EnemyModel;
 
-public class EnemyPoo extends EnemyModel {
-	public EnemyPoo(){
-		setName("Poo");
+
+public class EnemyQuickShit extends EnemyModel {
+	public EnemyQuickShit(){
+		setName("QuickShit");
 		setFactDescription("Clean up after your pets!");
-		setGameDescription("A tough little shit");
+		setGameDescription("A slippery little shit");
 		setIcon(null);
 		setId(0);
 		setxCor(1);
 		setyCor(1);
-		setMaxHealth(150);
-		setCurrentHealth(150);
+		setMaxHealth(100);
+		setCurrentHealth(100);
 		setScoreValue(50);
-		setSpeed(1);
+		setSpeed(3);
 		setPositionIndex(0);
 	}
 }
+

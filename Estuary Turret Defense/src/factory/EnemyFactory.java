@@ -12,6 +12,9 @@ public class EnemyFactory {
 			case "Poo" :
 				newEnemy = new EnemyPoo();
 				break;
+			case "QuickShit":
+				newEnemy = new EnemyQuickShit();
+				break;
 			default:
 				//throw exception
 				break;

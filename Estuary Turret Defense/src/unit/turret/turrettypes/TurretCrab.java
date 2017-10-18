@@ -5,10 +5,9 @@ import unit.turret.TurretModel;
 public class TurretCrab extends TurretModel {
 	public TurretCrab(){
 		setName("Crab");
-		setFactDescription("Blue Crab are ingenious to the region");
+		setFactDescription("Blue Crab are indigenous to the region");
 		setGameDescription("Look out for his big meaty claws!");
 		setIcon(null);
-		setId(null);
 		setxCor(1);
 		setyCor(1);
 		setReloadCount(0);
