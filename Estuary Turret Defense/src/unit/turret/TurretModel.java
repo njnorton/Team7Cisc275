@@ -1,6 +1,8 @@
 package unit.turret;
 
-public abstract class TurretModel {
+import unit.UnitModel;
+
+public abstract class TurretModel extends UnitModel {
 	int range;
 	int damage;
 	int attackSpeed;
