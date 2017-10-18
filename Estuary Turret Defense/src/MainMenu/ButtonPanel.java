@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import BoardMenu.BoardMenuView;
+import boardMenu.BoardMenuView;
 
 public class ButtonPanel extends JPanel {
 
