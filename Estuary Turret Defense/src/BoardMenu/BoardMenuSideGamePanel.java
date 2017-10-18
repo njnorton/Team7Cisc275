@@ -18,18 +18,18 @@ public class BoardMenuSideGamePanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 		
-	JPanel sidePanel = new JPanel();
-	JPanel middlePanel = new JPanel();
-	JPanel bottomPanel = new JPanel();
+	private JPanel sidePanel = new JPanel(); // creates the side panel for the BorderLayout
+	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
+	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
 	
-	BoardMenuScorePanel scorePanel = new BoardMenuScorePanel(1000, Color.WHITE);
+	BoardMenuScorePanel scorePanel = new BoardMenuScorePanel(1000, Color.WHITE); // creates the scorePanel
 	
-	GridLayout lay = new GridLayout(2,4);
+	private GridLayout lay = new GridLayout(2,4); // creates the grid for the buttons 
 	
-	final String[] list = {"estuaryPhoto.png","estuaryPhoto.png","estuaryPhoto.png"
+	private final String[] list = {"estuaryPhoto.png","estuaryPhoto.png","estuaryPhoto.png"
 			,"estuaryPhoto.png","estuaryPhoto.png","estuaryPhoto.png","estuaryPhoto.png",
 			"estuaryPhoto.png"};
-	final BufferedImage[] img = estuaryCreatureButtons(list);
+	private final BufferedImage[] img = estuaryCreatureButtonImages(list);
 	
 	public BoardMenuSideGamePanel(){
 		addScorePanel(); // adds the score panel for the screen
@@ -38,15 +38,18 @@ public class BoardMenuSideGamePanel extends JPanel{
 		sidePanel(); // calls the method to add all components together 
 	}
 	
+	// adds the side panel to the screen on the East Side of BorderLayout
 	private void sidePanel(){
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		add(sidePanel);
 	}
 	
+	// adds the top panel to the screen with the initial amount of sand dollars 
 	private void addScorePanel(){
 		sidePanel.add(scorePanel);	
 	}
 	
+	// adds the middle panel to the screen on BorderLayout East Side 
 	private void addMiddlePanel(){
 		middlePanel.setPreferredSize(new Dimension(300, 350));
 		middlePanel.setBackground(Color.LIGHT_GRAY);
@@ -65,13 +68,15 @@ public class BoardMenuSideGamePanel extends JPanel{
 		sidePanel.add(middlePanel);
 	}
 	
+	// adds the bottom panel to the screen on BorderLayout East Side 
 	private void addBottomPanel(){
 		bottomPanel.setPreferredSize(new Dimension(300, 350));
 		bottomPanel.setBackground(Color.YELLOW);
 		sidePanel.add(bottomPanel);
 	}
 	
-	private BufferedImage[] estuaryCreatureButtons(String[] imageList){
+	// creates the buttons images on the middle panel
+	private BufferedImage[] estuaryCreatureButtonImages(String[] imageList){
 		BufferedImage[] imgList = new BufferedImage[imageList.length];
 		try{
 			for(int x = 0; x < imageList.length; x++){
@@ -81,6 +86,12 @@ public class BoardMenuSideGamePanel extends JPanel{
 		catch(IOException e){
 			e.printStackTrace();
 		}
+		return imgList;
+	}
+	
+	// creates the button images for the bottom panel
+	private BufferedImage[] estuaryEnemyButtonImages(String[] imageList){
+		BufferedImage[] imgList = new BufferedImage[imageList.length];
 		return imgList;
 	}
 }
