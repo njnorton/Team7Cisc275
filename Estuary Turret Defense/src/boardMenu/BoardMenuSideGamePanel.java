@@ -14,6 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import unit.turret.turrettypes.TurretCrab;
+
 public class BoardMenuSideGamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -22,7 +24,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
 	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
 
-	BoardMenuScorePanel scorePanel = new BoardMenuScorePanel(1000, Color.WHITE); // creates the scorePanel
+	BoardMenuScorePanel scorePanel = 
+			new BoardMenuScorePanel(0, 1000, 30 ,Color.WHITE); // creates the scorePanel
 
 	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
 	private GridLayout enemyLayout = new GridLayout(2,4); // creates the grid for the enemy buttons

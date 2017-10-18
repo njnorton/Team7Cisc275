@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import MainMenu.InitiateGameStartView;
+
 public class BoardButtonPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
@@ -24,7 +26,7 @@ public class BoardButtonPanel extends JPanel{
 	public BoardButtonPanel(){
 		buttonPanel();
 	}
-	
+		
 	// Creates the button panel for the bottom of the screen
 	private void buttonPanel() {
 		buttonPanel.setLayout(new GridLayout(1, 2));
@@ -38,8 +40,14 @@ public class BoardButtonPanel extends JPanel{
 		exitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BoardMenuView v2 = new BoardMenuView();
+				InitiateGameStartView v1 = new InitiateGameStartView();
 			}
 		});
 	}
+	
+	// sets the preferred size for the JPanel
+		public Dimension getPreferredSize(){
+			Dimension size = new Dimension(0, 48);
+			return size;
+		}
 }

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import boardMenu.BoardMenuView;
 
-public class ButtonPanel extends JPanel {
+public class MainMenuButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class ButtonPanel extends JPanel {
 	Dimension buttonSize =  startButton.getPreferredSize(); // sets the preferred size of buttons
 
 	// Constructor for the main game panel
-	public ButtonPanel(){
+	public MainMenuButtonPanel(){
 		setButtonPanel(); // creates the button panel at the bottom of the screen
 	}
 	

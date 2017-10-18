@@ -32,7 +32,7 @@ public class InitiateGameStartView extends JFrame {
 		add(imagePanel, BorderLayout.CENTER);
 		
 		// creates the lower screen with the buttons attached
-		ButtonPanel gamePanel = new ButtonPanel();
+		MainMenuButtonPanel gamePanel = new MainMenuButtonPanel();
 		add(gamePanel, BorderLayout.PAGE_END);
 	}
 	
