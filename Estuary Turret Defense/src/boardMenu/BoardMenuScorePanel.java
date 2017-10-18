@@ -3,6 +3,7 @@ package boardMenu;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,22 +19,29 @@ public class BoardMenuScorePanel extends JPanel{
 	private int remainingSandDollars = 0; // how many sand dollars remaining 
 	
 	private JLabel sandDollarsLabel = new JLabel("0"); // label for sand dollars
+	private JLabel scoreTotalLabel = new JLabel("0"); // label for sand dollars
+	private JLabel healthLabel = new JLabel("0"); // label for sand dollars
+
 	
 	// constructor for the score panel
 	public BoardMenuScorePanel(int startSandDollars, Color panelColor){
 		this.startSandDollars = startSandDollars; 
 		remainingSandDollars = startSandDollars;
 		
-		setPreferredSize(new Dimension(300, 80)); // sets the size of the panel
+		setPreferredSize(new Dimension(300, 100)); // sets the size of the panel
 		setBackground(panelColor); // set the background color
+		setLayout(new GridLayout(3,2));
 		
-		JLabel scoreLabelHead = new JLabel("Sand Dollars Remaining: "); // adds a label to the panel
-		scoreLabelHead.setFont(sandHeadFont);
-		add(scoreLabelHead); // adds to the panel
+		// Score Label
+		JLabel scoreLabel = new JLabel("Score: ");
+		scoreLabel.setFont(sandHeadFont);
+		add(scoreLabel);
 		
-		sandDollarsLabel.setFont(sandDollarsLabelFont); // sets the font for the sandDollarsLabel
-		sandDollarsLabel.setText("" + remainingSandDollars); // sets the remaining sand dollars
-		add(sandDollarsLabel); // adds the sandDollarsLabel to the panel
+		// Remaining SandDollars
+		JLabel sandDollars = new JLabel("SandDollars Remaining: ");
+		sandDollars.setFont(sandHeadFont);
+		add(sandDollars);
+		
 	}
 	
 	// sets the score on the panel

@@ -55,7 +55,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	// adds the middle panel to the screen on BorderLayout East Side
 	private void addMiddlePanel() {
-		middlePanel.setPreferredSize(new Dimension(300, 337));
+		middlePanel.setPreferredSize(new Dimension(300, 327));
 		middlePanel.setBackground(Color.LIGHT_GRAY);
 		middlePanel.setLayout(creatureLayout);
 
@@ -66,7 +66,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	// adds the bottom panel to the screen on BorderLayout East Side
 	private void addBottomPanel() {
-		bottomPanel.setPreferredSize(new Dimension(300, 337));
+		bottomPanel.setPreferredSize(new Dimension(300, 327));
 		bottomPanel.setBackground(Color.YELLOW);
 		bottomPanel.setLayout(enemyLayout);
 		
