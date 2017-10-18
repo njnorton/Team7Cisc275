@@ -1,6 +1,6 @@
 package factory;
 
-import turret.TurretModel;
+import unit.turret.TurretModel;
 
 public class TurretFactory {
 	public TurretModel makeTurret(String turretName){

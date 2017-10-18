@@ -1,4 +1,4 @@
-package enemy;
+package unit.enemy;
 import unit.UnitModel;
 
 public abstract class EnemyModel extends UnitModel {

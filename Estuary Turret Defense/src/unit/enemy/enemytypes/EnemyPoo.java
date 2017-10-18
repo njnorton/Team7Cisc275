@@ -1,6 +1,6 @@
-package enemy.enemies;
+package unit.enemy.enemytypes;
 
-import enemy.EnemyModel;
+import unit.enemy.EnemyModel;
 
 public class EnemyPoo extends EnemyModel {
 	public EnemyPoo(){

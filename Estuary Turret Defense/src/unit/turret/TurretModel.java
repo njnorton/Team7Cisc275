@@ -1,4 +1,4 @@
-package turret;
+package unit.turret;
 
 public abstract class TurretModel {
 	int range;
