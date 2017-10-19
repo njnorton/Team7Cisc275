@@ -23,11 +23,12 @@ public class BoardMenuScorePanel extends JPanel{
 	private int remainingSandDollars = 0; // how many sand dollars remaining 
 	private int startHealth = 0; // how much health that you have in the beginning of game 
 	private int remainingHealth = 0; // how much health is left during the game
+	private int timeOnClock = 45;
 	
 	private JLabel scoreTotalLabel = new JLabel("0"); // label for score total
 	private JLabel sandDollarsLabel = new JLabel("0"); // label for sand dollars
 	private JLabel healthLeftLabel = new JLabel("0"); // label for health left 
-
+	private JLabel timeLeftLabel = new JLabel("0");
 	
 	// constructor for the score panel
 	public BoardMenuScorePanel(int startScore, int startSandDollars, int startHealth, Color panelColor){
@@ -41,7 +42,7 @@ public class BoardMenuScorePanel extends JPanel{
 		
 		setPreferredSize(new Dimension(300, 125)); // sets the size of the panel
 		setBackground(panelColor); // set the background color
-		setLayout(new GridLayout(3,2)); // sets a new grid layout 
+		setLayout(new GridLayout(4,2)); // sets a new grid layout 
 		
 		// Score Label
 		JLabel scoreLabel = new JLabel("Score: ");
@@ -74,6 +75,15 @@ public class BoardMenuScorePanel extends JPanel{
 		healthLeftLabel.setText("" + remainingHealth);
 		add(healthLeftLabel);
 		
+		// Timer for Game Play
+		JLabel timer = new JLabel("Time Remaining: ");
+		timer.setFont(firstLabelFont);
+		add(timer);
+		
+		// Total Time Left 
+		timeLeftLabel.setFont(secondLabelFont);
+		timeLeftLabel.setText("" + timeOnClock);
+		add(timeLeftLabel);
 	}
 	
 	// sets the score on the panel
