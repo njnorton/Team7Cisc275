@@ -173,9 +173,6 @@ public class BoardController {
 	}
 	
 	// will end the current round 
-<<<<<<< HEAD
-	public void endRound(){	
-=======
 	public void endRound(){
 		resetScorePanel(); // resets the scorePanel in the game
 	}
@@ -202,6 +199,5 @@ public class BoardController {
 	// rests the score panel after the conclusion of the game 
 	public void resetScorePanel(){
 		boardMenu.reset();
->>>>>>> a17b49d34b262c660b80f147853fc1e747e22708
 	}
 }

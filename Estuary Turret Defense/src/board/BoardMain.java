@@ -1,6 +1,6 @@
 package board;
 
-<<<<<<< HEAD
+
 import java.util.Scanner;
 
 public class BoardMain {
@@ -168,8 +168,8 @@ public class BoardMain {
 		
 }
 
+/*
 
-=======
 import MainMenu.InitiateGameStartView;
 
 public class BoardMain {
@@ -180,4 +180,5 @@ public class BoardMain {
 		InitiateGameStartView v1 = new InitiateGameStartView();
 		}
 	}
->>>>>>> a17b49d34b262c660b80f147853fc1e747e22708
+	*/
+
