@@ -19,6 +19,7 @@ public class BoardMenuView extends JFrame {
 	
 	TitlePanel title = new TitlePanel("Welcome to Estuary Tower Defense");
 	
+	BoardMenuCenterPanel centerPanel = new  BoardMenuCenterPanel();
 	BoardMenuSideGamePanel sidePanel = new BoardMenuSideGamePanel();
 	BoardButtonPanel buttonPanel = new BoardButtonPanel();
 	
@@ -42,6 +43,7 @@ public class BoardMenuView extends JFrame {
 		add(buttonPanel, BorderLayout.PAGE_END);
 		
 		// adds the center panel to the screen
+		add(centerPanel, BorderLayout.CENTER);
 	}
 
 	// sets up the main base panel for the game

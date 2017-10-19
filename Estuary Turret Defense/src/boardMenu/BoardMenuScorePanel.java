@@ -39,7 +39,7 @@ public class BoardMenuScorePanel extends JPanel{
 		remainingSandDollars = startSandDollars;
 		remainingHealth = startHealth;
 		
-		setPreferredSize(new Dimension(300, 100)); // sets the size of the panel
+		setPreferredSize(new Dimension(300, 125)); // sets the size of the panel
 		setBackground(panelColor); // set the background color
 		setLayout(new GridLayout(3,2)); // sets a new grid layout xs
 		

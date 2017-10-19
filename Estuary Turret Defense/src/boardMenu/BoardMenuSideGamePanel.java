@@ -12,9 +12,8 @@ import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import unit.turret.turrettypes.TurretCrab;
 
 public class BoardMenuSideGamePanel extends JPanel {
 
@@ -23,12 +22,17 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private JPanel sidePanel = new JPanel(); // creates the side panel for the										// BorderLayout
 	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
 	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
-
+	private JPanel creaturePanel = new JPanel();
+	private JPanel menuPanel = new JPanel();
+	
+	private JLabel creatureLabel = new JLabel("Select from available creatures below:");
+	private JLabel menuInstruction = new JLabel("To begin a new round click Start Round");
+	
 	BoardMenuScorePanel scorePanel = 
-			new BoardMenuScorePanel(0, 1000, 30 ,Color.WHITE); // creates the scorePanel
+			new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates the scorePanel
 
 	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
-	private GridLayout enemyLayout = new GridLayout(2,4); // creates the grid for the enemy buttons
+	private GridLayout enemyLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
 
 	private final String[] creatureList = { "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png",
 			"estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png" };
@@ -40,7 +44,9 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	public BoardMenuSideGamePanel() {
 		addScorePanel(); // adds the score panel for the screen
+		addLabelMiddleTop(); // adds a label to identify creature section
 		addMiddlePanel(); // adds the middle panel for the screen
+		addBottomLabel(); // adds a label to identify menu selection
 		addBottomPanel(); // adds the bottom panel for the screen
 		sidePanel(); // calls the method to add all components together
 	}
@@ -55,10 +61,17 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private void addScorePanel() {
 		sidePanel.add(scorePanel);
 	}
+	
+	private void addLabelMiddleTop(){
+		sidePanel.add(creaturePanel);
+		creaturePanel.add(creatureLabel);
+		creaturePanel.setBackground(Color.LIGHT_GRAY);
+		creaturePanel.setPreferredSize(new Dimension(300, 40));
+	}
 
 	// adds the middle panel to the screen on BorderLayout East Side
 	private void addMiddlePanel() {
-		middlePanel.setPreferredSize(new Dimension(300, 327));
+		middlePanel.setPreferredSize(new Dimension(300, 450));
 		middlePanel.setBackground(Color.LIGHT_GRAY);
 		middlePanel.setLayout(creatureLayout);
 
@@ -66,14 +79,26 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 		sidePanel.add(middlePanel);
 	}
+	
+	private void addBottomLabel(){
+		sidePanel.add(menuPanel);
+		menuPanel.setPreferredSize(new Dimension(300, 40));
+		menuPanel.setBackground(Color.YELLOW);
+		menuPanel.add(menuInstruction);
+	}
 
 	// adds the bottom panel to the screen on BorderLayout East Side
 	private void addBottomPanel() {
-		bottomPanel.setPreferredSize(new Dimension(300, 327));
+		bottomPanel.setPreferredSize(new Dimension(300, 100));
 		bottomPanel.setBackground(Color.YELLOW);
 		bottomPanel.setLayout(enemyLayout);
 		
-		placeImageOnButtonsEnemy();
+		JButton startButton = new JButton("Start Round");
+		JButton endButton = new JButton("End Round");
+		bottomPanel.add(startButton);
+		bottomPanel.add(endButton);
+		
+		//placeImageOnButtonsEnemy(); // consider if enemies want to be on buttons 
 		
 		sidePanel.add(bottomPanel);
 	}
@@ -82,7 +107,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private void placeImageOnButtonsCreature() {
 		for (int x = 0; x < creatureList.length; x++) {
 			JButton image = new JButton();
-			image.setSize(60, 120);
+			image.setSize(60, 80);
 			Image dimg = creatureImg[x].getScaledInstance(image.getWidth(), 
 					image.getHeight(), Image.SCALE_SMOOTH);
 			ImageIcon ic = new ImageIcon(dimg);
@@ -95,7 +120,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private void placeImageOnButtonsEnemy() {
 		for (int x = 0; x < enemyList.length; x++) {
 			JButton image = new JButton();
-			image.setSize(60, 120);
+			image.setSize(55, 40);
 			Image dimg = enemyImg[x].getScaledInstance(image.getWidth(), 
 					image.getHeight(), Image.SCALE_SMOOTH);
 			ImageIcon ic = new ImageIcon(dimg);
