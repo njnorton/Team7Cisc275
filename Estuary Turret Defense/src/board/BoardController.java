@@ -105,6 +105,7 @@ public class BoardController {
 		if (Board.Path.getSize() > moveInd){
 			Board.EnemyList.get(enemyInd).setxCor(Board.Path.getxCorAtIndex(moveInd));
 			Board.EnemyList.get(enemyInd).setyCor(Board.Path.getyCorAtIndex(moveInd));
+			Board.EnemyList.get(enemyInd).setPositionIndex(moveInd);
 			return false;
 		}
 		else{

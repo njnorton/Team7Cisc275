@@ -18,7 +18,7 @@ public class BoardMain {
 			xPath[i] = i;
 		}
 		for (int i = 0; i<100; i++){
-			yPath[i] = 2;
+			yPath[i] = 0;
 		}
 		
 		Controller.Board.Path.setxCorArr(xPath);
@@ -27,13 +27,14 @@ public class BoardMain {
 	}
 	
 	public static void displayGrid(){
+		System.out.flush();
 		System.out.println("Current Board: ");
 		
 		//Prints all the Poo bad guys
 		for (int i = 0; i < Controller.Board.Path.getSize(); i++){
 			toPrint = "-";
 			for(int j = 0; j < Controller.Board.EnemyList.size(); j++){
-				if (Controller.Board.EnemyList.get(j).getPositionIndex() == i){
+				if (Controller.Board.EnemyList.get(j).getxCor() == i){
 					toPrint = "X";
 					break;
 				}
@@ -61,8 +62,9 @@ public class BoardMain {
 	public static void playerInput(){
 		boolean inputting = true;
 		Scanner scanner = new Scanner(System.in);
-		while (inputting){
+		do{
 			System.out.println("You have " + Controller.Player.getMoney() +" Sand Dollars to spend");
+			System.out.println("You have " + Controller.Player.getHealth() + " Health remaining");
 			System.out.println("Either enter name of turret to place (So type in 'Crab') case sensitive");
 			System.out.println("Or input anything else to continue time by a step");
 			String input = scanner.nextLine();
@@ -80,16 +82,15 @@ public class BoardMain {
 					}else{
 						System.out.println("Invalid Input");
 					}
-				
 				}else{
 					System.out.println("Not enough money to afford that");
 				}
-				
-				
 			}else{
+				System.out.println("Try Close");
 				inputting = false;
+				return;
 			}
-		}
+		}while(inputting == true);
 		scanner.close();
 	}
 	
@@ -130,7 +131,7 @@ public class BoardMain {
 			if (time%5 == 0){
 				Controller.spawnEnemy("Poo");
 			}
-			if (time%11 == 0){
+			if (time%7 == 0){
 				Controller.spawnEnemy("QuickShit");
 			}
 			
@@ -139,9 +140,11 @@ public class BoardMain {
 			playerInput();
 			
 			//Resolve the round, move things, damage things, etc	
+			System.out.println("Try resolve");
 			resolveTurretActions();
-			
 			resolveEnemyActions();
+			
+			Controller.increasePlayerMoney(1);
 			
 			if (checkPlayerIsDead()){
 				System.out.println("You have died!");
