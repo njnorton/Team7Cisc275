@@ -19,11 +19,11 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private JPanel sidePanel = new JPanel(); // creates the side panel for the										// BorderLayout
+	private JPanel sidePanel = new JPanel(); // creates the side panel for the BorderLayout
 	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
 	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
-	private JPanel creaturePanel = new JPanel();
-	private JPanel menuPanel = new JPanel();
+	private JPanel creaturePanel = new JPanel(); // adds the panel for describing creature panel
+	private JPanel menuPanel = new JPanel(); // adds the panel for describing the selection of game play
 	
 	private JLabel creatureLabel = new JLabel("Select from available creatures below:");
 	private JLabel menuInstruction = new JLabel("To begin a new round click Start Round");
@@ -36,11 +36,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	private final String[] creatureList = { "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png",
 			"estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png" };
-	private final String[] enemyList = { "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png",
-			"estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png" };
 	
 	private final BufferedImage[] creatureImg = estuaryCreatureButtonImages(creatureList);
-	private final BufferedImage[] enemyImg = estuaryEnemyButtonImages(enemyList);
 
 	public BoardMenuSideGamePanel() {
 		addScorePanel(); // adds the score panel for the screen
@@ -115,35 +112,9 @@ public class BoardMenuSideGamePanel extends JPanel {
 			middlePanel.add(image);
 		}
 	}
-	
-	// places the images on the JButtons
-	private void placeImageOnButtonsEnemy() {
-		for (int x = 0; x < enemyList.length; x++) {
-			JButton image = new JButton();
-			image.setSize(55, 40);
-			Image dimg = enemyImg[x].getScaledInstance(image.getWidth(), 
-					image.getHeight(), Image.SCALE_SMOOTH);
-			ImageIcon ic = new ImageIcon(dimg);
-			image.setIcon(ic);
-			bottomPanel.add(image);
-		}
-	}
 
 	// creates the buttons images on the middle panel
 	private BufferedImage[] estuaryCreatureButtonImages(String[] imageList) {
-		BufferedImage[] imgList = new BufferedImage[imageList.length];
-		try {
-			for (int x = 0; x < imageList.length; x++) {
-				imgList[x] = ImageIO.read(new File(imageList[x]));
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return imgList;
-	}
-
-	// creates the button images for the bottom panel
-	private BufferedImage[] estuaryEnemyButtonImages(String[] imageList) {
 		BufferedImage[] imgList = new BufferedImage[imageList.length];
 		try {
 			for (int x = 0; x < imageList.length; x++) {
