@@ -1,4 +1,4 @@
-package boardMenu;
+package boardMenuView;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,7 +15,7 @@ public class BoardMenuScorePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	private Font firstLabelFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font size for head label
-	private Font secondLabelFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font for sand dollars
+	private Font secondLabelFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font for label
 	
 	private int startScore = 0; // what the score is set to in the beginning of the game 
 	private int currentScore = 0; // what the current score of the game is
@@ -27,7 +27,6 @@ public class BoardMenuScorePanel extends JPanel{
 	private JLabel scoreTotalLabel = new JLabel("0"); // label for score total
 	private JLabel sandDollarsLabel = new JLabel("0"); // label for sand dollars
 	private JLabel healthLeftLabel = new JLabel("0"); // label for health left 
-
 	
 	// constructor for the score panel
 	public BoardMenuScorePanel(int startScore, int startSandDollars, int startHealth, Color panelColor){
@@ -41,7 +40,7 @@ public class BoardMenuScorePanel extends JPanel{
 		
 		setPreferredSize(new Dimension(300, 125)); // sets the size of the panel
 		setBackground(panelColor); // set the background color
-		setLayout(new GridLayout(3,2)); // sets a new grid layout xs
+		setLayout(new GridLayout(3,2)); // sets a new grid layout 
 		
 		// Score Label
 		JLabel scoreLabel = new JLabel("Score: ");
@@ -73,7 +72,6 @@ public class BoardMenuScorePanel extends JPanel{
 		healthLeftLabel.setFont(secondLabelFont);
 		healthLeftLabel.setText("" + remainingHealth);
 		add(healthLeftLabel);
-		
 	}
 	
 	// sets the score on the panel

@@ -1,9 +1,11 @@
-package boardMenu;
+package boardMenuView;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,35 +17,41 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import board.BoardController;
+
 public class BoardMenuSideGamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private JPanel sidePanel = new JPanel(); // creates the side panel for the										// BorderLayout
+	private JPanel sidePanel = new JPanel(); // creates the side panel for the BorderLayout
 	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
 	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
-	private JPanel creaturePanel = new JPanel();
-	private JPanel menuPanel = new JPanel();
+	private JPanel creaturePanel = new JPanel(); // adds the panel for describing creature panel
+	private JPanel menuPanel = new JPanel(); // adds the panel for describing the selection of game play
 	
 	private JLabel creatureLabel = new JLabel("Select from available creatures below:");
 	private JLabel menuInstruction = new JLabel("To begin a new round click Start Round");
 	
+	protected JButton startButton = new JButton("Start Round");
+	protected JButton endButton = new JButton("End Round");
+	
 	BoardMenuScorePanel scorePanel = 
 			new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates the scorePanel
+	BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(45); // creates the timerPanel
+	BoardController c1;
 
 	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
 	private GridLayout enemyLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
 
 	private final String[] creatureList = { "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png",
 			"estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png" };
-	private final String[] enemyList = { "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png",
-			"estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png" };
 	
 	private final BufferedImage[] creatureImg = estuaryCreatureButtonImages(creatureList);
-	private final BufferedImage[] enemyImg = estuaryEnemyButtonImages(enemyList);
 
 	public BoardMenuSideGamePanel() {
+		setBackground(Color.BLACK); // sets the color of the background for the screen
 		addScorePanel(); // adds the score panel for the screen
+		addTimerPanel(); // adds the timer panel during game play 
 		addLabelMiddleTop(); // adds a label to identify creature section
 		addMiddlePanel(); // adds the middle panel for the screen
 		addBottomLabel(); // adds a label to identify menu selection
@@ -62,6 +70,11 @@ public class BoardMenuSideGamePanel extends JPanel {
 		sidePanel.add(scorePanel);
 	}
 	
+	// adds the timer panel to the screen
+	private void addTimerPanel(){
+		sidePanel.add(timerPanel);
+	}
+	
 	private void addLabelMiddleTop(){
 		sidePanel.add(creaturePanel);
 		creaturePanel.add(creatureLabel);
@@ -71,7 +84,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	// adds the middle panel to the screen on BorderLayout East Side
 	private void addMiddlePanel() {
-		middlePanel.setPreferredSize(new Dimension(300, 450));
+		middlePanel.setPreferredSize(new Dimension(300, 400));
 		middlePanel.setBackground(Color.LIGHT_GRAY);
 		middlePanel.setLayout(creatureLayout);
 
@@ -86,19 +99,29 @@ public class BoardMenuSideGamePanel extends JPanel {
 		menuPanel.setBackground(Color.YELLOW);
 		menuPanel.add(menuInstruction);
 	}
-
+	
 	// adds the bottom panel to the screen on BorderLayout East Side
 	private void addBottomPanel() {
 		bottomPanel.setPreferredSize(new Dimension(300, 100));
 		bottomPanel.setBackground(Color.YELLOW);
 		bottomPanel.setLayout(enemyLayout);
 		
-		JButton startButton = new JButton("Start Round");
-		JButton endButton = new JButton("End Round");
 		bottomPanel.add(startButton);
 		bottomPanel.add(endButton);
+	
+		startButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				timerPanel.startTimer();
+			}
+		});
 		
-		//placeImageOnButtonsEnemy(); // consider if enemies want to be on buttons 
+		endButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				timerPanel.stopTimer();
+			}
+		});
 		
 		sidePanel.add(bottomPanel);
 	}
@@ -115,35 +138,9 @@ public class BoardMenuSideGamePanel extends JPanel {
 			middlePanel.add(image);
 		}
 	}
-	
-	// places the images on the JButtons
-	private void placeImageOnButtonsEnemy() {
-		for (int x = 0; x < enemyList.length; x++) {
-			JButton image = new JButton();
-			image.setSize(55, 40);
-			Image dimg = enemyImg[x].getScaledInstance(image.getWidth(), 
-					image.getHeight(), Image.SCALE_SMOOTH);
-			ImageIcon ic = new ImageIcon(dimg);
-			image.setIcon(ic);
-			bottomPanel.add(image);
-		}
-	}
 
 	// creates the buttons images on the middle panel
 	private BufferedImage[] estuaryCreatureButtonImages(String[] imageList) {
-		BufferedImage[] imgList = new BufferedImage[imageList.length];
-		try {
-			for (int x = 0; x < imageList.length; x++) {
-				imgList[x] = ImageIO.read(new File(imageList[x]));
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return imgList;
-	}
-
-	// creates the button images for the bottom panel
-	private BufferedImage[] estuaryEnemyButtonImages(String[] imageList) {
 		BufferedImage[] imgList = new BufferedImage[imageList.length];
 		try {
 			for (int x = 0; x < imageList.length; x++) {

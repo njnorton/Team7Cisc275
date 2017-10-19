@@ -1,5 +1,6 @@
 package board;
 
+<<<<<<< HEAD
 import java.util.Scanner;
 
 public class BoardMain {
@@ -168,3 +169,15 @@ public class BoardMain {
 }
 
 
+=======
+import MainMenu.InitiateGameStartView;
+
+public class BoardMain {
+	// Note, traverse enemylist in reverse order, you should damage the thing
+	// that is furthest along
+
+	public static void main(String[] args) {
+		InitiateGameStartView v1 = new InitiateGameStartView();
+		}
+	}
+>>>>>>> a17b49d34b262c660b80f147853fc1e747e22708
