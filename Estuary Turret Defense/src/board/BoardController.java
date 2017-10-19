@@ -15,7 +15,7 @@ public class BoardController {
 	TurretFactory TurretFactory;
 	EnemyFactory EnemyFactory;
 	
-	BoardMenuScorePanel boardMenu; // allows for the use of controlling the view of the side panel
+	private BoardMenuScorePanel boardMenu; // allows for the use of controlling the view of the side panel
 	
 	public BoardController(){
 		Board = new BoardModel();
