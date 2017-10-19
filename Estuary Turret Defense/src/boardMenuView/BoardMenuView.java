@@ -1,4 +1,4 @@
-package boardMenu;
+package boardMenuView;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

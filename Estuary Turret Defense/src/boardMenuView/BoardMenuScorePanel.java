@@ -1,4 +1,4 @@
-package boardMenu;
+package boardMenuView;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -41,7 +41,7 @@ public class BoardMenuScorePanel extends JPanel{
 		
 		setPreferredSize(new Dimension(300, 125)); // sets the size of the panel
 		setBackground(panelColor); // set the background color
-		setLayout(new GridLayout(3,2)); // sets a new grid layout xs
+		setLayout(new GridLayout(3,2)); // sets a new grid layout 
 		
 		// Score Label
 		JLabel scoreLabel = new JLabel("Score: ");

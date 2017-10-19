@@ -1,5 +1,6 @@
 package board;
 
+import boardMenuView.BoardMenuScorePanel;
 import factory.EnemyFactory;
 import factory.TurretFactory;
 //import unit.enemy.EnemyModel;
@@ -13,6 +14,8 @@ public class BoardController {
 	BoardModel Board;
 	TurretFactory TurretFactory;
 	EnemyFactory EnemyFactory;
+	
+	BoardMenuScorePanel boardMenu; // allows for the use of controlling the view of the side panel
 	
 	public BoardController(){
 		Board = new BoardModel();
@@ -110,6 +113,30 @@ public class BoardController {
 	
 	// will end the current round 
 	public void endRound(){
-		
+		reset(); // resets the scorepanel in the game
+	}
+	
+	// updates the current score of the game 
+	public void updateScore(int score){
+		boardMenu.updateScore(score);
+	}
+	 // updates the remaining sandDollars left 
+	public void updateSandDollars(int sandDollars){
+		boardMenu.updateSandDollars(sandDollars);
+	}
+	
+	// updates the health status 
+	public void updateHealth(int healthLost){
+		boardMenu.updateHealth(healthLost);
+	}
+	
+	// allows the purchase of items from buttons clicked
+	public void purchaseItem(TurretModel model){
+		boardMenu.purchaseItem(model);
+	}
+	
+	// rests the score panel after the conclusion of the game 
+	public void reset(){
+		boardMenu.reset();
 	}
 }

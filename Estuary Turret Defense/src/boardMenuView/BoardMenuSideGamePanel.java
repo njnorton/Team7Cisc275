@@ -1,4 +1,4 @@
-package boardMenu;
+package boardMenuView;
 
 import java.awt.Color;
 import java.awt.Dimension;
