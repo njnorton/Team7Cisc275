@@ -2,23 +2,36 @@ package board;
 
 import factory.EnemyFactory;
 import factory.TurretFactory;
+import player.PlayerModel;
 //import unit.enemy.EnemyModel;
 //import unit.turret.TurretModel;
 import unit.enemy.EnemyModel;
 import unit.turret.TurretModel;
 
 public class BoardController {
+	
+	//TODO
+	//Refactor? So it has a pointer to the board or something
+	//The inputs may have to get changed if the board object cannot be in this class
 
+	
+	//TODO have a turret library of every possible turret to make so we can do price looksups?
+	//At the very least a price library may be required
 	// fields to be added 
 	BoardModel Board;
 	TurretFactory TurretFactory;
 	EnemyFactory EnemyFactory;
+	PlayerModel Player;
 	
 	public BoardController(){
 		Board = new BoardModel();
 		TurretFactory = new TurretFactory();
 		EnemyFactory = new EnemyFactory();
+		Player = new PlayerModel();
+		Player.setMoney(200);
+		Player.setHealth(10);
 	}
+
 	
 	/* Methods to be added for the Board Controller Class. 
 	   Will have to change the return types of each of the
@@ -30,12 +43,17 @@ public class BoardController {
 	//If it is not zero, reduce the turret's reload count by 1, and return false
 	public boolean checkReloadCount(int turretInd){
 		if (Board.TurretList.get(turretInd).getReloadCount() == 0){
+			resetReload(turretInd);
 			return true;
 		}
 		else{
 			Board.TurretList.get(turretInd).setReloadCount(Board.TurretList.get(turretInd).getReloadCount()-1);
 			return false;
 		}
+	}
+	
+	public void resetReload(int turretInd){
+		Board.TurretList.get(turretInd).setReloadCount(Board.TurretList.get(turretInd).getReloadTime());
 	}
 	
 	
@@ -55,9 +73,10 @@ public class BoardController {
 	}
 	
 	// adds damage to the current object that is on the board 
-	public void damageEnemy(int turretInd, int enemyInd){
+	// if the enemy is killed, return true
+	public boolean damageEnemy(int turretInd, int enemyInd){
 		Board.EnemyList.get(enemyInd).setCurrentHealth(Board.EnemyList.get(enemyInd).getCurrentHealth()-Board.TurretList.get(turretInd).getDamage());
-		return;
+		return checkHealth(enemyInd);
 	}
 	
 	//Checks the enemy's health, if it is zero or lower then returns true, else returns false
@@ -70,20 +89,24 @@ public class BoardController {
 		}
 	}
 	
-	// removes the object from it's respective array
+	// removes the object from it's respective array 
 	public void removeEnemy(int enemyInd){
 		Board.EnemyList.remove(enemyInd);
 	}
 	
 	//Moves the enemy forward, removing it if it falls out of bound
-	public void moveEnemy(int enemyInd){
+	//if it is removed via falling out of bound, return true
+	
+	public boolean moveEnemy(int enemyInd){
 		int moveInd = Board.EnemyList.get(enemyInd).getPositionIndex() + Board.EnemyList.get(enemyInd).getSpeed(); 
 		if (Board.Path.getSize() > moveInd){
 			Board.EnemyList.get(enemyInd).setxCor(Board.Path.getxCorAtIndex(moveInd));
 			Board.EnemyList.get(enemyInd).setyCor(Board.Path.getyCorAtIndex(moveInd));
+			return false;
 		}
 		else{
 			removeEnemy(enemyInd);
+			return true;
 		}
 	}
 	
@@ -103,13 +126,50 @@ public class BoardController {
 		Board.TurretList.add(turret);
 	}
 	
+	//Checks the price of the turret, returning true if the player can afford it or false if he cannot
+	//TODO alter it so it doesn't have to make a turret to check price
+	public boolean checkPrice(String turretName){
+		TurretModel turret = TurretFactory.makeTurret(turretName);
+		if (Player.getMoney() >= turret.getPrice()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	//Reduce the player's health by the given amount
+	public void reducePlayerHealth(int i){
+		Player.setHealth(Player.getHealth() - i);
+	}
+	
+	//Reduce the player's money by the given amount
+	public void reducePlayerMoney(int i){
+		Player.setMoney(Player.getMoney() - i);
+	}
+	
+	
+	//Increase the player's money by the given amount
+	public void increasePlayerMoney(int i){
+		Player.setMoney(Player.getMoney() + i);
+	}
+	
+	
+	//Cheacks the players health, if false they are dead
+	public boolean checkPlayerIsDead(){
+		if (0 >= Player.getHealth()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
 	// will start the round 
-	public void startRound(){
-		
+	public void startRound(){		
 	}
 	
 	// will end the current round 
-	public void endRound(){
-		
+	public void endRound(){	
 	}
 }

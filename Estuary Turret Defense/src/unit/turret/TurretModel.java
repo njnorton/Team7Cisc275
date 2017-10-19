@@ -5,8 +5,9 @@ import unit.UnitModel;
 public abstract class TurretModel extends UnitModel {
 	int range;
 	int damage;
-	
 	int price;
+	
+	//TODO Turrets should have attack methods at this level
 	
 	//HOW THIS WORKS reloadTime is how long it takes for something to fire
 	//reloadCount is the current reload counter, every time tick it is reduced by 1
