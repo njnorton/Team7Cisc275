@@ -55,6 +55,10 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 		}
 	}
 	
+	public void reset(){
+		setTime(45);
+	}
+	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawString(timeString, 150, 30);

@@ -1,5 +1,6 @@
 package boardMenuView;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -115,6 +116,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				timerPanel.startTimer();
+				scorePanel.updateHealth(10);
 			}
 		});
 		
