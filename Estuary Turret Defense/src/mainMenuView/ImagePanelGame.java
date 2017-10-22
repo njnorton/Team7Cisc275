@@ -1,4 +1,4 @@
-package MainMenu;
+package mainMenuView;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -15,7 +15,7 @@ public class ImagePanelGame extends JPanel{
 	JPanel centerPanel = new JPanel(); // center panel to place on screen 
 	BufferedImage image; // new image to place on screen
 	
-	final String imageFile = "estuaryPhoto.png";
+	final String imageFile = "images/estuaryPhoto.png";
 	
 	// Constructor 
 	public ImagePanelGame(){

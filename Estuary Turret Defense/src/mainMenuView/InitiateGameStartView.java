@@ -1,4 +1,4 @@
-package MainMenu;
+package mainMenuView;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

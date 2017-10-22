@@ -13,7 +13,7 @@ public class BoardMenuCenterPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel centerPanel = new JPanel();
-	private final String centerImage = "estuaryTrack.jpg";
+	private final String centerImage = "images/estuaryTrack.jpg";
 	private BufferedImage image;
 	
 	public BoardMenuCenterPanel(){

@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import MainMenu.TitlePanel;
+import mainMenuView.TitlePanel;
 
 public class BoardMenuView extends JFrame {
 

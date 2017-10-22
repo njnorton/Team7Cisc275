@@ -1,4 +1,4 @@
-package MainMenu;
+package mainMenuView;
 
 import java.awt.Color;
 import java.awt.Dimension;

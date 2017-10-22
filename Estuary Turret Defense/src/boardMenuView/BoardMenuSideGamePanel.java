@@ -43,8 +43,10 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
 	private GridLayout enemyLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
 
-	private final String[] creatureList = { "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png",
-			"estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png", "estuaryPhoto.png" };
+	private final String[] creatureList = { "images/crab1.png", "images/horseshoeCrab1.jpg", 
+			"images/estuaryPhoto.png", "images/estuaryPhoto.png",
+			"images/estuaryPhoto.png", "images/estuaryPhoto.png", 
+			"images/estuaryPhoto.png", "images/estuaryPhoto.png" };
 	
 	private final BufferedImage[] creatureImg = estuaryCreatureButtonImages(creatureList);
 
@@ -130,7 +132,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private void placeImageOnButtonsCreature() {
 		for (int x = 0; x < creatureList.length; x++) {
 			JButton image = new JButton();
-			image.setSize(60, 80);
+			image.setSize(55, 80);
 			Image dimg = creatureImg[x].getScaledInstance(image.getWidth(), 
 					image.getHeight(), Image.SCALE_SMOOTH);
 			ImageIcon ic = new ImageIcon(dimg);
