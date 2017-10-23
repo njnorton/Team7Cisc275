@@ -11,10 +11,10 @@ public class TurretCrab extends TurretModel {
 		setxCor(1);
 		setyCor(1);
 		setReloadCount(0);
-		setReloadTime(5);
+		setReloadTime(2);
 		setDamage(50);
 		setPrice(100);
-		setRange(20);
+		setRange(15);
 		setUpgrade(null);
 	}
 }
