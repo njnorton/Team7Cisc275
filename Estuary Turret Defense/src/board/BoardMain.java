@@ -79,6 +79,8 @@ public class BoardMain {
 						//Should there be a library of turret prices?
 						//Other option is having a library of turrets in the controlller it can do lookups on
 						Controller.reducePlayerMoney(100);
+						System.out.println("Your current turrets: ");
+						
 					}else{
 						System.out.println("Invalid Input");
 					}
@@ -86,7 +88,6 @@ public class BoardMain {
 					System.out.println("Not enough money to afford that");
 				}
 			}else{
-				System.out.println("Try Close");
 				inputting = false;
 				return;
 			}
@@ -100,7 +101,10 @@ public class BoardMain {
 			if (Controller.checkReloadCount(i)){
 				for (int j = 0; j < Controller.Board.EnemyList.size(); j++){
 					if(Controller.checkRange(i, j)){
+						Controller.resetReload(i);
+						System.out.println("Try to damage baddie");
 						if(Controller.damageEnemy(i, j)){
+							Controller.gainBounty(j);
 							Controller.removeEnemy(j);
 						}
 						break;
@@ -140,7 +144,6 @@ public class BoardMain {
 			playerInput();
 			
 			//Resolve the round, move things, damage things, etc	
-			System.out.println("Try resolve");
 			resolveTurretActions();
 			resolveEnemyActions();
 			

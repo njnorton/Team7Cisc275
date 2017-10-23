@@ -46,7 +46,6 @@ public class BoardController {
 	//If it is not zero, reduce the turret's reload count by 1, and return false
 	public boolean checkReloadCount(int turretInd){
 		if (Board.TurretList.get(turretInd).getReloadCount() == 0){
-			resetReload(turretInd);
 			return true;
 		}
 		else{
@@ -63,6 +62,7 @@ public class BoardController {
 	//Checks the range of the turret versus the enemy, if it is range it returns true
 	//If it is not in range it returns false
 	public boolean checkRange(int turretInd, int enemyInd){
+		System.out.println("Try Check Range");
 		int xDis = Board.TurretList.get(turretInd).getxCor() - Board.EnemyList.get(enemyInd).getxCor();
 		int yDis = Board.TurretList.get(turretInd).getyCor() - Board.EnemyList.get(enemyInd).getyCor();
 		double Dis = Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2));
@@ -84,6 +84,7 @@ public class BoardController {
 	
 	//Checks the enemy's health, if it is zero or lower then returns true, else returns false
 	public boolean checkHealth(int enemyInd){
+		System.out.println("Current baddie health: " + Board.EnemyList.get(enemyInd).getCurrentHealth());
 		if (0 > Board.EnemyList.get(enemyInd).getCurrentHealth()){
 			return true;
 		}
@@ -126,7 +127,7 @@ public class BoardController {
 	public void spawnTurret(String turretName, int xCor, int yCor){
 		TurretModel turret = TurretFactory.makeTurret(turretName);
 		turret.setxCor(Board.Path.getxCorAtIndex(xCor));
-		turret.setxCor(Board.Path.getyCorAtIndex(yCor));
+		turret.setyCor(Board.Path.getyCorAtIndex(yCor));
 		Board.TurretList.add(turret);
 	}
 	
@@ -156,6 +157,10 @@ public class BoardController {
 	//Increase the player's money by the given amount
 	public void increasePlayerMoney(int i){
 		Player.setMoney(Player.getMoney() + i);
+	}
+	
+	public void gainBounty(int enemyInd){
+		increasePlayerMoney(Board.EnemyList.get(enemyInd).getBounty());
 	}
 	
 	
