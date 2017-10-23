@@ -1,6 +1,5 @@
 package boardMenuView;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -13,6 +12,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -25,7 +25,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel sidePanel = new JPanel(); // creates the side panel for the BorderLayout
-	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
+	protected JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
 	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
 	private JPanel creaturePanel = new JPanel(); // adds the panel for describing creature panel
 	private JPanel menuPanel = new JPanel(); // adds the panel for describing the selection of game play
@@ -39,18 +39,22 @@ public class BoardMenuSideGamePanel extends JPanel {
 	BoardMenuScorePanel scorePanel = 
 			new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates the scorePanel
 	BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(45); // creates the timerPanel
-	BoardController c1;
+	BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
+	BoardController c1 = new BoardController(); // gives access to the controller
 
 	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
 	private GridLayout enemyLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
 
-	private final String[] creatureList = { "images/crab1.png", "images/horseshoeCrab1.jpg", 
+	protected final String[] creatureList = { "images/crab1.png", "images/horseshoeCrab1.jpg", 
 			"images/estuaryPhoto.png", "images/estuaryPhoto.png",
 			"images/estuaryPhoto.png", "images/estuaryPhoto.png", 
 			"images/estuaryPhoto.png", "images/estuaryPhoto.png" };
 	
-	private final BufferedImage[] creatureImg = estuaryCreatureButtonImages(creatureList);
-
+	protected final BufferedImage[] creatureImg = estuaryCreatureButtonImages(creatureList);
+	final int rows = 2;
+	final int cols = 4;
+	final JButton gameButtons[][] = new JButton[rows][cols];
+	
 	public BoardMenuSideGamePanel() {
 		setBackground(Color.BLACK); // sets the color of the background for the screen
 		addScorePanel(); // adds the score panel for the screen
@@ -116,7 +120,6 @@ public class BoardMenuSideGamePanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				timerPanel.startTimer();
-				scorePanel.updateHealth(10);
 			}
 		});
 		
@@ -132,7 +135,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	// places the images on the JButtons
 	private void placeImageOnButtonsCreature() {
-		for (int x = 0; x < creatureList.length; x++) {
+		/*for (int x = 0; x < creatureList.length; x++) {
 			JButton image = new JButton();
 			image.setSize(55, 80);
 			Image dimg = creatureImg[x].getScaledInstance(image.getWidth(), 
@@ -140,11 +143,41 @@ public class BoardMenuSideGamePanel extends JPanel {
 			ImageIcon ic = new ImageIcon(dimg);
 			image.setIcon(ic);
 			middlePanel.add(image);
+		}*/
+		
+		int z = 0;
+		for(int x = 0; x < rows; x++){
+			for(int y = 0; y < cols; y++){
+				gameButtons[x][y] = new JButton();
+				
+				gameButtons[x][y].setSize(55, 80);
+				Image dimg = creatureImg[z].getScaledInstance(gameButtons[x][y].getWidth(),
+						gameButtons[x][y].getHeight(), Image.SCALE_SMOOTH);
+				ImageIcon img = new ImageIcon(dimg);
+				gameButtons[x][y].setIcon(img);
+				z++;
+				middlePanel.add(gameButtons[x][y]);
+				gameButtons[x][y].addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						for(int x = 0; x < rows; x++){
+							for(int y = 0; y < cols; y++){
+								if(e.getSource() == gameButtons[x][y]){
+									Icon i = gameButtons[x][y].getIcon();
+									i.paintIcon(cen.centerPanel, getGraphics(), 120, 203);
+					
+								}
+							}
+						}
+					}
+				});
+			}
 		}
+
 	}
 
 	// creates the buttons images on the middle panel
-	private BufferedImage[] estuaryCreatureButtonImages(String[] imageList) {
+	protected BufferedImage[] estuaryCreatureButtonImages(String[] imageList) {
 		BufferedImage[] imgList = new BufferedImage[imageList.length];
 		try {
 			for (int x = 0; x < imageList.length; x++) {

@@ -8,13 +8,18 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import unit.turret.turrettypes.TurretCrab;
+
 public class BoardMenuCenterPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	private JPanel centerPanel = new JPanel();
+	protected JPanel centerPanel = new JPanel();
 	private final String centerImage = "images/estuaryTrack.jpg";
+	BufferedImage turrcrab;
 	private BufferedImage image;
+	
+	TurretCrab crab = new TurretCrab();
 	
 	public BoardMenuCenterPanel(){
 		try{
@@ -33,5 +38,6 @@ public class BoardMenuCenterPanel extends JPanel{
 	
 	public void paint(Graphics g){
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		//g.drawImage(turrcrab, crab.getX(), crab.getY(), null);
 	}
 }
