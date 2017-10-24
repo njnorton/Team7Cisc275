@@ -18,6 +18,15 @@ public abstract class TurretModel extends UnitModel {
 	//The possible turrets it can upgrade into
 	String[] upgrade;
 	
+	
+	//TODO TARGET ACQUISTION
+	//Return an array of the indexes of all enemies it'll damage
+	//If it returns null nothing is in range
+	//Takes as in input an array of all enemy xPositions, and all enemy yPostions
+	
+	//public abstract int[] targetAcquisition(int[] enemyXPos, int[] enemyYPos );
+	
+	
 	public int getRange() {
 		return range;
 	}
