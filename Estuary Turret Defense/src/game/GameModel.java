@@ -16,9 +16,6 @@ public class GameModel {
 	//Inside of the path is the first and last position index
 	PathModel path;
 	
-
-	
-	
 	public GameModel(){
 		enemyList = new ArrayList<EnemyModel>();
 		turretList = new ArrayList<TurretModel>();

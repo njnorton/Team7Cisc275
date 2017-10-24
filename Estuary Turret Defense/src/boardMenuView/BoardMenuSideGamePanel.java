@@ -40,11 +40,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 			new BoardMenuScorePanel(0, 100, 30, Color.WHITE); // creates new score panel for new game
 	public BoardMenuTimerPanel timerPanel;
 	public BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
-<<<<<<< HEAD
-	public BoardController c1 = new BoardController(); // gives access to the controller;
-=======
-	public GameController c1;
->>>>>>> branch 'master' of https://github.com/njnorton/Team7Cisc275.git
+	public GameController c1 = new GameController(); // gives access to the controller;
 
 	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
 	private GridLayout enemyLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
@@ -125,12 +121,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 		startButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-				c1.startRound();
-=======
-				c1 = new GameController(); // gives access to the controller
 				//c1.startRound();
->>>>>>> branch 'master' of https://github.com/njnorton/Team7Cisc275.git
+				//c1.startRound();
 				timerPanel.startTimer();
 			}
 		});
@@ -138,13 +130,9 @@ public class BoardMenuSideGamePanel extends JPanel {
 		endButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-				c1.endRound();
-=======
-				c1 = new GameController();
+				//c1.endRound();
 				//c1.endRound();
 				scorePanel.reset();
->>>>>>> branch 'master' of https://github.com/njnorton/Team7Cisc275.git
 				timerPanel.stopTimer();
 				timerPanel.reset();
 			}
