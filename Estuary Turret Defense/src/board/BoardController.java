@@ -1,6 +1,6 @@
 package board;
 
-import boardMenuView.BoardMenuScorePanel;
+import boardMenuView.BoardMenuSideGamePanel;
 import factory.EnemyFactory;
 import factory.TurretFactory;
 import player.PlayerModel;
@@ -170,12 +170,14 @@ public class BoardController {
 			return false;
 		}
 	}
+	
 	// will start the round 
 	public void startRound(){
-		BoardMenuScorePanel.updateScore(12);
+		player.updateScore(12);
 	}
-	
+
 	// will end the current round 
 	public void endRound(){
+		BoardMenuSideGamePanel.scorePanel.reset();
 	}
 }

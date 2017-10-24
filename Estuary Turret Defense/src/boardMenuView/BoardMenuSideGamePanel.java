@@ -36,7 +36,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private JButton startButton = new JButton("Start Round");
 	private JButton endButton = new JButton("End Round");
 	
-	public BoardMenuScorePanel scorePanel = new BoardMenuScorePanel(0, 100, 30, Color.WHITE);
+	public static BoardMenuScorePanel scorePanel = 
+			new BoardMenuScorePanel(0, 100, 30, Color.WHITE); // creates new score panel for new game
 	public BoardMenuTimerPanel timerPanel;
 	public BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
 	public BoardController c1 = new BoardController(); // gives access to the controller;
@@ -128,9 +129,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 		endButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c1 = new BoardController();
-				//c1.endRound();
-				scorePanel.reset();
+				c1.endRound();
 				timerPanel.stopTimer();
 				timerPanel.reset();
 			}

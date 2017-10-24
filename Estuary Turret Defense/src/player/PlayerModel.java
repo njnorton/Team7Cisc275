@@ -1,5 +1,7 @@
 package player;
 
+import boardMenuView.BoardMenuSideGamePanel;
+
 public class PlayerModel {
 	int money;
 	int health;
@@ -15,5 +17,10 @@ public class PlayerModel {
 	}
 	public void setHealth(int health) {
 		this.health = health;
+	}
+	
+	// correctly calls the function to update the score 
+	public void updateScore(int score){
+		BoardMenuSideGamePanel.scorePanel.updateScore(score);
 	}
 }

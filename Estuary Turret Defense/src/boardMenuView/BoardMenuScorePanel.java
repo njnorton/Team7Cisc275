@@ -17,8 +17,8 @@ public class BoardMenuScorePanel extends JPanel{
 	private Font firstLabelFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font size for head label
 	private Font secondLabelFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font for label
 	
-	private static int startScore = 0; // what the score is set to in the beginning of the game 
-	private static int currentScore = 0; // what the current score of the game is
+	private int startScore = 0; // what the score is set to in the beginning of the game 
+	private int currentScore = 0; // what the current score of the game is
 	private int startSandDollars = 0; // how many sand dollars started with
 	private int remainingSandDollars = 0; // how many sand dollars remaining 
 	private int startHealth = 0; // how much health that you have in the beginning of game 
@@ -30,7 +30,7 @@ public class BoardMenuScorePanel extends JPanel{
 		
 	// constructor for the score panel
 	public BoardMenuScorePanel(int startScore, int startSandDollars, int startHealth, Color panelColor){
-		//this.startScore = startScore;
+		this.startScore = startScore;
 		this.startSandDollars = startSandDollars; 
 		this.startHealth = startHealth;
 		
@@ -75,7 +75,7 @@ public class BoardMenuScorePanel extends JPanel{
 	}
 	
 	// sets the score on the panel
-	public static void updateScore(int score){
+	public void updateScore(int score){
 		currentScore += score;
 		scoreTotalLabel.setText("" + currentScore);
 	}
