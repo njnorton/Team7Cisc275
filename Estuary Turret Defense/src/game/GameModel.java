@@ -1,4 +1,4 @@
-package board;
+package game;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import path.PathModel;
 import unit.enemy.EnemyModel;
 import unit.turret.TurretModel;
 
-public class BoardModel {
+public class GameModel {
 	
 	//Holds the fields manipulated in the gameplay
 	
@@ -14,15 +14,15 @@ public class BoardModel {
 	ArrayList<EnemyModel> enemyList;
 	ArrayList<TurretModel> turretList;
 	//Inside of the path is the first and last position index
-	PathModel Path;
+	PathModel path;
 	
 
 	
 	
-	public BoardModel(){
+	public GameModel(){
 		enemyList = new ArrayList<EnemyModel>();
 		turretList = new ArrayList<TurretModel>();
-		Path = new PathModel();
+		path = new PathModel();
 	}
 
 }

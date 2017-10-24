@@ -18,7 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import board.BoardController;
+import game.GameController;
 
 public class BoardMenuSideGamePanel extends JPanel {
 
@@ -39,7 +39,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	public BoardMenuScorePanel scorePanel;
 	public BoardMenuTimerPanel timerPanel;
 	public BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
-	public BoardController c1;
+	public GameController c1;
 
 	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
 	private GridLayout enemyLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
@@ -121,8 +121,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 		startButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c1 = new BoardController(); // gives access to the controller
-				c1.startRound();
+				c1 = new GameController(); // gives access to the controller
+				//c1.startRound();
 				timerPanel.startTimer();
 			}
 		});
@@ -130,7 +130,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 		endButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c1 = new BoardController();
+				c1 = new GameController();
 				//c1.endRound();
 				scorePanel.reset();
 				timerPanel.stopTimer();
