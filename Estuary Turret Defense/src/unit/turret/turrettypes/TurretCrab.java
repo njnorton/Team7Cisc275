@@ -1,7 +1,7 @@
 package unit.turret.turrettypes;
 
 import java.awt.image.BufferedImage;
-
+import enums.TurretShellfish;
 import unit.turret.TurretModel;
 
 public class TurretCrab extends TurretModel {
