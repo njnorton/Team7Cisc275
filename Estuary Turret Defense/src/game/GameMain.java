@@ -1,12 +1,14 @@
-package board;
+package game;
 
 
 import java.util.Scanner;
+import mainMenuView.*;
 
-public class BoardMain {
+public class GameMain {
 	//Note, traverse enemyList in reverse order, you should damage the thing that is furthest along
-	static BoardController controller;
+	static GameController controller;
 	static String toPrint;
+	static InitiateGameStartView view;
 	
 	
 	
@@ -15,31 +17,34 @@ public class BoardMain {
 		/* Sets up the game, using a dummy path , 
 		 * and the controller that actually affects the objects in the game
 		 * Also the size of the map  */
-		controller = new BoardController();
-		int[] xPath = new int[100];
-		int[] yPath = new int[100];
-		for (int i = 0; i<100; i++){
-			xPath[i] = i;
+		controller = new GameController();
+		view = new InitiateGameStartView();
+		
+		//Do path assignment here
+		int[] xpath = new int[1000];
+		int[] ypath = new int[1000];
+		for (int i = 0; i<1000; i++){
+			xpath[i] = i;
 		}
-		for (int i = 0; i<100; i++){
-			yPath[i] = 0;
+		for (int i = 0; i<1000; i++){
+			ypath[i] = i;
 		}
 		
-		controller.board.Path.setxCorArr(xPath);
-		controller.board.Path.setyCorArr(yPath);
-		controller.board.Path.setSize(100);
+		controller.game.path.setxCorArr(xpath);
+		controller.game.path.setyCorArr(ypath);
+		controller.game.path.setSize(1000);
 	}
 	
 	public static void displayGrid(){
 		/* Does system.out to display the actual objects in the game */
 		System.out.flush();
-		System.out.println("Current Board: ");
+		System.out.println("Current game: ");
 		
 		//Prints all the Poo bad guys
-		for (int i = 0; i < controller.board.Path.getSize(); i++){
+		for (int i = 0; i < controller.game.path.getSize(); i++){
 			toPrint = "-";
-			for(int j = 0; j < controller.board.enemyList.size(); j++){
-				if (controller.board.enemyList.get(j).getxCor() == i){
+			for(int j = 0; j < controller.game.enemyList.size(); j++){
+				if (controller.game.enemyList.get(j).getxCor() == i){
 					toPrint = "X";
 					break;
 				}
@@ -49,10 +54,10 @@ public class BoardMain {
 		System.out.println("");
 		System.out.println("Line of Turrets");
 		//Prints all the turrets
-		for (int i = 0; i < controller.board.Path.getSize(); i++){
+		for (int i = 0; i < controller.game.path.getSize(); i++){
 			toPrint = "-";
-			for(int j = 0; j < controller.board.turretList.size(); j++){
-				if (controller.board.turretList.get(j).getxCor() == i){
+			for(int j = 0; j < controller.game.turretList.size(); j++){
+				if (controller.game.turretList.get(j).getxCor() == i){
 					toPrint = "O";
 					break;
 				}
@@ -103,11 +108,11 @@ public class BoardMain {
 	
 	public static void resolveTurretActions(){
 		//Iterates through every turrret
-		for (int i =0; i < controller.board.turretList.size(); i++){
+		for (int i =0; i < controller.game.turretList.size(); i++){
 			//Sees if the turret is allowed to shoot this round
 			if (controller.checkReloadCount(i)){
 				//Iterates through every enemy
-				for (int j = 0; j < controller.board.enemyList.size(); j++){
+				for (int j = 0; j < controller.game.enemyList.size(); j++){
 					//Checks if that given enemy is in range
 					//This may be different for different turrets if they range find differently
 					if(controller.checkRange(i, j)){
@@ -129,7 +134,7 @@ public class BoardMain {
 	
 	public static void resolveEnemyActions(){
 		//Moves the enemy, if the enemy has successfully gotten out of bounds the player loses life
-		for (int i = 0; i < controller.board.enemyList.size(); i++){	
+		for (int i = 0; i < controller.game.enemyList.size(); i++){	
 			if (controller.moveEnemy(i)){
 				controller.reducePlayerHealth(1);
 			}
@@ -144,7 +149,9 @@ public class BoardMain {
 	public static void main(String[] FUN){
 		
 		setup();
-			
+		
+		
+		/*
 		//For loop to run the game
 		for (int time = 0; time < 300; time++){
 			if (time%5 == 0){
@@ -174,6 +181,7 @@ public class BoardMain {
 				System.out.println("You have won!");
 			}
 		}
+		*/
 	}
 		//This is a subsitute for the time function
 		
@@ -186,7 +194,7 @@ public class BoardMain {
 
 import MainMenu.InitiateGameStartView;
 
-public class BoardMain {
+public class gameMain {
 	// Note, traverse enemyList in reverse order, you should damage the thing
 	// that is furthest along
 
