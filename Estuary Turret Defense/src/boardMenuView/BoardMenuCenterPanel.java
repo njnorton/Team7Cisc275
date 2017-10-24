@@ -1,7 +1,6 @@
 package boardMenuView;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +20,7 @@ public class BoardMenuCenterPanel extends JPanel{
 	private BufferedImage image;
 	
 	TurretCrab crab = new TurretCrab();
+	
 	
 	public BoardMenuCenterPanel(){
 		try{

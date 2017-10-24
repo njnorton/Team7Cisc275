@@ -25,7 +25,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel sidePanel = new JPanel(); // creates the side panel for the BorderLayout
-	protected JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
+	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
 	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
 	private JPanel creaturePanel = new JPanel(); // adds the panel for describing creature panel
 	private JPanel menuPanel = new JPanel(); // adds the panel for describing the selection of game play
@@ -33,18 +33,18 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private JLabel creatureLabel = new JLabel("Select from available creatures below:");
 	private JLabel menuInstruction = new JLabel("To begin a new round click Start Round");
 	
-	protected JButton startButton = new JButton("Start Round");
-	protected JButton endButton = new JButton("End Round");
+	private JButton startButton = new JButton("Start Round");
+	private JButton endButton = new JButton("End Round");
 	
-	public BoardMenuScorePanel scorePanel;
+	public BoardMenuScorePanel scorePanel = new BoardMenuScorePanel(0, 100, 30, Color.WHITE);
 	public BoardMenuTimerPanel timerPanel;
 	public BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
-	public BoardController c1;
+	public BoardController c1 = new BoardController(); // gives access to the controller;
 
 	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
 	private GridLayout enemyLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
 
-	protected final String[] creatureList = { "images/crab1.png", "images/horseshoeCrab1.jpg", 
+	private final String[] creatureList = { "images/crab1.png", "images/horseshoeCrab1.jpg", 
 			"images/estuaryPhoto.png", "images/estuaryPhoto.png",
 			"images/estuaryPhoto.png", "images/estuaryPhoto.png", 
 			"images/estuaryPhoto.png", "images/estuaryPhoto.png" };
@@ -74,7 +74,6 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	// adds the top panel to the screen with the initial amount of sand dollars
 	private void addScorePanel() {
-		scorePanel = new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates the scorePanel
 		sidePanel.add(scorePanel);
 	}
 	
@@ -121,7 +120,6 @@ public class BoardMenuSideGamePanel extends JPanel {
 		startButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c1 = new BoardController(); // gives access to the controller
 				c1.startRound();
 				timerPanel.startTimer();
 			}
