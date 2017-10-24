@@ -159,6 +159,7 @@ public class GameController {
 		player.setMoney(player.getMoney() + i);
 	}
 	
+	//gain an amount of money equal to the bounty value of the enemy
 	public void gainBounty(int enemyInd){
 		increasePlayerMoney(game.enemyList.get(enemyInd).getBounty());
 	}
@@ -171,6 +172,19 @@ public class GameController {
 		}else{
 			return false;
 		}
+	}
+	//Increase the players score by a given amount
+	//Then return the player's score
+	public void increaseScore(int inc){
+		player.setScore(player.getScore() + inc);
+	}
+	//Set the time to a given amount OR reduce the time by a given amount
+	public void setTime(int time){
+		player.setTime(time);
+	}
+	
+	public void reduceTime(int time){
+		player.setTime(player.getTime() - time);
 	}
 	/*
 	
