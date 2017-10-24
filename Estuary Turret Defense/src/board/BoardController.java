@@ -45,17 +45,17 @@ public class BoardController {
 	//Sees if the Reload Count for a turret is zero, if it is it returns true (it can fire)
 	//If it is not zero, reduce the turret's reload count by 1, and return false
 	public boolean checkReloadCount(int turretInd){
-		if (board.TurretList.get(turretInd).getReloadCount() == 0){
+		if (board.turretList.get(turretInd).getReloadCount() == 0){
 			return true;
 		}
 		else{
-			board.TurretList.get(turretInd).setReloadCount(board.TurretList.get(turretInd).getReloadCount()-1);
+			board.turretList.get(turretInd).setReloadCount(board.turretList.get(turretInd).getReloadCount()-1);
 			return false;
 		}
 	}
 	
 	public void resetReload(int turretInd){
-		board.TurretList.get(turretInd).setReloadCount(board.TurretList.get(turretInd).getReloadTime());
+		board.turretList.get(turretInd).setReloadCount(board.turretList.get(turretInd).getReloadTime());
 	}
 	
 	
@@ -63,11 +63,11 @@ public class BoardController {
 	//If it is not in range it returns false
 	public boolean checkRange(int turretInd, int enemyInd){
 		System.out.println("Try Check Range");
-		int xDis = board.TurretList.get(turretInd).getxCor() - board.EnemyList.get(enemyInd).getxCor();
-		int yDis = board.TurretList.get(turretInd).getyCor() - board.EnemyList.get(enemyInd).getyCor();
+		int xDis = board.turretList.get(turretInd).getxCor() - board.enemyList.get(enemyInd).getxCor();
+		int yDis = board.turretList.get(turretInd).getyCor() - board.enemyList.get(enemyInd).getyCor();
 		double Dis = Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2));
 		
-		if (Dis > board.TurretList.get(turretInd).getRange()){
+		if (Dis > board.turretList.get(turretInd).getRange()){
 			return true;
 		}
 		else{
@@ -78,14 +78,14 @@ public class BoardController {
 	// adds damage to the current object that is on the board 
 	// if the enemy is killed, return true
 	public boolean damageEnemy(int turretInd, int enemyInd){
-		board.EnemyList.get(enemyInd).setCurrentHealth(board.EnemyList.get(enemyInd).getCurrentHealth() - board.TurretList.get(turretInd).getDamage());
+		board.enemyList.get(enemyInd).setCurrentHealth(board.enemyList.get(enemyInd).getCurrentHealth() - board.turretList.get(turretInd).getDamage());
 		return checkHealth(enemyInd);
 	}
 	
 	//Checks the enemy's health, if it is zero or lower then returns true, else returns false
 	public boolean checkHealth(int enemyInd){
-		System.out.println("Current baddie health: " + board.EnemyList.get(enemyInd).getCurrentHealth());
-		if (0 > board.EnemyList.get(enemyInd).getCurrentHealth()){
+		System.out.println("Current baddie health: " + board.enemyList.get(enemyInd).getCurrentHealth());
+		if (0 > board.enemyList.get(enemyInd).getCurrentHealth()){
 			return true;
 		}
 		else{
@@ -95,18 +95,18 @@ public class BoardController {
 	
 	// removes the object from it's respective array 
 	public void removeEnemy(int enemyInd){
-		board.EnemyList.remove(enemyInd);
+		board.enemyList.remove(enemyInd);
 	}
 	
 	//Moves the enemy forward, removing it if it falls out of bound
 	//if it is removed via falling out of bound, return true
 	
 	public boolean moveEnemy(int enemyInd){
-		int moveInd = board.EnemyList.get(enemyInd).getPositionIndex() + board.EnemyList.get(enemyInd).getSpeed(); 
+		int moveInd = board.enemyList.get(enemyInd).getPositionIndex() + board.enemyList.get(enemyInd).getSpeed(); 
 		if (board.Path.getSize() > moveInd){
-			board.EnemyList.get(enemyInd).setxCor(board.Path.getxCorAtIndex(moveInd));
-			board.EnemyList.get(enemyInd).setyCor(board.Path.getyCorAtIndex(moveInd));
-			board.EnemyList.get(enemyInd).setPositionIndex(moveInd);
+			board.enemyList.get(enemyInd).setxCor(board.Path.getxCorAtIndex(moveInd));
+			board.enemyList.get(enemyInd).setyCor(board.Path.getyCorAtIndex(moveInd));
+			board.enemyList.get(enemyInd).setPositionIndex(moveInd);
 			return false;
 		}
 		else{
@@ -120,7 +120,7 @@ public class BoardController {
 		EnemyModel enemy = enemyFactory.makeEnemy(enemyName);
 		enemy.setxCor(board.Path.getxCorAtIndex(0));
 		enemy.setxCor(board.Path.getyCorAtIndex(0));
-		board.EnemyList.add(enemy);
+		board.enemyList.add(enemy);
 	}
 	
 	//spawns a turret on a given xCor yCor
@@ -128,7 +128,7 @@ public class BoardController {
 		TurretModel turret = turretFactory.makeTurret(turretName);
 		turret.setxCor(board.Path.getxCorAtIndex(xCor));
 		turret.setyCor(board.Path.getyCorAtIndex(yCor));
-		board.TurretList.add(turret);
+		board.turretList.add(turret);
 	}
 	
 	//Checks the price of the turret, returning true if the player can afford it or false if he cannot
@@ -160,7 +160,7 @@ public class BoardController {
 	}
 	
 	public void gainBounty(int enemyInd){
-		increasePlayerMoney(board.EnemyList.get(enemyInd).getBounty());
+		increasePlayerMoney(board.enemyList.get(enemyInd).getBounty());
 	}
 	
 	

@@ -4,7 +4,7 @@ package board;
 import java.util.Scanner;
 
 public class BoardMain {
-	//Note, traverse enemylist in reverse order, you should damage the thing that is furthest along
+	//Note, traverse enemyList in reverse order, you should damage the thing that is furthest along
 	static BoardController controller;
 	static String toPrint;
 	
@@ -38,8 +38,8 @@ public class BoardMain {
 		//Prints all the Poo bad guys
 		for (int i = 0; i < controller.board.Path.getSize(); i++){
 			toPrint = "-";
-			for(int j = 0; j < controller.board.EnemyList.size(); j++){
-				if (controller.board.EnemyList.get(j).getxCor() == i){
+			for(int j = 0; j < controller.board.enemyList.size(); j++){
+				if (controller.board.enemyList.get(j).getxCor() == i){
 					toPrint = "X";
 					break;
 				}
@@ -51,8 +51,8 @@ public class BoardMain {
 		//Prints all the turrets
 		for (int i = 0; i < controller.board.Path.getSize(); i++){
 			toPrint = "-";
-			for(int j = 0; j < controller.board.TurretList.size(); j++){
-				if (controller.board.TurretList.get(j).getxCor() == i){
+			for(int j = 0; j < controller.board.turretList.size(); j++){
+				if (controller.board.turretList.get(j).getxCor() == i){
 					toPrint = "O";
 					break;
 				}
@@ -103,11 +103,11 @@ public class BoardMain {
 	
 	public static void resolveTurretActions(){
 		//Iterates through every turrret
-		for (int i =0; i < controller.board.TurretList.size(); i++){
+		for (int i =0; i < controller.board.turretList.size(); i++){
 			//Sees if the turret is allowed to shoot this round
 			if (controller.checkReloadCount(i)){
 				//Iterates through every enemy
-				for (int j = 0; j < controller.board.EnemyList.size(); j++){
+				for (int j = 0; j < controller.board.enemyList.size(); j++){
 					//Checks if that given enemy is in range
 					//This may be different for different turrets if they range find differently
 					if(controller.checkRange(i, j)){
@@ -129,7 +129,7 @@ public class BoardMain {
 	
 	public static void resolveEnemyActions(){
 		//Moves the enemy, if the enemy has successfully gotten out of bounds the player loses life
-		for (int i = 0; i < controller.board.EnemyList.size(); i++){	
+		for (int i = 0; i < controller.board.enemyList.size(); i++){	
 			if (controller.moveEnemy(i)){
 				controller.reducePlayerHealth(1);
 			}
@@ -187,7 +187,7 @@ public class BoardMain {
 import MainMenu.InitiateGameStartView;
 
 public class BoardMain {
-	// Note, traverse enemylist in reverse order, you should damage the thing
+	// Note, traverse enemyList in reverse order, you should damage the thing
 	// that is furthest along
 
 	public static void main(String[] args) {
