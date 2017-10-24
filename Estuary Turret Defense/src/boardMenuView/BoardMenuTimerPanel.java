@@ -14,6 +14,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 
 	private long time = 0;
+	private long remainingTime = 0;
 	private String timeString = "00:00";
 		
 	private Font timerFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font 
@@ -22,6 +23,8 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 
 	public BoardMenuTimerPanel(long time) {
 		this.time = time;
+		remainingTime = time;
+		
 		setPreferredSize(new Dimension(300, 45));
 		setFont(timerFont);
 		setBackground(Color.WHITE);
@@ -56,7 +59,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 	}
 	
 	public void reset(){
-		setTime(45);
+		setTime(remainingTime);
 	}
 	
 	public void paintComponent(Graphics g){

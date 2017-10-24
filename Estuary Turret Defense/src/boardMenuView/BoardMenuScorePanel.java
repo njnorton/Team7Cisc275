@@ -27,7 +27,7 @@ public class BoardMenuScorePanel extends JPanel{
 	private JLabel scoreTotalLabel = new JLabel("0"); // label for score total
 	private JLabel sandDollarsLabel = new JLabel("0"); // label for sand dollars
 	private JLabel healthLeftLabel = new JLabel("0"); // label for health left 
-	
+		
 	// constructor for the score panel
 	public BoardMenuScorePanel(int startScore, int startSandDollars, int startHealth, Color panelColor){
 		this.startScore = startScore;

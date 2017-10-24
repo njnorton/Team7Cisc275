@@ -1,8 +1,13 @@
 package unit.turret.turrettypes;
 
+import java.awt.image.BufferedImage;
+
 import unit.turret.TurretModel;
 
 public class TurretCrab extends TurretModel {
+	
+	BufferedImage turrcrab;
+	
 	public TurretCrab(){
 		setName("Crab");
 		setFactDescription("Blue Crab are indigenous to the region");

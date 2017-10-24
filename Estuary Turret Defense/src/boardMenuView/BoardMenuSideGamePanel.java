@@ -36,11 +36,10 @@ public class BoardMenuSideGamePanel extends JPanel {
 	protected JButton startButton = new JButton("Start Round");
 	protected JButton endButton = new JButton("End Round");
 	
-	BoardMenuScorePanel scorePanel = 
-			new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates the scorePanel
-	BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(45); // creates the timerPanel
-	BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
-	BoardController c1 = new BoardController(); // gives access to the controller
+	public BoardMenuScorePanel scorePanel;
+	public BoardMenuTimerPanel timerPanel;
+	public BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
+	public BoardController c1;
 
 	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
 	private GridLayout enemyLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
@@ -53,6 +52,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	protected final BufferedImage[] creatureImg = estuaryCreatureButtonImages(creatureList);
 	final int rows = 2;
 	final int cols = 4;
+	final int timeOnClock = 45; // how much time is on the clock 
 	final JButton gameButtons[][] = new JButton[rows][cols];
 	
 	public BoardMenuSideGamePanel() {
@@ -74,11 +74,13 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	// adds the top panel to the screen with the initial amount of sand dollars
 	private void addScorePanel() {
+		scorePanel = new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates the scorePanel
 		sidePanel.add(scorePanel);
 	}
 	
 	// adds the timer panel to the screen
 	private void addTimerPanel(){
+		timerPanel = new BoardMenuTimerPanel(timeOnClock); // creates the timerPanel
 		sidePanel.add(timerPanel);
 	}
 	
@@ -95,7 +97,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 		middlePanel.setBackground(Color.LIGHT_GRAY);
 		middlePanel.setLayout(creatureLayout);
 
-		placeImageOnButtonsCreature();
+		placeImageOnButtonsCreature();		
 
 		sidePanel.add(middlePanel);
 	}
@@ -119,6 +121,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 		startButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				c1 = new BoardController(); // gives access to the controller
+				c1.startRound();
 				timerPanel.startTimer();
 			}
 		});
@@ -126,7 +130,11 @@ public class BoardMenuSideGamePanel extends JPanel {
 		endButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				c1 = new BoardController();
+				//c1.endRound();
+				scorePanel.reset();
 				timerPanel.stopTimer();
+				timerPanel.reset();
 			}
 		});
 		
@@ -135,15 +143,6 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	// places the images on the JButtons
 	private void placeImageOnButtonsCreature() {
-		/*for (int x = 0; x < creatureList.length; x++) {
-			JButton image = new JButton();
-			image.setSize(55, 80);
-			Image dimg = creatureImg[x].getScaledInstance(image.getWidth(), 
-					image.getHeight(), Image.SCALE_SMOOTH);
-			ImageIcon ic = new ImageIcon(dimg);
-			image.setIcon(ic);
-			middlePanel.add(image);
-		}*/
 		
 		int z = 0;
 		for(int x = 0; x < rows; x++){
@@ -165,10 +164,9 @@ public class BoardMenuSideGamePanel extends JPanel {
 								if(e.getSource() == gameButtons[x][y]){
 									Icon i = gameButtons[x][y].getIcon();
 									i.paintIcon(cen.centerPanel, getGraphics(), 120, 203);
-					
 								}
 							}
-						}
+						}				
 					}
 				});
 			}
