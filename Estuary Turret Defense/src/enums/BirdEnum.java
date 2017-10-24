@@ -1,5 +1,5 @@
 package enums;
 
-public enum TurretBird {
+public enum BirdEnum {
 	GEN_BIRD, OSPREY, RUDDY_TURNSTONE, SANDERLING
 }

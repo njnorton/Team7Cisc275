@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class BoardMain {
 	//Note, traverse enemylist in reverse order, you should damage the thing that is furthest along
-	static BoardController Controller;
+	static BoardController controller;
 	static String toPrint;
 	
 	
@@ -15,7 +15,7 @@ public class BoardMain {
 		/* Sets up the game, using a dummy path , 
 		 * and the controller that actually affects the objects in the game
 		 * Also the size of the map  */
-		Controller = new BoardController();
+		controller = new BoardController();
 		int[] xPath = new int[100];
 		int[] yPath = new int[100];
 		for (int i = 0; i<100; i++){
@@ -25,9 +25,9 @@ public class BoardMain {
 			yPath[i] = 0;
 		}
 		
-		Controller.Board.Path.setxCorArr(xPath);
-		Controller.Board.Path.setyCorArr(yPath);
-		Controller.Board.Path.setSize(100);
+		controller.board.Path.setxCorArr(xPath);
+		controller.board.Path.setyCorArr(yPath);
+		controller.board.Path.setSize(100);
 	}
 	
 	public static void displayGrid(){
@@ -36,10 +36,10 @@ public class BoardMain {
 		System.out.println("Current Board: ");
 		
 		//Prints all the Poo bad guys
-		for (int i = 0; i < Controller.Board.Path.getSize(); i++){
+		for (int i = 0; i < controller.board.Path.getSize(); i++){
 			toPrint = "-";
-			for(int j = 0; j < Controller.Board.EnemyList.size(); j++){
-				if (Controller.Board.EnemyList.get(j).getxCor() == i){
+			for(int j = 0; j < controller.board.EnemyList.size(); j++){
+				if (controller.board.EnemyList.get(j).getxCor() == i){
 					toPrint = "X";
 					break;
 				}
@@ -49,10 +49,10 @@ public class BoardMain {
 		System.out.println("");
 		System.out.println("Line of Turrets");
 		//Prints all the turrets
-		for (int i = 0; i < Controller.Board.Path.getSize(); i++){
+		for (int i = 0; i < controller.board.Path.getSize(); i++){
 			toPrint = "-";
-			for(int j = 0; j < Controller.Board.TurretList.size(); j++){
-				if (Controller.Board.TurretList.get(j).getxCor() == i){
+			for(int j = 0; j < controller.board.TurretList.size(); j++){
+				if (controller.board.TurretList.get(j).getxCor() == i){
 					toPrint = "O";
 					break;
 				}
@@ -69,22 +69,22 @@ public class BoardMain {
 		boolean inputting = true;
 		Scanner scanner = new Scanner(System.in);
 		do{
-			System.out.println("You have " + Controller.Player.getMoney() +" Sand Dollars to spend");
-			System.out.println("You have " + Controller.Player.getHealth() + " Health remaining");
+			System.out.println("You have " + controller.player.getMoney() +" Sand Dollars to spend");
+			System.out.println("You have " + controller.player.getHealth() + " Health remaining");
 			System.out.println("Either enter name of turret to place (So type in 'Crab') case sensitive");
 			System.out.println("Or input anything else to continue time by a step");
 			String input = scanner.nextLine();
 			if (input.equals("Crab")){
-				if(Controller.checkPrice(input)){
+				if(controller.checkPrice(input)){
 					System.out.println("Input value from 0 to 99 to place the turret on");
 					String positionInput = scanner.nextLine();
 					int intInput = Integer.parseInt(positionInput);
 					if (intInput >= 0 && intInput <= 99){
-						Controller.spawnTurret(input, intInput, 2);
+						controller.spawnTurret(input, intInput, 2);
 						//TODO will not work later on when prices of turrets needs to be checked
 						//Should there be a library of turret prices?
-						//Other option is having a library of turrets in the controlller it can do lookups on
-						Controller.reducePlayerMoney(100);
+						//Other option is having a library of turrets in the controller it can do lookups on
+						controller.reducePlayerMoney(100);
 						System.out.println("Your current turrets: ");
 						
 					}else{
@@ -103,22 +103,22 @@ public class BoardMain {
 	
 	public static void resolveTurretActions(){
 		//Iterates through every turrret
-		for (int i =0; i < Controller.Board.TurretList.size(); i++){
+		for (int i =0; i < controller.board.TurretList.size(); i++){
 			//Sees if the turret is allowed to shoot this round
-			if (Controller.checkReloadCount(i)){
+			if (controller.checkReloadCount(i)){
 				//Iterates through every enemy
-				for (int j = 0; j < Controller.Board.EnemyList.size(); j++){
+				for (int j = 0; j < controller.board.EnemyList.size(); j++){
 					//Checks if that given enemy is in range
-					//This may be different for differnt turrets if they range find differntly
-					if(Controller.checkRange(i, j)){
+					//This may be different for different turrets if they range find differently
+					if(controller.checkRange(i, j)){
 						//Reset the reload count
-						Controller.resetReload(i);
+						controller.resetReload(i);
 						//Damages the enemy, if he dies it'll return true
-						if(Controller.damageEnemy(i, j)){
-							//Gives the player money for defeatining the baddie
-							Controller.gainBounty(j);
+						if(controller.damageEnemy(i, j)){
+							//Gives the player money for defeating the baddie
+							controller.gainBounty(j);
 							//Removes the enemy 
-							Controller.removeEnemy(j);
+							controller.removeEnemy(j);
 						}
 						break;
 					}
@@ -129,16 +129,16 @@ public class BoardMain {
 	
 	public static void resolveEnemyActions(){
 		//Moves the enemy, if the enemy has successfully gotten out of bounds the player loses life
-		for (int i = 0; i < Controller.Board.EnemyList.size(); i++){	
-			if (Controller.moveEnemy(i)){
-				Controller.reducePlayerHealth(1);
+		for (int i = 0; i < controller.board.EnemyList.size(); i++){	
+			if (controller.moveEnemy(i)){
+				controller.reducePlayerHealth(1);
 			}
 		}
 	}
 	
 	public static boolean checkPlayerIsDead(){
 		//Sees if the player is ded, returns true if he is
-		return Controller.checkPlayerIsDead();
+		return controller.checkPlayerIsDead();
 	}
 	
 	public static void main(String[] FUN){
@@ -148,10 +148,10 @@ public class BoardMain {
 		//For loop to run the game
 		for (int time = 0; time < 300; time++){
 			if (time%5 == 0){
-				Controller.spawnEnemy("Poo");
+				controller.spawnEnemy("Poo");
 			}
 			if (time%7 == 0){
-				Controller.spawnEnemy("QuickShit");
+				controller.spawnEnemy("QuickShit");
 			}
 			displayGrid();
 			playerInput();
@@ -160,7 +160,7 @@ public class BoardMain {
 			resolveEnemyActions();
 			
 			//Give the players 1 money every count
-			Controller.increasePlayerMoney(1);
+			controller.increasePlayerMoney(1);
 			
 			//If the player is ded return true
 			if (checkPlayerIsDead()){
