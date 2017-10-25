@@ -24,7 +24,7 @@ public class BoardMenuScorePanel extends JPanel{
 	private int startHealth = 0; // how much health that you have in the beginning of game 
 	private int remainingHealth = 0; // how much health is left during the game
 		
-	private static JLabel scoreTotalLabel = new JLabel("0"); // label for score total
+	private JLabel scoreTotalLabel = new JLabel("0"); // label for score total
 	private JLabel sandDollarsLabel = new JLabel("0"); // label for sand dollars
 	private JLabel healthLeftLabel = new JLabel("0"); // label for health left 
 		

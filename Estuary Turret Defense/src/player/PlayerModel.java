@@ -1,6 +1,7 @@
 package player;
 
 import boardMenuView.BoardMenuSideGamePanel;
+import unit.turret.TurretModel;
 
 public class PlayerModel {
 	int money;
@@ -36,5 +37,25 @@ public class PlayerModel {
 	// correctly calls the function to update the score 
 	public void updateScore(int score){
 		BoardMenuSideGamePanel.scorePanel.updateScore(score);
+	}
+	
+	 // updates the remaining sandDollars left 
+	public void updateSandDollars(int sandDollars){
+		BoardMenuSideGamePanel.scorePanel.updateSandDollars(sandDollars);
+	}
+		
+	// updates the health status 
+	public void updateHealth(int healthLost){
+		BoardMenuSideGamePanel.scorePanel.updateHealth(healthLost);
+	}
+	
+	// allows the purchase of items from buttons clicked
+	public void purchaseItem(TurretModel model){
+		BoardMenuSideGamePanel.scorePanel.purchaseItem(model);
+	}
+		
+	// rests the score panel after the conclusion of the game 
+	public void resetScorePanel(){
+		BoardMenuSideGamePanel.scorePanel.reset();
 	}
 }

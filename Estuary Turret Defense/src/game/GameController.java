@@ -1,5 +1,6 @@
 package game;
 
+import boardMenuView.BoardMenuSideGamePanel;
 //import gameMenuView.gameMenuScorePanel;
 import factory.EnemyFactory;
 import factory.TurretFactory;
@@ -186,10 +187,11 @@ public class GameController {
 	public void reduceTime(int time){
 		player.setTime(player.getTime() - time);
 	}
-	/*
+	
 	
 	// will start the round 
-	public void startRound(){		
+	public void startRound(){
+		player.updateScore(12);
 	}
 	
 	// will end the current round 
@@ -199,26 +201,26 @@ public class GameController {
 	
 	// updates the current score of the game 
 	public void updateScore(int score){
-		gameMenu.updateScore(score);
+		player.updateScore(score);
 	}
+	
 	 // updates the remaining sandDollars left 
 	public void updateSandDollars(int sandDollars){
-		gameMenu.updateSandDollars(sandDollars);
+		player.updateSandDollars(sandDollars);
 	}
 	
 	// updates the health status 
 	public void updateHealth(int healthLost){
-		gameMenu.updateHealth(healthLost);
+		player.updateHealth(healthLost);
 	}
 	
 	// allows the purchase of items from buttons clicked
 	public void purchaseItem(TurretModel model){
-		gameMenu.purchaseItem(model);
+		player.purchaseItem(model);
 	}
 	
 	// rests the score panel after the conclusion of the game 
 	public void resetScorePanel(){
-		gameMenu.reset();
+		player.resetScorePanel();
 	}
-	*/
 }

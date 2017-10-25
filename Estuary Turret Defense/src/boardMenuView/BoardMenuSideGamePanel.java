@@ -121,8 +121,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 		startButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//c1.startRound();
-				//c1.startRound();
+				c1.startRound();
 				timerPanel.startTimer();
 			}
 		});
@@ -130,9 +129,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 		endButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//c1.endRound();
-				//c1.endRound();
-				scorePanel.reset();
+				c1.endRound();
 				timerPanel.stopTimer();
 				timerPanel.reset();
 			}
