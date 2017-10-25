@@ -1,7 +1,5 @@
 package game;
 
-import boardMenuView.BoardMenuSideGamePanel;
-//import gameMenuView.gameMenuScorePanel;
 import factory.EnemyFactory;
 import factory.TurretFactory;
 import player.PlayerModel;
