@@ -17,7 +17,10 @@ public class BoardMenuCenterPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	protected JPanel centerPanel = new JPanel();
-	private final String centerImage = "images/estuaryTrack.jpg";
+	
+	//Bloons TD 2 TracksEdit. 25 Oct. 2017. Citation for the image used in panel
+	private final String centerImage = "images/mediumTrack.png";
+
 	BufferedImage turrcrab;
 	private BufferedImage image;
 
@@ -40,8 +43,9 @@ public class BoardMenuCenterPanel extends JPanel {
 	}
 
 	public void paint(Graphics g) {
-
+		
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		
 		gamePanel.crabButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
