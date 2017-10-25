@@ -21,7 +21,7 @@ public class BoardMenuView extends JFrame {
 	
 	BoardMenuCenterPanel centerPanel = new  BoardMenuCenterPanel();
 	BoardMenuSideGamePanel sidePanel = new BoardMenuSideGamePanel();
-	BoardButtonPanel buttonPanel = new BoardButtonPanel();
+	BoardMenuButtonPanel buttonPanel = new BoardMenuButtonPanel();
 	
 	// Constructor for TowerDefenseView Class
 	public BoardMenuView() {

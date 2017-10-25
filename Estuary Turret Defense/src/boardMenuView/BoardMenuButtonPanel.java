@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import mainMenuView.InitiateGameStartView;
 
-public class BoardButtonPanel extends JPanel{
+public class BoardMenuButtonPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	final int GAP_SIZE_WIDTH = 20; // sets the width of the JButtons
@@ -23,7 +23,7 @@ public class BoardButtonPanel extends JPanel{
 	Dimension buttonSize = exitButton.getPreferredSize(); // sets the preferred size of buttons
 	
 	// Constructor
-	public BoardButtonPanel(){
+	public BoardMenuButtonPanel(){
 		buttonPanel();
 	}
 		
@@ -35,6 +35,9 @@ public class BoardButtonPanel extends JPanel{
 		buttonPanel.setBackground(Color.RED);
 		setBackground(Color.RED);
 		buttonPanel.add(exitButton);
+		
+		exitButton.setEnabled(false); // change this later when have working 
+		
 		add(buttonPanel);
 		
 		exitButton.addActionListener(new ActionListener() {

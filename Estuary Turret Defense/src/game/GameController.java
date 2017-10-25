@@ -219,6 +219,6 @@ public class GameController {
 	
 	// rests the score panel after the conclusion of the game 
 	public void resetScorePanel(){
-		player.resetScorePanel();
+		player.resetPanel();
 	}
 }

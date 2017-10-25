@@ -2,7 +2,7 @@ package unit.turret;
 
 import unit.UnitModel;
 
-public abstract class TurretModel extends UnitModel {
+public abstract class TurretModel extends UnitModel{
 	int range;
 	int damage;
 	int price;
