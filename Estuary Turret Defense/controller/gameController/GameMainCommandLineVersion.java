@@ -1,14 +1,14 @@
-package game;
+package gameController;
 
 
 import java.util.Scanner;
-import mainMenuView.*;
 
-public class GameMain {
+import game.GameModel;
+
+public class GameMainCommandLineVersion {
 	//Note, traverse enemyList in reverse order, you should damage the thing that is furthest along
-	static GameController controller;
+	static GameModel controller;
 	static String toPrint;
-	static InitiateGameStartView view;
 	
 	
 	
@@ -17,22 +17,19 @@ public class GameMain {
 		/* Sets up the game, using a dummy path , 
 		 * and the controller that actually affects the objects in the game
 		 * Also the size of the map  */
-		controller = new GameController();
-		view = new InitiateGameStartView();
-		
-		//Do path assignment here
-		int[] xpath = new int[1000];
-		int[] ypath = new int[1000];
-		for (int i = 0; i<1000; i++){
+		controller = new GameModel();
+		int[] xpath = new int[100];
+		int[] ypath = new int[100];
+		for (int i = 0; i<100; i++){
 			xpath[i] = i;
 		}
-		for (int i = 0; i<1000; i++){
-			ypath[i] = i;
+		for (int i = 0; i<100; i++){
+			ypath[i] = 0;
 		}
 		
 		controller.game.path.setxCorArr(xpath);
 		controller.game.path.setyCorArr(ypath);
-		controller.game.path.setSize(1000);
+		controller.game.path.setSize(100);
 	}
 	
 	public static void displayGrid(){
@@ -149,9 +146,7 @@ public class GameMain {
 	public static void main(String[] FUN){
 		
 		setup();
-		
-		
-		/*
+			
 		//For loop to run the game
 		for (int time = 0; time < 300; time++){
 			if (time%5 == 0){
@@ -181,7 +176,6 @@ public class GameMain {
 				System.out.println("You have won!");
 			}
 		}
-		*/
 	}
 		//This is a subsitute for the time function
 		
@@ -189,18 +183,3 @@ public class GameMain {
 		
 		
 }
-
-/*
-
-import MainMenu.InitiateGameStartView;
-
-public class gameMain {
-	// Note, traverse enemyList in reverse order, you should damage the thing
-	// that is furthest along
-
-	public static void main(String[] args) {
-		InitiateGameStartView v1 = new InitiateGameStartView();
-		}
-	}
-	*/
-

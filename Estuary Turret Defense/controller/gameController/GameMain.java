@@ -1,12 +1,16 @@
-package game;
+package gameController;
 
 
 import java.util.Scanner;
 
-public class GameMainCommandLineVersion {
+import game.GameModel;
+import mainMenuView.*;
+
+public class GameMain {
 	//Note, traverse enemyList in reverse order, you should damage the thing that is furthest along
-	static GameController controller;
+	static GameModel controller;
 	static String toPrint;
+	static InitiateGameStartView view;
 	
 	
 	
@@ -15,19 +19,22 @@ public class GameMainCommandLineVersion {
 		/* Sets up the game, using a dummy path , 
 		 * and the controller that actually affects the objects in the game
 		 * Also the size of the map  */
-		controller = new GameController();
-		int[] xpath = new int[100];
-		int[] ypath = new int[100];
-		for (int i = 0; i<100; i++){
+		controller = new GameModel();
+		view = new InitiateGameStartView();
+		
+		//Do path assignment here
+		int[] xpath = new int[1000];
+		int[] ypath = new int[1000];
+		for (int i = 0; i<1000; i++){
 			xpath[i] = i;
 		}
-		for (int i = 0; i<100; i++){
-			ypath[i] = 0;
+		for (int i = 0; i<1000; i++){
+			ypath[i] = i;
 		}
 		
 		controller.game.path.setxCorArr(xpath);
 		controller.game.path.setyCorArr(ypath);
-		controller.game.path.setSize(100);
+		controller.game.path.setSize(1000);
 	}
 	
 	public static void displayGrid(){
@@ -144,7 +151,9 @@ public class GameMainCommandLineVersion {
 	public static void main(String[] FUN){
 		
 		setup();
-			
+		
+		
+		/*
 		//For loop to run the game
 		for (int time = 0; time < 300; time++){
 			if (time%5 == 0){
@@ -174,6 +183,7 @@ public class GameMainCommandLineVersion {
 				System.out.println("You have won!");
 			}
 		}
+		*/
 	}
 		//This is a subsitute for the time function
 		
@@ -181,3 +191,18 @@ public class GameMainCommandLineVersion {
 		
 		
 }
+
+/*
+
+import MainMenu.InitiateGameStartView;
+
+public class gameMain {
+	// Note, traverse enemyList in reverse order, you should damage the thing
+	// that is furthest along
+
+	public static void main(String[] args) {
+		InitiateGameStartView v1 = new InitiateGameStartView();
+		}
+	}
+	*/
+
