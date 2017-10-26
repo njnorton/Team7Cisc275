@@ -6,6 +6,9 @@ public class EnemyPoo extends EnemyModel {
 	public EnemyPoo(){
 		setName("Poo");
 		setFactDescription("Clean up after your pets!");
+		
+		//TODO PG13 the game
+		
 		setGameDescription("A tough little shit");
 		setIcon(null);
 		setBounty(15);

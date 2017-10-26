@@ -6,6 +6,9 @@ public class EnemyQuickShit extends EnemyModel {
 	public EnemyQuickShit(){
 		setName("QuickShit");
 		setFactDescription("Clean up after your pets!");
+		
+		//TODO PG13 the game
+		
 		setGameDescription("A slippery little shit");
 		setIcon(null);
 		setBounty(15);
