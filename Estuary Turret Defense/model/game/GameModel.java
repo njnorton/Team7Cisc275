@@ -8,7 +8,7 @@ import player.PlayerModel;
 import unit.enemy.EnemyModel;
 import unit.turret.TurretModel;
 
-public class GameController {
+public class GameModel {
 	
 	//TODO
 	//Refactor? So it has a pointer to the game or something
@@ -18,15 +18,15 @@ public class GameController {
 	//TODO have a turret library of every possible turret to make so we can do price looksups?
 	//At the very least a price library may be required
 	// fields to be added 
-	GameModel game;
+	public GameObj game;
 	TurretFactory turretFactory;
 	EnemyFactory enemyFactory;
-	PlayerModel player;
+	public PlayerModel player;
 	
 	//private gameMenuScorePanel gameMenu; // allows for the use of controlling the view of the side panel
 	
-	public GameController(){
-		game = new GameModel();
+	public GameModel(){
+		game = new GameObj();
 		turretFactory = new TurretFactory();
 		enemyFactory = new EnemyFactory();
 		player = new PlayerModel();

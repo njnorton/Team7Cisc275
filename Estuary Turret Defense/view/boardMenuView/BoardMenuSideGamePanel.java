@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import game.GameController;
+import game.GameModel;
 
 public class BoardMenuSideGamePanel extends JPanel {
 
@@ -64,7 +64,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 			new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates new score panel for new game
 	public static BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(TIME_ON_CLOCK); // creates the timerPanel
 	public static BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
-	private GameController c1 = new GameController(); // gives access to the controller;
+	private GameModel c1 = new GameModel(); // gives access to the controller;
 	
 	public BoardMenuSideGamePanel() {
 		setBackground(Color.BLACK); // sets the color of the background for the screen
