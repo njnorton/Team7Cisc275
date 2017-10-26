@@ -113,18 +113,23 @@ public class GameModel {
 			return true;
 		}
 	}
-	
-<<<<<<< HEAD:Estuary Turret Defense/src/board/BoardController.java
+	//Moves each enemy on the board forward according to its attributes
 /*	public void moveEnemies() {
-		for(EnemyModel em : Board.EnemyList) {
-			
+		for(EnemyModel em : game.enemyList) {
+			if(){
+				
+			}
+			else if(){
+				
+			}
+			else{
+				
+			}
 		}
 	}*/
 	
 	// spawns an enemy onto the board 
-=======
 	// spawns an enemy onto the game 
->>>>>>> aaba16a46628bef4890fa17be985af31c8eb9dcd:Estuary Turret Defense/src/game/GameController.java
 	public void spawnEnemy(String enemyName){
 		EnemyModel enemy = enemyFactory.makeEnemy(enemyName);
 		enemy.setxCor(game.path.getxCorAtIndex(0));
