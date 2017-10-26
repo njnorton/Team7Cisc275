@@ -115,6 +115,12 @@ public class BoardController {
 		}
 	}
 	
+/*	public void moveEnemies() {
+		for(EnemyModel em : Board.EnemyList) {
+			
+		}
+	}*/
+	
 	// spawns an enemy onto the board 
 	public void spawnEnemy(String enemyName){
 		EnemyModel enemy = EnemyFactory.makeEnemy(enemyName);
