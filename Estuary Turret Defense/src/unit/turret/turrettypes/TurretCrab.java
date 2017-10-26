@@ -1,7 +1,8 @@
 package unit.turret.turrettypes;
 
 import java.awt.image.BufferedImage;
-import enums.TurretShellfish;
+
+import enums.ShellfishEnum;
 import unit.turret.TurretModel;
 
 public class TurretCrab extends TurretModel {
@@ -21,5 +22,10 @@ public class TurretCrab extends TurretModel {
 		setPrice(100);
 		setRange(15);
 		setUpgrade(null);
+	}
+	
+	public void setCoordinates(int x, int y){
+		this.setxCor(x);
+		this.setyCor(y);
 	}
 }

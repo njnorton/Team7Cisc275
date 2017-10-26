@@ -12,20 +12,28 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import board.BoardController;
+import game.GameController;
 
 public class BoardMenuSideGamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+	private final static int TIME_ON_CLOCK = 45; // how much time is on the clock 
+	
+	private final String[] creatureList = { "images/crab1.png", "images/horseshoeCrab1.jpg", 
+			"images/estuaryPhoto.png", "images/estuaryPhoto.png",
+			"images/estuaryPhoto.png", "images/estuaryPhoto.png", 
+			"images/estuaryPhoto.png", "images/estuaryPhoto.png" };
+	
+	private final BufferedImage[] creatureImg = estuaryCreatureButtonImages(creatureList);
 
 	private JPanel sidePanel = new JPanel(); // creates the side panel for the BorderLayout
-	protected JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
+	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
 	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
 	private JPanel creaturePanel = new JPanel(); // adds the panel for describing creature panel
 	private JPanel menuPanel = new JPanel(); // adds the panel for describing the selection of game play
@@ -33,27 +41,30 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private JLabel creatureLabel = new JLabel("Select from available creatures below:");
 	private JLabel menuInstruction = new JLabel("To begin a new round click Start Round");
 	
-	protected JButton startButton = new JButton("Start Round");
-	protected JButton endButton = new JButton("End Round");
+	private JButton startButton = new JButton("Start Round"); // creates the start round button
+	private JButton endButton = new JButton("End Round"); // creates the end round button
 	
-	public BoardMenuScorePanel scorePanel;
-	public BoardMenuTimerPanel timerPanel;
-	public BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
-	public BoardController c1;
-
+	public JButton crabButton = new JButton(); // creates the crab button
+	private JButton horseShoeCrabButton = new JButton(); // creates the horseshoe crab
+	private JButton extraButton1 = new JButton(); // extra button if needed
+	private JButton extraButton2 = new JButton(); // extra button if needed
+	private JButton extraButton3 = new JButton(); // extra button if needed
+	private JButton extraButton4 = new JButton(); // extra button if needed
+	private JButton extraButton5 = new JButton(); // extra button if needed
+	private JButton extraButton6 = new JButton(); // extra button if needed
+	
+	private final JButton GAME_BUTTONS[] = {crabButton, horseShoeCrabButton, extraButton1,
+			extraButton2, extraButton3, extraButton4, extraButton5, extraButton6};
+	
 	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
 	private GridLayout enemyLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
-
-	protected final String[] creatureList = { "images/crab1.png", "images/horseshoeCrab1.jpg", 
-			"images/estuaryPhoto.png", "images/estuaryPhoto.png",
-			"images/estuaryPhoto.png", "images/estuaryPhoto.png", 
-			"images/estuaryPhoto.png", "images/estuaryPhoto.png" };
 	
-	protected final BufferedImage[] creatureImg = estuaryCreatureButtonImages(creatureList);
-	final int rows = 2;
-	final int cols = 4;
-	final int timeOnClock = 45; // how much time is on the clock 
-	final JButton gameButtons[][] = new JButton[rows][cols];
+	
+	public static BoardMenuScorePanel scorePanel = 
+			new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates new score panel for new game
+	public static BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(TIME_ON_CLOCK); // creates the timerPanel
+	public static BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
+	private GameController c1 = new GameController(); // gives access to the controller;
 	
 	public BoardMenuSideGamePanel() {
 		setBackground(Color.BLACK); // sets the color of the background for the screen
@@ -74,13 +85,11 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	// adds the top panel to the screen with the initial amount of sand dollars
 	private void addScorePanel() {
-		scorePanel = new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates the scorePanel
 		sidePanel.add(scorePanel);
 	}
 	
 	// adds the timer panel to the screen
 	private void addTimerPanel(){
-		timerPanel = new BoardMenuTimerPanel(timeOnClock); // creates the timerPanel
 		sidePanel.add(timerPanel);
 	}
 	
@@ -96,8 +105,9 @@ public class BoardMenuSideGamePanel extends JPanel {
 		middlePanel.setPreferredSize(new Dimension(300, 400));
 		middlePanel.setBackground(Color.LIGHT_GRAY);
 		middlePanel.setLayout(creatureLayout);
-
-		placeImageOnButtonsCreature();		
+		
+		createButtons(); // creates the set of buttons
+		placeImageOnButtonsCreature(GAME_BUTTONS); // places the images onto the buttons	
 
 		sidePanel.add(middlePanel);
 	}
@@ -121,7 +131,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 		startButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c1 = new BoardController(); // gives access to the controller
+				startButton.setEnabled(false); // disables the button during the rounds
+				endButton.setEnabled(true);
 				c1.startRound();
 				timerPanel.startTimer();
 			}
@@ -130,48 +141,44 @@ public class BoardMenuSideGamePanel extends JPanel {
 		endButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c1 = new BoardController();
-				//c1.endRound();
-				scorePanel.reset();
-				timerPanel.stopTimer();
-				timerPanel.reset();
+				startButton.setEnabled(true); // enables the button after the round is over
+				endButton.setEnabled(false); // disables the end round button during no action
+				c1.endRound(); // calls commands for ending the game
 			}
 		});
 		
 		sidePanel.add(bottomPanel);
 	}
-
-	// places the images on the JButtons
-	private void placeImageOnButtonsCreature() {
-		
-		int z = 0;
-		for(int x = 0; x < rows; x++){
-			for(int y = 0; y < cols; y++){
-				gameButtons[x][y] = new JButton();
-				
-				gameButtons[x][y].setSize(55, 80);
-				Image dimg = creatureImg[z].getScaledInstance(gameButtons[x][y].getWidth(),
-						gameButtons[x][y].getHeight(), Image.SCALE_SMOOTH);
-				ImageIcon img = new ImageIcon(dimg);
-				gameButtons[x][y].setIcon(img);
-				z++;
-				middlePanel.add(gameButtons[x][y]);
-				gameButtons[x][y].addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						for(int x = 0; x < rows; x++){
-							for(int y = 0; y < cols; y++){
-								if(e.getSource() == gameButtons[x][y]){
-									Icon i = gameButtons[x][y].getIcon();
-									i.paintIcon(cen.centerPanel, getGraphics(), 120, 203);
-								}
-							}
-						}				
-					}
-				});
+	
+	// creates the buttons for the game 
+	private void createButtons(){
+		for(int i = 0; i < GAME_BUTTONS.length; i++){
+			middlePanel.add(GAME_BUTTONS[i]);
+			
+			// disables the buttons that are not needed during the game
+			if(i > 2){
+				GAME_BUTTONS[i].setEnabled(false);
 			}
 		}
+	}
 
+	// places the images on the JButtons
+	private void placeImageOnButtonsCreature(JButton listButtons[]) {
+		for(int i = 0; i < GAME_BUTTONS.length && i < listButtons.length; i++){
+			GAME_BUTTONS[i].setSize(48, 65);
+			Image buttonImage = creatureImg[i].getScaledInstance(GAME_BUTTONS[i].getWidth(),
+					GAME_BUTTONS[i].getHeight(), Image.SCALE_SMOOTH);
+			ImageIcon imgIcon = new ImageIcon(buttonImage);
+			
+			// gives the blocked out buttons no images and sets text to extra
+			if(i <= 2){
+				GAME_BUTTONS[i].setIcon(imgIcon);
+			}
+			else{
+				GAME_BUTTONS[i].setText("Extra");
+			}
+			
+		}
 	}
 
 	// creates the buttons images on the middle panel

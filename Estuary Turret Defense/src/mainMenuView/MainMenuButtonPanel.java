@@ -17,7 +17,6 @@ public class MainMenuButtonPanel extends JPanel {
 
 	final int GAP_SIZE_WIDTH = 300; // sets the width of the JButtons
 	final int GAP_SIZE_HEIGHT = 10; // sets the height of the JButtons 
-	final String IMAGE_FILE = "estuaryPhoto.png";
 		
 	JPanel buttonPanel = new JPanel(); // panel for the buttons 
 	GridLayout buttonLayout = new GridLayout(1,3);
