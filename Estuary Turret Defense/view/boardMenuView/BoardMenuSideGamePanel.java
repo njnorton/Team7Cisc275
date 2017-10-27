@@ -25,10 +25,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	
 	private final static int TIME_ON_CLOCK = 45; // how much time is on the clock 
 	
-	private final String[] creatureList = { "images/crab1.png", "images/horseshoeCrab1.jpg", 
-			"images/estuaryPhoto.png", "images/estuaryPhoto.png",
-			"images/estuaryPhoto.png", "images/estuaryPhoto.png", 
-			"images/estuaryPhoto.png", "images/estuaryPhoto.png" };
+	private final String[] creatureList = {"Images" };
 	
 	private final BufferedImage[] creatureImg = estuaryCreatureButtonImages(creatureList);
 
@@ -56,9 +53,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private final JButton GAME_BUTTONS[] = {crabButton, horseShoeCrabButton, extraButton1,
 			extraButton2, extraButton3, extraButton4, extraButton5, extraButton6};
 	
-	private GridLayout creatureLayout = new GridLayout(2,4); // creates the grid for the creature buttons
-	private GridLayout enemyLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
-	
+	private GridLayout creatureLayout = new GridLayout(3,4); // creates the grid for the creature buttons
+	private GridLayout buttonLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
 	
 	public static BoardMenuScorePanel scorePanel = 
 			new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates new score panel for new game
@@ -123,7 +119,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private void addBottomPanel() {
 		bottomPanel.setPreferredSize(new Dimension(300, 100));
 		bottomPanel.setBackground(Color.YELLOW);
-		bottomPanel.setLayout(enemyLayout);
+		bottomPanel.setLayout(buttonLayout);
 		
 		bottomPanel.add(startButton);
 		bottomPanel.add(endButton);
