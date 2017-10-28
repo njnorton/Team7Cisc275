@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 
 import game.GameModel;
 
-public class BoardMenuSideGamePanel extends JPanel implements ActionListener{
+public class BoardMenuSideGamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -36,7 +36,7 @@ public class BoardMenuSideGamePanel extends JPanel implements ActionListener{
 		"Images/Turrets/Shellfish/eastern_oyster.jpeg","Images/Turrets/Shellfish/horseshoe_crab.gif");
 
 	// creates the list for the bufferedImages to place on buttons
-	private BufferedImage[] creatureImg;
+	protected BufferedImage[] creatureImg;
 
 	private JPanel sidePanel = new JPanel(); // creates the side panel for the BorderLayout
 	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
@@ -52,30 +52,30 @@ public class BoardMenuSideGamePanel extends JPanel implements ActionListener{
 	private JButton startButton = new JButton("Start Round"); // creates the start round button
 	private JButton endButton = new JButton("End Round"); // creates the end round button
 	
-	private JButton genericBirdButton = new JButton(); // creates the genericBird button
-	private JButton ospreyButton = new JButton(); // creates the osprey button
-	private JButton ruddyTurnstoneButton = new JButton(); // creates the ruddyTurnstone button
-	private JButton sanderlingButton = new JButton(); // creates the sanderling button
-	private JButton genericFishButton = new JButton(); // creates the genericFish button
-	private JButton blueFishButton = new JButton(); // creates the blueFish button
-	private JButton riverHerringButton = new JButton(); // creates the riverHerring button
-	private JButton summerFlounderButton = new JButton(); // creates the summerFlounder button
-	private JButton genericShellfishButton = new JButton(); // creates the genericShellfish button
-	private JButton blueCrabButton = new JButton(); // creates the blueCrab button
-	private JButton easternOysterButton = new JButton(); // creates the easternOyster button
-	private JButton horseShoeCrabButton = new JButton(); // creates the horseShoeCrab button
+	protected static JButton genericBirdButton = new JButton(); // creates the genericBird button
+	protected static JButton ospreyButton = new JButton(); // creates the osprey button
+	protected static JButton ruddyTurnstoneButton = new JButton(); // creates the ruddyTurnstone button
+	protected static JButton sanderlingButton = new JButton(); // creates the sanderling button
+	protected static JButton genericFishButton = new JButton(); // creates the genericFish button
+	protected static JButton blueFishButton = new JButton(); // creates the blueFish button
+	protected static JButton riverHerringButton = new JButton(); // creates the riverHerring button
+	protected static JButton summerFlounderButton = new JButton(); // creates the summerFlounder button
+	protected static JButton genericShellfishButton = new JButton(); // creates the genericShellfish button
+	protected static JButton blueCrabButton = new JButton(); // creates the blueCrab button
+	protected static JButton easternOysterButton = new JButton(); // creates the easternOyster button
+	protected static JButton horseShoeCrabButton = new JButton(); // creates the horseShoeCrab button
 	
 	// a list of all of the gamebuttons that are used in the game
-	private final JButton GAME_BUTTONS[] = {genericBirdButton, ospreyButton, ruddyTurnstoneButton,
+	protected final JButton GAME_BUTTONS[] = {genericBirdButton, ospreyButton, ruddyTurnstoneButton,
 			sanderlingButton, genericFishButton, blueFishButton, riverHerringButton, 
 			summerFlounderButton, genericShellfishButton, blueCrabButton, 
 			easternOysterButton, horseShoeCrabButton};
 	
 	// these will allow for the turning of on and off of the buttons when not clicked
 	// in the beginning of the game
-	public final JButton BIRD_BUTTONS[] = {ospreyButton, ruddyTurnstoneButton, sanderlingButton};
-	protected final JButton FISH_BUTTONS[] = {blueFishButton, riverHerringButton, summerFlounderButton};
-	protected final JButton SHELLFISHBUTTONS[] = {blueCrabButton, easternOysterButton, horseShoeCrabButton};
+	protected static final JButton BIRD_BUTTONS[] = {ospreyButton, ruddyTurnstoneButton, sanderlingButton};
+	protected static final JButton FISH_BUTTONS[] = {blueFishButton, riverHerringButton, summerFlounderButton};
+	protected static final JButton SHELLFISHBUTTONS[] = {blueCrabButton, easternOysterButton, horseShoeCrabButton};
 	
 	private GridLayout creatureLayout = new GridLayout(3,4); // creates the grid for the creature buttons
 	private GridLayout buttonLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
@@ -115,10 +115,6 @@ public class BoardMenuSideGamePanel extends JPanel implements ActionListener{
 		createButtons(); // creates the set of buttons
 		placeImageOnButtonsCreature(GAME_BUTTONS); // places the images onto the buttons	
 
-		genericBirdButton.addActionListener(this);
-		genericFishButton.addActionListener(this);
-		genericShellfishButton.addActionListener(this);
-		
 		sidePanel.add(middlePanel);
 	}
 	
@@ -205,20 +201,9 @@ public class BoardMenuSideGamePanel extends JPanel implements ActionListener{
 		}
 	}
 	
-	public void turnOnButtons(JButton input[]){
+	public static void turnOnButtons(JButton input[]){
 		for(JButton buttons: input){
 			buttons.setEnabled(true);
 		}
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == genericBirdButton){
-			turnOnButtons(BIRD_BUTTONS);
-		} else if(e.getSource() == genericFishButton){
-			turnOnButtons(FISH_BUTTONS);
-		} else if(e.getSource() == genericShellfishButton){
-			turnOnButtons(SHELLFISHBUTTONS);
-		}
-	}	
 }
