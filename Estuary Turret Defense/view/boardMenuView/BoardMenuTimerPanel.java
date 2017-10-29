@@ -165,7 +165,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 		
 		switch(value){
 		case 0:
-			PlayerModel model = new PlayerModel();
+			PlayerModel model = new PlayerModel(0, 1000, 30);
 			model.resetPanel(); // resets the score panel back to original values
 			break;
 		case 1:

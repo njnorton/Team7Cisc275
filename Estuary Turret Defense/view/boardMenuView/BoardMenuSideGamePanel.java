@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.GameModel;
+import player.PlayerModel;
 
 public class BoardMenuSideGamePanel extends JPanel {
 
@@ -36,8 +37,9 @@ public class BoardMenuSideGamePanel extends JPanel {
 		"Images/Turrets/Shellfish/eastern_oyster.jpeg","Images/Turrets/Shellfish/horseshoe_crab.gif");
 
 	// creates the list for the bufferedImages to place on buttons
-	protected BufferedImage[] creatureImg;
-
+	protected BufferedImage[] creatureImg = new BufferedImage[creatureList.size()];
+	protected static JLabel birdLabel;
+	
 	private JPanel sidePanel = new JPanel(); // creates the side panel for the BorderLayout
 	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
 	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
@@ -80,12 +82,13 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private GridLayout creatureLayout = new GridLayout(3,4); // creates the grid for the creature buttons
 	private GridLayout buttonLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
 	
+	private static PlayerModel plModel = new PlayerModel(0, 1000, 30);
 	public static BoardMenuScorePanel scorePanel = 
-			new BoardMenuScorePanel(0, 1000, 30, Color.WHITE); // creates new score panel for new game
+			new BoardMenuScorePanel(plModel, Color.WHITE); // creates new score panel for new game
 	public static BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(TIME_ON_CLOCK); // creates the timerPanel
 	public static BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
 	private GameModel c1 = new GameModel(); // gives access to the controller;
-	
+
 	public BoardMenuSideGamePanel() {
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		setBackground(Color.BLACK); // sets the color of the background for the screen
@@ -173,8 +176,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 		// turns off the shellfish buttons
 		for(JButton turnoff: SHELLFISHBUTTONS){
 			turnoff.setEnabled(false);
-		}
-		
+		}		
 	}
 
 	// places the images on the JButtons
@@ -187,11 +189,12 @@ public class BoardMenuSideGamePanel extends JPanel {
 			ImageIcon imgIcon = new ImageIcon(buttonImage);
 			GAME_BUTTONS[i].setIcon(imgIcon);	
 		}
+		birdLabel = new JLabel(new ImageIcon(creatureImg[0].getScaledInstance
+				(75, 75, Image.SCALE_SMOOTH)));
 	}
 
 	// creates the buttons images on the middle panel
 	private void estuaryCreatureButtonImages() {
-		 creatureImg = new BufferedImage[creatureList.size()];
 		try {
 			for (int x = 0; x < creatureList.size(); x++) {
 				creatureImg[x] = ImageIO.read(new File(creatureList.get(x)));

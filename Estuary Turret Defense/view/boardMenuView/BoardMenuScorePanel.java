@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import player.PlayerModel;
 import unit.turret.TurretModel;
 
 public class BoardMenuScorePanel extends JPanel{
@@ -27,12 +28,12 @@ public class BoardMenuScorePanel extends JPanel{
 	private JLabel scoreTotalLabel = new JLabel("0"); // label for score total
 	private JLabel sandDollarsLabel = new JLabel("0"); // label for sand dollars
 	private JLabel healthLeftLabel = new JLabel("0"); // label for health left 
-			
+				
 	// constructor for the score panel
-	public BoardMenuScorePanel(int startScore, int startSandDollars, int startHealth, Color panelColor){
-		this.startScore = startScore;
-		this.startSandDollars = startSandDollars; 
-		this.startHealth = startHealth;
+	public BoardMenuScorePanel(PlayerModel plModel, Color panelColor){
+		this.startScore = plModel.getScore();
+		this.startSandDollars = plModel.getMoney(); 
+		this.startHealth = plModel.getHealth();
 
 		currentScore = startScore;
 		remainingSandDollars = startSandDollars;
@@ -93,8 +94,11 @@ public class BoardMenuScorePanel extends JPanel{
 	}
 	
 	// allows for the purchase of items from the buttons 
-	public void purchaseItem(TurretModel model){
-		remainingSandDollars -= model.getPrice();
+	public void purchaseItem(PlayerModel mod, TurretModel model){
+		int money = mod.getMoney();
+		System.out.println(money);
+		remainingSandDollars =  money - model.getPrice();
+		System.out.println(remainingSandDollars);
 		sandDollarsLabel.setText("" + remainingSandDollars);
 	}
 	

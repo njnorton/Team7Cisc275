@@ -22,16 +22,13 @@ public class GameModel {
 	TurretFactory turretFactory;
 	EnemyFactory enemyFactory;
 	public PlayerModel player;
-	
-	//private gameMenuScorePanel gameMenu; // allows for the use of controlling the view of the side panel
-	
+		
 	public GameModel(){
 		game = new GameObj();
 		turretFactory = new TurretFactory();
 		enemyFactory = new EnemyFactory();
-		player = new PlayerModel();
-		player.setMoney(200);
-		player.setHealth(10);
+		player = new PlayerModel(0, 1000, 30);
+		
 	}
 
 	
