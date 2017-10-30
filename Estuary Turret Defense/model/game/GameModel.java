@@ -97,7 +97,7 @@ public class GameModel {
 	//Moves the enemy forward, removing it if it falls out of bound
 	//if it is removed via falling out of bound, return true
 	
-	public boolean moveEnemy(int enemyInd){
+	/*public boolean moveEnemy(int enemyInd){
 		int moveInd = game.enemyList.get(enemyInd).getPositionIndex() + game.enemyList.get(enemyInd).getSpeed(); 
 		if (game.path.getSize() > moveInd){
 			game.enemyList.get(enemyInd).setxCor(game.path.getxCorAtIndex(moveInd));
@@ -109,22 +109,23 @@ public class GameModel {
 			removeEnemy(enemyInd);
 			return true;
 		}
-	}
+	}*/
 	
 	//For 2D Board
 	//Moves each enemy on the board forward according to its attributes
 	//Also updates where the enemy is within the path to keep track of where it's heading
-	public void moveEnemies() {
-		for(EnemyModel em : game.enemyList) {                                                   //Iterate the list of enemies
-			if(em.updatePosition(game.path.getPosnArr()[em.getPositionIndex() + 1])) {          //If the next point is reached upon updating position,
-				if(em.getPositionIndex() < game.path.getSize() - 1) {                           //check if they are still on the path
-					em.updateDirection(game.path.getPosnArr()[em.getPositionIndex() + 1]);      //If they are, update their direction
-				}
-				else {                                                                          //If they are not, they damage the estuary
-					//enemy enters estuary
-				}
+	public boolean moveEnemy(int enemyInd) {
+		EnemyModel em = game.enemyList.get(enemyInd);
+		if(em.updatePosition(game.path.getPosnArr()[em.getPositionIndex() + 1])) {          //If the next point is reached upon updating position,
+			if(em.getPositionIndex() < game.path.getSize() - 1) {                           //check if they are still on the path
+				em.updateDirection(game.path.getPosnArr()[em.getPositionIndex() + 1]);      //If they are, update their direction
+			}
+			else {                                                                          //If they are not, they enter and damage the estuary
+				//enemy enters estuary
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	// spawns an enemy onto the board 

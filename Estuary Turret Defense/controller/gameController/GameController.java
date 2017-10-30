@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import game.GameModel;
 import mainMenuView.*;
+import position.Posn;
 
 public class GameController {
 	//Note, traverse enemyList in reverse order, you should damage the thing that is furthest along
@@ -12,7 +13,8 @@ public class GameController {
 	static String toPrint;
 	static InitiateGameStartView view;
 	
-	
+	static final Posn[] path = {new Posn(0,0), new Posn(1,1), new Posn(2,2), new Posn(3,3), new Posn(4,4), new Posn(5,5), new Posn(6,6), new Posn(7,7), new Posn(8,8),
+			new Posn(9,9), new Posn(10,10), new Posn(20,20), new Posn(30,30), new Posn(40,40)};
 	
 	public static void setup(){	
 		
@@ -22,19 +24,8 @@ public class GameController {
 		controller = new GameModel();
 		view = new InitiateGameStartView();
 		
-		//Do path assignment here
-		int[] xpath = new int[1000];
-		int[] ypath = new int[1000];
-		for (int i = 0; i<1000; i++){
-			xpath[i] = i;
-		}
-		for (int i = 0; i<1000; i++){
-			ypath[i] = i;
-		}
-		
-		controller.game.path.setxCorArr(xpath);
-		controller.game.path.setyCorArr(ypath);
-		controller.game.path.setSize(1000);
+		controller.game.path.setPosnArr(path);
+		controller.game.path.setSize(path.length);
 	}
 	
 	public static void displayGrid(){
@@ -136,11 +127,13 @@ public class GameController {
 	
 	public static void resolveEnemyActions(){
 		//Moves the enemy, if the enemy has successfully gotten out of bounds the player loses life
+		int enemyEntranceCount = 0;
 		for (int i = 0; i < controller.game.enemyList.size(); i++){	
-			if (controller.moveEnemy(i)){
-				controller.reducePlayerHealth(1);
+			if(controller.moveEnemy(i)) {
+				enemyEntranceCount++;
 			}
 		}
+		controller.reducePlayerHealth(enemyEntranceCount);
 	}
 	
 	public static boolean checkPlayerIsDead(){
