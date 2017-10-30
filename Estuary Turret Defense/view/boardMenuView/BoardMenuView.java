@@ -16,7 +16,7 @@ public class BoardMenuView extends JFrame {
 	final Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
 	final int WIDTH_OF_SCREEN = SCREEN_SIZE.width; // sets the width of screen from getPreferredSize method
 	final int HEIGHT_OF_SCREEN = SCREEN_SIZE.height-ADJUST_SIDE; // set the height of screen from getPreferredSize method
-	
+		
 	TitlePanel title = new TitlePanel("Welcome to Estuary Tower Defense");
 	
 	BoardMenuCenterPanel centerPanel = new  BoardMenuCenterPanel();

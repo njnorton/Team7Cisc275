@@ -9,6 +9,12 @@ public class PlayerModel {
 	int score;
 	int time;
 	
+	public PlayerModel(int score, int money, int health){
+		this.score = score;
+		this.money = money;
+		this.health = health;
+	}
+		
 	public int getMoney() {
 		return money;
 	}
@@ -33,13 +39,12 @@ public class PlayerModel {
 	public void setHealth(int health) {
 		this.health = health;
 	}
-	
 	// correctly calls the function to update the score 
 	public void updateScore(int score){
 		BoardMenuSideGamePanel.scorePanel.updateScore(score);
 	}
 	
-	 // updates the remaining sandDollars left 
+	// updates the remaining sandDollars left 
 	public void updateSandDollars(int sandDollars){
 		BoardMenuSideGamePanel.scorePanel.updateSandDollars(sandDollars);
 	}
@@ -51,7 +56,7 @@ public class PlayerModel {
 	
 	// allows the purchase of items from buttons clicked
 	public void purchaseItem(TurretModel model){
-		BoardMenuSideGamePanel.scorePanel.purchaseItem(model);
+		BoardMenuSideGamePanel.scorePanel.purchaseItem(this, model);
 	}
 		
 	// rests the score panel after the conclusion of the game 
