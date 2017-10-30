@@ -38,7 +38,6 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	// creates the list for the bufferedImages to place on buttons
 	protected BufferedImage[] creatureImg = new BufferedImage[creatureList.size()];
-	protected static JLabel birdLabel;
 	
 	private JPanel sidePanel = new JPanel(); // creates the side panel for the BorderLayout
 	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
@@ -79,6 +78,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 	protected static final JButton FISH_BUTTONS[] = {blueFishButton, riverHerringButton, summerFlounderButton};
 	protected static final JButton SHELLFISHBUTTONS[] = {blueCrabButton, easternOysterButton, horseShoeCrabButton};
 	
+	protected JLabel birdLabel;
+	
 	private GridLayout creatureLayout = new GridLayout(3,4); // creates the grid for the creature buttons
 	private GridLayout buttonLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
 	
@@ -98,7 +99,6 @@ public class BoardMenuSideGamePanel extends JPanel {
 		addMiddlePanel(); // adds the middle panel for the screen
 		addBottomLabel(); // adds a label to identify menu selection
 		addBottomPanel(); // adds the bottom panel for the screen
-		
 		add(sidePanel);
 	}
 	
@@ -117,7 +117,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 		
 		createButtons(); // creates the set of buttons
 		placeImageOnButtonsCreature(GAME_BUTTONS); // places the images onto the buttons	
-
+		birdLabel = new JLabel(new ImageIcon(creatureImg[0].getScaledInstance
+				(75, 75, Image.SCALE_SMOOTH)));
 		sidePanel.add(middlePanel);
 	}
 	
@@ -189,8 +190,6 @@ public class BoardMenuSideGamePanel extends JPanel {
 			ImageIcon imgIcon = new ImageIcon(buttonImage);
 			GAME_BUTTONS[i].setIcon(imgIcon);	
 		}
-		birdLabel = new JLabel(new ImageIcon(creatureImg[0].getScaledInstance
-				(75, 75, Image.SCALE_SMOOTH)));
 	}
 
 	// creates the buttons images on the middle panel

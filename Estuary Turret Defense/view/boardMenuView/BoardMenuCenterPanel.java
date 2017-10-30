@@ -27,24 +27,30 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 	
 	//Bloons TD 2 TracksEdit. 25 Oct. 2017. Citation for the image used in panel
 	private final String centerImage = "images/mediumTrack.png";
+	private final String birdImage = "Images/Turrets/Birds/generic_bird.png";
 
 	private BufferedImage image;
-
-	private BoardMenuSideGamePanel gamePanel = new BoardMenuSideGamePanel();
+	public BufferedImage birdImg;
+	protected static JLabel birdLabel; 
+	
+	private static BoardMenuSideGamePanel gamePanel = new BoardMenuSideGamePanel();
 	private TurretCrab crab = new TurretCrab();
 	private GameModel gameMod = new GameModel();
 	
-	private boolean showGenericBird = false;
+	private boolean showCreature = false;
 	private int showDrawCreature = 0;
 
 	public BoardMenuCenterPanel() {
 		try {
 			image = ImageIO.read(new File(centerImage));
+			birdImg = ImageIO.read(new File(birdImage));
+			birdLabel = new JLabel(new ImageIcon
+					(birdImg.getScaledInstance
+					(75, 75, Image.SCALE_SMOOTH)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		addCenterPanel();
-
 	}
 
 	public void addCenterPanel() {
@@ -62,10 +68,54 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 		}
 		
 		// draws images onto the screen based upon button clicks
-		if(showGenericBird){
+		if(showCreature){
 		switch(showDrawCreature){
 		case 0:
 			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH), 
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 1: 
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 2: 
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 3: 
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 4:
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 5: 
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 6: 
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 7: 
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 8:
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 9: 
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 10: 
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
+					crab.getxCor(), crab.getyCor(), null);
+			break;
+		case 11: 
+			g.drawImage(gamePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
 					crab.getxCor(), crab.getyCor(), null);
 			break;
 		}
@@ -81,13 +131,74 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 		
 		if(e.getSource() == BoardMenuSideGamePanel.genericBirdButton){
 			//crab.setCoordinates(50, 200);
-			showGenericBird = true;
+			showCreature = true;
 			showDrawCreature = 0;
 			BoardMenuSideGamePanel.turnOnButtons(BoardMenuSideGamePanel.BIRD_BUTTONS);
 			gameMod.purchaseItem(crab);
 		}
-		if(e.getSource() == BoardMenuSideGamePanel.genericFishButton){
+		else if(e.getSource() == BoardMenuSideGamePanel.ospreyButton){
+			//crab.setCoordinates(50, 200);
+			showCreature = true;
+			showDrawCreature = 1;
+			gameMod.purchaseItem(crab);
+		}
+		else if(e.getSource() == BoardMenuSideGamePanel.ruddyTurnstoneButton){
+			//crab.setCoordinates(50, 200);
+			showCreature = true;
+			showDrawCreature = 2;
+			gameMod.purchaseItem(crab);
+		}
+		else if(e.getSource() == BoardMenuSideGamePanel.sanderlingButton){
+			//crab.setCoordinates(50, 200);
+			showCreature = true;
+			showDrawCreature = 3;
+			gameMod.purchaseItem(crab);
+		}
+		else if(e.getSource() == BoardMenuSideGamePanel.genericFishButton){
+			showCreature = true;
+			showDrawCreature = 4;
 			BoardMenuSideGamePanel.turnOnButtons(BoardMenuSideGamePanel.FISH_BUTTONS);
+		}
+		else if(e.getSource() == BoardMenuSideGamePanel.blueFishButton){
+			//crab.setCoordinates(50, 200);
+			showCreature = true;
+			showDrawCreature = 5;
+			gameMod.purchaseItem(crab);
+		}
+		else if(e.getSource() == BoardMenuSideGamePanel.blueFishButton){
+			//crab.setCoordinates(50, 200);
+			showCreature = true;
+			showDrawCreature = 6;
+			gameMod.purchaseItem(crab);
+		}
+		else if(e.getSource() == BoardMenuSideGamePanel.summerFlounderButton){
+			//crab.setCoordinates(50, 200);
+			showCreature = true;
+			showDrawCreature = 7;
+			gameMod.purchaseItem(crab);
+		}
+		else if(e.getSource() == BoardMenuSideGamePanel.genericShellfishButton){
+			showCreature = true;
+			showDrawCreature = 8;
+			BoardMenuSideGamePanel.turnOnButtons(BoardMenuSideGamePanel.SHELLFISHBUTTONS);
+		}
+		else if(e.getSource() == BoardMenuSideGamePanel.blueCrabButton){
+			//crab.setCoordinates(50, 200);
+			showCreature = true;
+			showDrawCreature = 9;
+			gameMod.purchaseItem(crab);
+		}
+		else if(e.getSource() == BoardMenuSideGamePanel.easternOysterButton){
+			//crab.setCoordinates(50, 200);
+			showCreature = true;
+			showDrawCreature = 10;
+			gameMod.purchaseItem(crab);
+		}
+		else if(e.getSource() == BoardMenuSideGamePanel.horseShoeCrabButton){
+			//crab.setCoordinates(50, 200);
+			showCreature = true;
+			showDrawCreature = 11;
+			gameMod.purchaseItem(crab);
 		}
 		repaint();
 	}
@@ -117,10 +228,11 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		if(e.getSource() == BoardMenuSideGamePanel.genericBirdButton){
-			BoardMenuSideGamePanel.birdLabel.setLocation(e.getX(), e.getY());
+		if(e.getSource().equals(BoardMenuSideGamePanel.genericBirdButton)){
+            birdLabel.setLocation(e.getX(), e.getY());
+			add(birdLabel);
 		}
-		add(BoardMenuSideGamePanel.birdLabel);
+		
 		repaint();
 	}
 }
