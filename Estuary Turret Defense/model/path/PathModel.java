@@ -1,9 +1,20 @@
 package path;
 
+import position.Posn;
+
 public class PathModel {
+	//2D Positions
+	Posn[] posnArr;
 	int[] xCorArr;
 	int[] yCorArr;
 	int size;
+	
+	public Posn[] getPosnArr() {
+		return posnArr;
+	}
+	public void setPosnArr(Posn[] posnArr) {
+		this.posnArr = posnArr;
+	}
 	
 	public int[] getxCorArr() {
 		return xCorArr;

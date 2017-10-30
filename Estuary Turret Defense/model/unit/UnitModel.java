@@ -1,9 +1,12 @@
 package unit;
 
 import java.awt.image.BufferedImage;
+import position.Posn;
 
 public abstract class UnitModel {
 	String name;
+	//2D Position
+	Posn posn;
 	int xCor;
 	int yCor;
 	BufferedImage[] icon;
@@ -16,6 +19,14 @@ public abstract class UnitModel {
 
 	public void setName(String name) {
 		name = this.name;
+	}
+	
+	//2D Position
+	public Posn getPosn() {
+		return posn;
+	}
+	public void setPosn(Posn posn) {
+		this.posn = posn;
 	}
 
 	public int getxCor() {
