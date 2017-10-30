@@ -6,7 +6,7 @@ import java.util.Scanner;
 import game.GameModel;
 import mainMenuView.*;
 
-public class GameMain {
+public class GameController {
 	//Note, traverse enemyList in reverse order, you should damage the thing that is furthest along
 	static GameModel controller;
 	static String toPrint;
@@ -148,12 +148,13 @@ public class GameMain {
 		return controller.checkPlayerIsDead();
 	}
 	
+	/*
 	public static void main(String[] FUN){
 		
 		setup();
 		
 		
-		/*
+		
 		//For loop to run the game
 		for (int time = 0; time < 300; time++){
 			if (time%5 == 0){
@@ -183,12 +184,12 @@ public class GameMain {
 				System.out.println("You have won!");
 			}
 		}
-		*/
+		
 	}
 		//This is a subsitute for the time function
+	*/
 		
-		
-		
+	
 		
 }
 
