@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import player.PlayerModel;
 
-public class BoardMenuTimerPanel extends JPanel implements Runnable {
+public class BoardMenuTimerPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
@@ -62,7 +62,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 
 	// Take out at Beta 
 	// sets the time into minutes and seconds 
-	private void setTime(long time) {
+	public void setTime(long time) {
 		this.time = time;
 		long minutes = (time / 60) % 60;
 		long seconds = time % 60;
@@ -88,7 +88,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 	// starts the timer 
 	public void startTimer() {
 		stopTimer();
-		timerThread = new Thread(this);
+		//timerThread = new Thread(this);
 		timerThread.start();
 	}
 
@@ -130,6 +130,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 	}
 
 	// what to do on tick for the runnable
+	/*
 	@Override
 	public void run() {
 		// take this out at Beta
@@ -143,7 +144,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 				return;
 			}
 		}
-		
+		*/
 		// will add this for beta version
 		/*while(currentTimeBar > 0){
 			burnTimer(1);
@@ -153,10 +154,11 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 			catch(InterruptedException e){
 				return;
 			}
-		}*/
+		}
 		
 		timesUp();
 	}
+	*/
 	
 	// Options allows you to start the game again if you so choose.
 	public void timesUp(){

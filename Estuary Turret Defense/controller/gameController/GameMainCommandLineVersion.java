@@ -133,6 +133,7 @@ public class GameMainCommandLineVersion {
 		//Moves the enemy, if the enemy has successfully gotten out of bounds the player loses life
 		for (int i = 0; i < controller.game.enemyList.size(); i++){	
 			if (controller.moveEnemy(i)){
+				controller.removeEnemy(i);
 				controller.reducePlayerHealth(1);
 			}
 		}

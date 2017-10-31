@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.GameModel;
+import gameController.GameController;
 import player.PlayerModel;
 
 public class BoardMenuSideGamePanel extends JPanel {
@@ -86,9 +87,9 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private static PlayerModel plModel = new PlayerModel(0, 1000, 30);
 	public static BoardMenuScorePanel scorePanel = 
 			new BoardMenuScorePanel(plModel, Color.WHITE); // creates new score panel for new game
-	public static BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(TIME_ON_CLOCK); // creates the timerPanel
+	public BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(TIME_ON_CLOCK); // creates the timerPanel
 	public static BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
-	private GameModel c1 = new GameModel(); // gives access to the controller;
+	//private GameController c1 = new GameController(); // gives access to the controller;
 
 	public BoardMenuSideGamePanel() {
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
@@ -144,7 +145,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				startButton.setEnabled(false); // disables the button during the rounds
 				endButton.setEnabled(true); // enables the button during the rounds
-				c1.startRound(); // starts the wave 
+				GameController.startRound(); // starts the wave 
 				timerPanel.startTimer(); // starts the time event for game play	
 			}
 		});
@@ -154,7 +155,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				startButton.setEnabled(true); // enables the button after the round is over
 				endButton.setEnabled(false); // disables the end round button during no action
-				c1.endRound(); // calls commands for ending the game
+				
+				GameController.endRound(); // calls commands for ending the game
 			}
 		});
 		

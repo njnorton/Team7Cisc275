@@ -6,7 +6,7 @@ public abstract class UnitModel {
 	String name;
 	int xCor;
 	int yCor;
-	BufferedImage[] icon;
+	BufferedImage icon;
 	String gameDescription;
 	String factDescription;
 
@@ -34,12 +34,12 @@ public abstract class UnitModel {
 		this.yCor = yCor;
 	}
 
-	public BufferedImage[] geticon() {
+	public BufferedImage geticon() {
 		return icon;
 	}
 
-	public void setIcon(BufferedImage[] icon) {
-		icon = this.icon;
+	public void setIcon(BufferedImage pooImage) {
+		pooImage = this.icon;
 	}
 
 	public String getGameDescription() {

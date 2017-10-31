@@ -1,26 +1,33 @@
 package gameController;
 
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+
+import java.awt.Image;
+import boardMenuView.*;
 import game.GameModel;
 import mainMenuView.*;
 
 public class GameController {
 	//Note, traverse enemyList in reverse order, you should damage the thing that is furthest along
-	static GameModel controller;
+	static GameModel model;
 	static String toPrint;
-	static InitiateGameStartView view;
+	static BoardMenuView view;
 	
-	
-	
-	public static void setup(){	
-		
+	public GameController(){
+		view = new BoardMenuView();
+
 		/* Sets up the game, using a dummy path , 
-		 * and the controller that actually affects the objects in the game
+		 * and the model that actually affects the objects in the game
 		 * Also the size of the map  */
-		controller = new GameModel();
-		view = new InitiateGameStartView();
+		model = new GameModel();
+		//view = new BoardMenuView();
 		
 		//Do path assignment here
 		int[] xpath = new int[1000];
@@ -32,9 +39,9 @@ public class GameController {
 			ypath[i] = i;
 		}
 		
-		controller.game.path.setxCorArr(xpath);
-		controller.game.path.setyCorArr(ypath);
-		controller.game.path.setSize(1000);
+		model.game.path.setxCorArr(xpath);
+		model.game.path.setyCorArr(ypath);
+		model.game.path.setSize(1000);
 	}
 	
 	public static void displayGrid(){
@@ -43,89 +50,54 @@ public class GameController {
 		System.out.println("Current game: ");
 		
 		//Prints all the Poo bad guys
-		for (int i = 0; i < controller.game.path.getSize(); i++){
-			toPrint = "-";
-			for(int j = 0; j < controller.game.enemyList.size(); j++){
-				if (controller.game.enemyList.get(j).getxCor() == i){
-					toPrint = "X";
-					break;
-				}
-			}
-			System.out.print(toPrint);
+	    for(int i = 0; i < model.game.enemyList.size(); i++){
+	    	//TODO Draw method for
+	    	ImageIcon img = new ImageIcon(model.game.enemyList.get(i).geticon());
+	    	JLabel label = new JLabel(img);
+	    	view.centerPanel.add(label);
+	    	
 		}
-		System.out.println("");
-		System.out.println("Line of Turrets");
+	    	//img.drawImage(model.game.enemyList.get(i).geticon(),75,75,null);
+	    	//BoardMenuCenterPanel.draw(img,model.game.enemyList.get(i).getxCor(),model.game.enemyList.get(i).getyCor());
+	    
+		//System.out.println("Line of Turrets");
 		//Prints all the turrets
-		for (int i = 0; i < controller.game.path.getSize(); i++){
+	    /*
+		for (int i = 0; i < model.game.path.getSize(); i++){
 			toPrint = "-";
-			for(int j = 0; j < controller.game.turretList.size(); j++){
-				if (controller.game.turretList.get(j).getxCor() == i){
+			for(int j = 0; j < model.game.turretList.size(); j++){
+				if (model.game.turretList.get(j).getxCor() == i){
 					toPrint = "O";
 					break;
 				}
 			}
+			
 			System.out.print(toPrint);
 		}
 		System.out.println("");
+		*/
 		
 	}
 	
-	//Lets the player put in string inputs to control the game
-	public static void playerInput(){
-		/* Let'sthe players do things from the command line inputs  */
-		boolean inputting = true;
-		Scanner scanner = new Scanner(System.in);
-		do{
-			System.out.println("You have " + controller.player.getMoney() +" Sand Dollars to spend");
-			System.out.println("You have " + controller.player.getHealth() + " Health remaining");
-			System.out.println("Either enter name of turret to place (So type in 'Crab') case sensitive");
-			System.out.println("Or input anything else to continue time by a step");
-			String input = scanner.nextLine();
-			if (input.equals("Crab")){
-				if(controller.checkPrice(input)){
-					System.out.println("Input value from 0 to 99 to place the turret on");
-					String positionInput = scanner.nextLine();
-					int intInput = Integer.parseInt(positionInput);
-					if (intInput >= 0 && intInput <= 99){
-						controller.spawnTurret(input, intInput, 2);
-						//TODO will not work later on when prices of turrets needs to be checked
-						//Should there be a library of turret prices?
-						//Other option is having a library of turrets in the controller it can do lookups on
-						controller.reducePlayerMoney(100);
-						System.out.println("Your current turrets: ");
-						
-					}else{
-						System.out.println("Invalid Input");
-					}
-				}else{
-					System.out.println("Not enough money to afford that");
-				}
-			}else{
-				inputting = false;
-				return;
-			}
-		}while(inputting == true);
-		scanner.close();
-	}
 	
 	public static void resolveTurretActions(){
 		//Iterates through every turrret
-		for (int i =0; i < controller.game.turretList.size(); i++){
+		for (int i =0; i < model.game.turretList.size(); i++){
 			//Sees if the turret is allowed to shoot this round
-			if (controller.checkReloadCount(i)){
+			if (model.checkReloadCount(i)){
 				//Iterates through every enemy
-				for (int j = 0; j < controller.game.enemyList.size(); j++){
+				for (int j = 0; j < model.game.enemyList.size(); j++){
 					//Checks if that given enemy is in range
 					//This may be different for different turrets if they range find differently
-					if(controller.checkRange(i, j)){
+					if(model.checkRange(i, j)){
 						//Reset the reload count
-						controller.resetReload(i);
+						model.resetReload(i);
 						//Damages the enemy, if he dies it'll return true
-						if(controller.damageEnemy(i, j)){
+						if(model.damageEnemy(i, j)){
 							//Gives the player money for defeating the baddie
-							controller.gainBounty(j);
+							model.gainBounty(j);
 							//Removes the enemy 
-							controller.removeEnemy(j);
+							model.removeEnemy(j);
 						}
 						break;
 					}
@@ -136,54 +108,77 @@ public class GameController {
 	
 	public static void resolveEnemyActions(){
 		//Moves the enemy, if the enemy has successfully gotten out of bounds the player loses life
-		for (int i = 0; i < controller.game.enemyList.size(); i++){	
-			if (controller.moveEnemy(i)){
-				controller.reducePlayerHealth(1);
+		for (int i = 0; i < model.game.enemyList.size(); i++){	
+			if (model.moveEnemy(i)){
+				model.removeEnemy(i);
+				model.reducePlayerHealth(1);
 			}
 		}
 	}
 	
 	public static boolean checkPlayerIsDead(){
 		//Sees if the player is ded, returns true if he is
-		return controller.checkPlayerIsDead();
+		
+		return model.checkPlayerIsDead();
 	}
+
 	
-	/*
-	public static void main(String[] FUN){
-		
-		setup();
-		
-		
-		
+	public static void startRound() {
 		//For loop to run the game
-		for (int time = 0; time < 300; time++){
+		
+		int time = 45;
+		while(time > 0){
+			time--;
+			view.sidePanel.timerPanel.setTime(time);
+			System.out.println(time);
 			if (time%5 == 0){
-				controller.spawnEnemy("Poo");
+				model.spawnEnemy("Poo");
 			}
 			if (time%7 == 0){
-				controller.spawnEnemy("QuickShit");
+				model.spawnEnemy("QuickShit");				
 			}
 			displayGrid();
-			playerInput();
+			//playerInput();
 			//Resolve the round, move things, damage things, etc	
 			resolveTurretActions();
 			resolveEnemyActions();
 			
 			//Give the players 1 money every count
-			controller.increasePlayerMoney(1);
-			
+			model.increasePlayerMoney(1);
+		
 			//If the player is ded return true
 			if (checkPlayerIsDead()){
 				System.out.println("You have died!");
-				break;
+			break;
 			}
 			
-			
-			//Does a time check, if the player has survived long enough you win!
-			if (time+1 == 300){
-				System.out.println("You have won!");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
+	}
+	public static void endRound(){
+		model.resetScorePanel(); // resets the scorePanel in the game
+		System.out.println("Game over man!");
+	}
+}
+		
+		// TODO Auto-generated method stub
+
+
+	
+	
+	/*
+	public static void main(String[] FUN){
+		
+		
+		
+		
+		
+		
 		
 	}
 		//This is a subsitute for the time function
@@ -191,7 +186,7 @@ public class GameController {
 		
 	
 		
-}
+
 
 /*
 

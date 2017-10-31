@@ -106,7 +106,7 @@ public class GameModel {
 			return false;
 		}
 		else{
-			removeEnemy(enemyInd);
+			//move this part to Game Controller
 			return true;
 		}
 	}
@@ -185,6 +185,7 @@ public class GameModel {
 	
 	
 	// will start the round 
+	/*
 	public void startRound(){
 		player.updateScore(12);
 	}
@@ -193,6 +194,7 @@ public class GameModel {
 	public void endRound(){
 		resetScorePanel(); // resets the scorePanel in the game
 	}
+	*/
 	
 	// updates the current score of the game 
 	public void updateScore(int score){

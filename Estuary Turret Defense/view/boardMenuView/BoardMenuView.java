@@ -3,7 +3,6 @@ package boardMenuView;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 
 import mainMenuView.TitlePanel;
@@ -16,12 +15,14 @@ public class BoardMenuView extends JFrame {
 	final Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
 	final int WIDTH_OF_SCREEN = SCREEN_SIZE.width; // sets the width of screen from getPreferredSize method
 	final int HEIGHT_OF_SCREEN = SCREEN_SIZE.height-ADJUST_SIDE; // set the height of screen from getPreferredSize method
-		
+	
 	TitlePanel title = new TitlePanel("Welcome to Estuary Tower Defense");
 	
-	BoardMenuCenterPanel centerPanel = new  BoardMenuCenterPanel();
-	BoardMenuSideGamePanel sidePanel = new BoardMenuSideGamePanel();
+	public BoardMenuCenterPanel centerPanel = new  BoardMenuCenterPanel();
+	public BoardMenuSideGamePanel sidePanel = new BoardMenuSideGamePanel();
 	BoardMenuButtonPanel buttonPanel = new BoardMenuButtonPanel();
+	
+	
 	
 	// Constructor for TowerDefenseView Class
 	public BoardMenuView() {

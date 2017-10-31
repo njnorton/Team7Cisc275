@@ -62,7 +62,7 @@ public class PlayerModel {
 	// rests the score panel after the conclusion of the game 
 	public void resetPanel(){
 		BoardMenuSideGamePanel.scorePanel.reset(); // resets the score panel 
-		BoardMenuSideGamePanel.timerPanel.stopTimer(); // stops the timer
-		BoardMenuSideGamePanel.timerPanel.reset(); // resets the timer panel
+		//BoardMenuSideGamePanel.timerPanel.stopTimer(); // stops the timer
+		//BoardMenuSideGamePanel.timerPanel.reset(); // resets the timer panel
 	}
 }

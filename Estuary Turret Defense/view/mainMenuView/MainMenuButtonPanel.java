@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import boardMenuView.BoardMenuView;
+import gameController.GameController;
 
 public class MainMenuButtonPanel extends JPanel {
 
@@ -50,7 +51,8 @@ public class MainMenuButtonPanel extends JPanel {
 		startButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BoardMenuView b1 = new BoardMenuView(); // calls the main board for interaction
+				GameController b1 = new GameController();
+				//BoardMenuView b1 = new BoardMenuView(); // calls the main board for interaction
 			}
 		});
 		
@@ -65,8 +67,7 @@ public class MainMenuButtonPanel extends JPanel {
 		// Action performed when the quit button is clicked 
 		quitButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-								
+			public void actionPerformed(ActionEvent e) {				
 				System.exit(0);
 			}
 		});		
