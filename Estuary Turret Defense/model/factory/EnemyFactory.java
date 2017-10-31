@@ -12,8 +12,8 @@ public class EnemyFactory {
 			case "Poo" :
 				newEnemy = new EnemyPoo();
 				break;
-			case "QuickShit":
-				newEnemy = new EnemyQuickShit();
+			case "Pfiesteria":
+				newEnemy = new EnemyAlgae();
 				break;
 			default:
 				//throw exception

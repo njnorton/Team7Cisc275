@@ -1,11 +1,13 @@
 package unit.turret;
 
 import unit.UnitModel;
+import unit.enemy.EnemyModel;
 
 public abstract class TurretModel extends UnitModel{
 	int range;
 	int damage;
 	int price;
+	boolean isAoe;
 	
 	//TODO Turrets should have attack methods at this level
 	
@@ -13,6 +15,13 @@ public abstract class TurretModel extends UnitModel{
 	//reloadCount is the current reload counter, every time tick it is reduced by 1
 	//When reloadCount is 0, the turret can fire again
 	int reloadTime;
+	public boolean isAoe() {
+		return isAoe;
+	}
+	public void setAoe(boolean isAoe) {
+		this.isAoe = isAoe;
+	}
+
 	int reloadCount;
 	
 	//The possible turrets it can upgrade into
@@ -63,4 +72,8 @@ public abstract class TurretModel extends UnitModel{
 	public void setUpgrade(String[] upgrade) {
 		this.upgrade = upgrade;
 	}
+	
+	public void turretAttack(EnemyModel enemy){
+		enemy.setCurrentHealth(enemy.getCurrentHealth() - this.getDamage());
+	};
 }

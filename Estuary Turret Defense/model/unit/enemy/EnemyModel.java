@@ -7,9 +7,6 @@ public abstract class EnemyModel extends UnitModel {
 	int maxHealth;
 	int currentHealth;
 	
-	//Specifies an enemy
-	int Id;
-	
 	//How much money you make from the thing getting killed
 	int bounty;
 	
@@ -41,13 +38,6 @@ public abstract class EnemyModel extends UnitModel {
 	}
 	public void setCurrentHealth(int currentHealth) {
 		this.currentHealth = currentHealth;
-	}
-	
-	public int getId() {
-		return Id;
-	}
-	public void setId(int id) {
-		Id = id;
 	}
 	
 	public int getSpeed() {
