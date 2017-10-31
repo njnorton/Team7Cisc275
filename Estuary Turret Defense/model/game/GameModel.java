@@ -3,6 +3,7 @@ package game;
 import factory.EnemyFactory;
 import factory.TurretFactory;
 import player.PlayerModel;
+import position.Posn;
 //import unit.enemy.EnemyModel;
 //import unit.turret.TurretModel;
 import unit.enemy.EnemyModel;
@@ -117,9 +118,10 @@ public class GameModel {
 	//Also updates where the enemy is within the path to keep track of where it's heading
 	public boolean moveEnemy(int enemyInd) {
 		EnemyModel em = game.enemyList.get(enemyInd);
-		if(em.updatePosition(game.path.getPosnArr()[em.getPositionIndex() + 1])) {          //If the next point is reached upon updating position,
+		Posn nextPosn = game.path.getPosnArr()[em.getPositionIndex() + 1];
+		if(em.updatePosition(nextPosn)) {                                                   //If the next point is reached upon updating position,
 			if(em.getPositionIndex() < game.path.getSize() - 1) {                           //check if they are still on the path
-				em.updateDirection(game.path.getPosnArr()[em.getPositionIndex() + 1]);      //If they are, update their direction
+				em.updateDirection(nextPosn);                                               //If they are, update their direction
 			}
 			else {                                                                          //If they are not, they enter and damage the estuary
 				//enemy enters estuary
@@ -133,8 +135,7 @@ public class GameModel {
 	// spawns an enemy onto the game 
 	public void spawnEnemy(String enemyName){
 		EnemyModel enemy = enemyFactory.makeEnemy(enemyName);
-		enemy.setxCor(game.path.getxCorAtIndex(0));
-		enemy.setxCor(game.path.getyCorAtIndex(0));
+		enemy.setPosn(game.path.getPosnArr()[0]);
 		game.enemyList.add(enemy);
 	}
 	
