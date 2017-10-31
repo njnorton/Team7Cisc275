@@ -74,6 +74,7 @@ public class GameModel {
 	// adds damage to the current object that is on the game 
 	// if the enemy is killed, return true
 	public boolean damageEnemy(int turretInd, int enemyInd){
+		//game.turretList.get(turretInd).turretAttack(game.enemyList.get(enemyInd));
 		game.enemyList.get(enemyInd).setCurrentHealth(game.enemyList.get(enemyInd).getCurrentHealth() - game.turretList.get(turretInd).getDamage());
 		return checkHealth(enemyInd);
 	}
