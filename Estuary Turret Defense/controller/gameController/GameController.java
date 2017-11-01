@@ -19,9 +19,10 @@ public class GameController {
 	static GameModel model;
 	static String toPrint;
 	static BoardMenuView view;
-	static int roundTime;
+	public static int roundTime;
 	
 	public GameController(){
+		roundTime = 45;
 		view = new BoardMenuView();
 
 		
@@ -129,13 +130,13 @@ public class GameController {
 		return model.checkPlayerIsDead();
 	}
 
+	
+	//THIS IS THE LOOP FOR THE GAME
 	public static void startRound(){
 		//Sets up the game model for a round
 		gameInitialize();
-		view.sidePanel.timerPanel.setTime(roundTime);
 		while (roundTime > 0){
 			System.out.println(roundTime);
-			view.sidePanel.timerPanel.setTime(roundTime);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -143,6 +144,7 @@ public class GameController {
 				e.printStackTrace();
 			}
 			roundTime--;
+			view.sidePanel.updateTime(roundTime);
 			view.centerPanel.repaint();
 			view.sidePanel.repaint();
 		}
@@ -192,6 +194,8 @@ public class GameController {
 		model.resetScorePanel(); // resets the scorePanel in the game
 		System.out.println("Game over man!");
 	}
+
+
 }
 		
 		// TODO Auto-generated method stub

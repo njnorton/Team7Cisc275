@@ -17,9 +17,9 @@ public class BoardMenuTimerPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	// Take three listed below out at Beta 
-	public static long time = 0; // the time that is passed in 
+	public long time = 0; // the time that is passed in 
 	private long remainingTime = 0; // current state of the clock
-	private static String timeString = "00:00"; // the time string representation of the countdown
+	private String timeString = "00:00"; // the time string representation of the countdown
 		
 	private Font timerFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font 
 
@@ -32,7 +32,7 @@ public class BoardMenuTimerPanel extends JPanel{
 	private long timerBar = 0; // not until Beta but for graphic timer 
 	private double currentTimeBar = 0; // not until Beta but for graphic timer 
 	
-	Thread timerThread; // the thread that the timer is run on 
+	//Thread timerThread; // the thread that the timer is run on 
 	
 	// constructor 
 	public BoardMenuTimerPanel(long time) {
@@ -65,11 +65,12 @@ public class BoardMenuTimerPanel extends JPanel{
 	// Take out at Beta 
 	// sets the time into minutes and seconds 
 	public void setTime(int time) {
+		System.out.println("Try to set the time as: " + time);
 		this.time = (long)time;
 		long minutes = (time / 60) % 60;
 		long seconds = time % 60;
 		timeString = String.format("%02d:%02d", minutes, seconds);
-		repaint(); // updates the panel for the timer
+		//repaint(); // updates the panel for the timer
 	}
 	
 	// how much of the timer will be undone at a time 
@@ -88,6 +89,7 @@ public class BoardMenuTimerPanel extends JPanel{
 	}
 
 	// starts the timer 
+	/*
 	public void startTimer() {
 		stopTimer();
 		//timerThread = new Thread(this);
@@ -101,6 +103,7 @@ public class BoardMenuTimerPanel extends JPanel{
 			timerThread = null;
 		}
 	}
+	*/
 	
 	// rests the clock to given time 
 	public void reset(){

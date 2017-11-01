@@ -27,7 +27,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	private final static int TIME_ON_CLOCK = 45; // how much time is on the clock for the game
+	//private final static int TIME_ON_CLOCK = 45; // how much time is on the clock for the game
 	
 	List<String> creatureList = Arrays.asList(
 		"Images/Turrets/Birds/generic_bird.png","Images/Turrets/Birds/osprey.png", 
@@ -87,7 +87,8 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private static PlayerModel plModel = new PlayerModel(0, 1000, 30);
 	public static BoardMenuScorePanel scorePanel = 
 			new BoardMenuScorePanel(plModel, Color.WHITE); // creates new score panel for new game
-	public BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(TIME_ON_CLOCK); // creates the timerPanel
+	//TODO THIS ACTUALLY FEEDS IN DATA FROM THE CONROLLER
+	public static BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(GameController.roundTime); // creates the timerPanel
 	public static BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
 	//private GameController c1 = new GameController(); // gives access to the controller;
 
@@ -146,7 +147,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 				startButton.setEnabled(false); // disables the button during the rounds
 				endButton.setEnabled(true); // enables the button during the rounds
 				GameController.startRound(); // starts the wave 
-				timerPanel.startTimer(); // starts the time event for game play	
+				//timerPanel.startTimer(); // starts the time event for game play	
 			}
 		});
 		
@@ -209,5 +210,10 @@ public class BoardMenuSideGamePanel extends JPanel {
 		for(JButton buttons: input){
 			buttons.setEnabled(true);
 		}
+	}
+	
+	public void updateTime(int time){
+		System.out.println("Try to update with time: " + time);
+		timerPanel.setTime(time);
 	}
 }
