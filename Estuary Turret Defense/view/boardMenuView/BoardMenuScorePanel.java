@@ -95,11 +95,10 @@ public class BoardMenuScorePanel extends JPanel{
 	
 	// allows for the purchase of items from the buttons 
 	public void purchaseItem(PlayerModel mod, TurretModel model){
-		int money = mod.getMoney();
-		System.out.println(money);
-		remainingSandDollars =  money - model.getPrice();
+		remainingSandDollars =  mod.getMoney() - model.getPrice();
 		System.out.println(remainingSandDollars);
 		sandDollarsLabel.setText("" + remainingSandDollars);
+		
 	}
 	
 	// resets the score on the panel to the initial state

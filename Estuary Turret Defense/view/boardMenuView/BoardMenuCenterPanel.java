@@ -129,72 +129,72 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource() == BoardMenuSideGamePanel.genericBirdButton){
+		if(e.getSource().equals(BoardMenuSideGamePanel.genericBirdButton)){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 0;
 			BoardMenuSideGamePanel.turnOnButtons(BoardMenuSideGamePanel.BIRD_BUTTONS);
 			gameMod.purchaseItem(crab);
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.ospreyButton){
+		else if(e.getSource().equals(BoardMenuSideGamePanel.ospreyButton)){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 1;
 			gameMod.purchaseItem(crab);
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.ruddyTurnstoneButton){
+		else if(e.getSource().equals(BoardMenuSideGamePanel.ruddyTurnstoneButton)){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 2;
-			gameMod.purchaseItem(crab);
+			gameMod.purchaseItem(crab);		
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.sanderlingButton){
+		else if(e.getSource().equals(BoardMenuSideGamePanel.sanderlingButton)){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 3;
 			gameMod.purchaseItem(crab);
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.genericFishButton){
+		else if(e.getSource().equals(BoardMenuSideGamePanel.genericFishButton)){
 			showCreature = true;
 			showDrawCreature = 4;
 			BoardMenuSideGamePanel.turnOnButtons(BoardMenuSideGamePanel.FISH_BUTTONS);
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.blueFishButton){
+		else if(e.getSource().equals(BoardMenuSideGamePanel.blueFishButton)){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 5;
 			gameMod.purchaseItem(crab);
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.blueFishButton){
+		else if(e.getSource().equals(BoardMenuSideGamePanel.blueFishButton)){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 6;
 			gameMod.purchaseItem(crab);
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.summerFlounderButton){
+		else if(e.getSource().equals(BoardMenuSideGamePanel.summerFlounderButton)){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 7;
 			gameMod.purchaseItem(crab);
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.genericShellfishButton){
+		else if(e.getSource().equals(BoardMenuSideGamePanel.genericShellfishButton)){
 			showCreature = true;
 			showDrawCreature = 8;
 			BoardMenuSideGamePanel.turnOnButtons(BoardMenuSideGamePanel.SHELLFISHBUTTONS);
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.blueCrabButton){
+		 if(e.getSource().equals(BoardMenuSideGamePanel.blueCrabButton)){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 9;
 			gameMod.purchaseItem(crab);
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.easternOysterButton){
+		 if(e.getSource().equals(BoardMenuSideGamePanel.easternOysterButton)){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 10;
 			gameMod.purchaseItem(crab);
 		}
-		else if(e.getSource() == BoardMenuSideGamePanel.horseShoeCrabButton){
+		else if(e.getSource().equals(BoardMenuSideGamePanel.horseShoeCrabButton)){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 11;

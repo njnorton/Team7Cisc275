@@ -84,7 +84,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private GridLayout buttonLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
 	
 	private static PlayerModel plModel = new PlayerModel(0, 1000, 30);
-	public static BoardMenuScorePanel scorePanel = 
+	public  static BoardMenuScorePanel scorePanel = 
 			new BoardMenuScorePanel(plModel, Color.WHITE); // creates new score panel for new game
 	public static BoardMenuTimerPanel timerPanel = new BoardMenuTimerPanel(TIME_ON_CLOCK); // creates the timerPanel
 	public static BoardMenuCenterPanel cen = new BoardMenuCenterPanel(); // allows access to center panel
