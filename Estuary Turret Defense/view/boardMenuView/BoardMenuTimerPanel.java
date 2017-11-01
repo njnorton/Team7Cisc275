@@ -17,9 +17,9 @@ public class BoardMenuTimerPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	// Take three listed below out at Beta 
-	private long time = 0; // the time that is passed in 
+	public static long time = 0; // the time that is passed in 
 	private long remainingTime = 0; // current state of the clock
-	private String timeString = "00:00"; // the time string representation of the countdown
+	private static String timeString = "00:00"; // the time string representation of the countdown
 		
 	private Font timerFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font 
 
@@ -52,7 +52,7 @@ public class BoardMenuTimerPanel extends JPanel{
 		setLayout(new GridLayout(1,2));
 		
 		// Take out at Beta
-		setTime(time); // sets the time for the game
+		setTime((int)time); // sets the time for the game
 		
 		// adds the JLabel to the screen 
 		JLabel timer = new JLabel("Time Remaining: ");
@@ -60,10 +60,12 @@ public class BoardMenuTimerPanel extends JPanel{
 		add(timer);	
 	}
 
+
+	
 	// Take out at Beta 
 	// sets the time into minutes and seconds 
-	public void setTime(long time) {
-		this.time = time;
+	public void setTime(int time) {
+		this.time = (long)time;
 		long minutes = (time / 60) % 60;
 		long seconds = time % 60;
 		timeString = String.format("%02d:%02d", minutes, seconds);
@@ -103,7 +105,7 @@ public class BoardMenuTimerPanel extends JPanel{
 	// rests the clock to given time 
 	public void reset(){
 		// Take out at Beta
-		setTime(remainingTime);
+		setTime((int)remainingTime);
 		
 		// resets the timer to the full length of the bar
 		/*currentTimeBar = timerBar;

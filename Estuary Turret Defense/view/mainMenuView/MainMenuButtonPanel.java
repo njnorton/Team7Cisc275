@@ -52,7 +52,6 @@ public class MainMenuButtonPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				GameController b1 = new GameController();
-				//BoardMenuView b1 = new BoardMenuView(); // calls the main board for interaction
 			}
 		});
 		

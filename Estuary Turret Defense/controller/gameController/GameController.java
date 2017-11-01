@@ -19,10 +19,15 @@ public class GameController {
 	static GameModel model;
 	static String toPrint;
 	static BoardMenuView view;
+	static int roundTime;
 	
 	public GameController(){
 		view = new BoardMenuView();
 
+		
+	}
+	
+	public static void gameInitialize(){
 		/* Sets up the game, using a dummy path , 
 		 * and the model that actually affects the objects in the game
 		 * Also the size of the map  */
@@ -42,6 +47,8 @@ public class GameController {
 		model.game.path.setxCorArr(xpath);
 		model.game.path.setyCorArr(ypath);
 		model.game.path.setSize(1000);
+		
+		roundTime = 45;
 	}
 	
 	public static void displayGrid(){
@@ -122,7 +129,27 @@ public class GameController {
 		return model.checkPlayerIsDead();
 	}
 
+	public static void startRound(){
+		//Sets up the game model for a round
+		gameInitialize();
+		view.sidePanel.timerPanel.setTime(roundTime);
+		while (roundTime > 0){
+			System.out.println(roundTime);
+			view.sidePanel.timerPanel.setTime(roundTime);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			roundTime--;
+			view.centerPanel.repaint();
+			view.sidePanel.repaint();
+		}
+	}
 	
+	//TODO incorperate things here into the actual start round
+	/*
 	public static void startRound() {
 		//For loop to run the game
 		
@@ -160,6 +187,7 @@ public class GameController {
 			}
 		}
 	}
+	*/
 	public static void endRound(){
 		model.resetScorePanel(); // resets the scorePanel in the game
 		System.out.println("Game over man!");
