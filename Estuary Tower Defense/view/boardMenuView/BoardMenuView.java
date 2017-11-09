@@ -13,8 +13,8 @@ public class BoardMenuView extends JFrame {
 	
 	final int ADJUST_SIDE = 20; // adjust the bottom of the screen
 	final Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
-	final int WIDTH_OF_SCREEN = SCREEN_SIZE.width; // sets the width of screen from getPreferredSize method
-	final int HEIGHT_OF_SCREEN = SCREEN_SIZE.height-ADJUST_SIDE; // set the height of screen from getPreferredSize method
+	final int WIDTH_OF_SCREEN = SCREEN_SIZE.width*6/7; // sets the width of screen from getPreferredSize method
+	final int HEIGHT_OF_SCREEN = SCREEN_SIZE.height*6/7; // set the height of screen from getPreferredSize method
 	
 	MainMenuTitlePanel title = new MainMenuTitlePanel("Welcome to Estuary Tower Defense");
 	
@@ -55,13 +55,5 @@ public class BoardMenuView extends JFrame {
 		setResizable(false); // disables the ability to make the screen bigger or smaller
 		setLocationRelativeTo(null); // centers the screen on the display
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // closes the screen if the user exits from window
-	}
-
-	// gets the preferred size of the screen that we want to use
-	public Dimension getPreferredSize() {
-		Dimension size = //new Dimension((int) SCREEN_SIZE.getWidth(), 
-				//(int) SCREEN_SIZE.getHeight());
-				new Dimension(1440,900);
-		return size;
 	}
 }

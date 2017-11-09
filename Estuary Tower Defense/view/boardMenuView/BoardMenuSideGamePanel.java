@@ -20,8 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gameController.GameController;
-import main.GameModel;
-import main.PlayerModel;
 
 //TODO take out end round, the round shouldn't end on a button, it should end when time is up
 
@@ -91,12 +89,14 @@ public class BoardMenuSideGamePanel extends JPanel {
 	public BoardMenuScorePanel scorePanel; // creates new score panel for new game
 	public BoardMenuTimerPanel timerPanel; // creates the timerPanel
 	public BoardMenuCenterPanel cen; // allows access to center panel
+	public BoardMenuInfoPanel infoPanel;
 	//private GameController c1 = new GameController(); // gives access to the controller;
 
 	public BoardMenuSideGamePanel() {
 		scorePanel = new BoardMenuScorePanel(Color.WHITE);
 		timerPanel = new BoardMenuTimerPanel();
 		cen = new BoardMenuCenterPanel();
+		infoPanel = new BoardMenuInfoPanel();
 		
 		//sets up everything
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
@@ -105,8 +105,9 @@ public class BoardMenuSideGamePanel extends JPanel {
 		sidePanel.add(timerPanel); // adds the timer panel to the screen on East Side
 		addLabelMiddleTop(); // adds a label to identify creature section
 		addMiddlePanel(); // adds the middle panel for the screen
-		addBottomLabel(); // adds a label to identify menu selection
-		addBottomPanel(); // adds the bottom panel for the screen
+		sidePanel.add(infoPanel);
+		//addBottomLabel(); // adds a label to identify menu selection
+		//addBottomPanel(); // adds the bottom panel for the screen
 		add(sidePanel);
 	}
 	
@@ -114,12 +115,12 @@ public class BoardMenuSideGamePanel extends JPanel {
 		sidePanel.add(creaturePanel);
 		creaturePanel.add(creatureLabel);
 		creaturePanel.setBackground(Color.LIGHT_GRAY);
-		creaturePanel.setPreferredSize(new Dimension(300, 40));
+		creaturePanel.setPreferredSize(new Dimension(260, 25));
 	}
 
 	// adds the middle panel to the screen on BorderLayout East Side
 	private void addMiddlePanel() {
-		middlePanel.setPreferredSize(new Dimension(300, 400));
+		middlePanel.setPreferredSize(new Dimension(260, 240));
 		middlePanel.setBackground(Color.LIGHT_GRAY);
 		middlePanel.setLayout(creatureLayout);
 		
@@ -132,14 +133,14 @@ public class BoardMenuSideGamePanel extends JPanel {
 	
 	private void addBottomLabel(){
 		sidePanel.add(menuPanel);
-		menuPanel.setPreferredSize(new Dimension(300, 40));
+		menuPanel.setPreferredSize(new Dimension(260, 25));
 		menuPanel.setBackground(Color.YELLOW);
 		menuPanel.add(menuInstruction);
 	}
 	
 	// adds the bottom panel to the screen on BorderLayout East Side
 	private void addBottomPanel() {
-		bottomPanel.setPreferredSize(new Dimension(300, 100));
+		bottomPanel.setPreferredSize(new Dimension(260, 75));
 		bottomPanel.setBackground(Color.YELLOW);
 		bottomPanel.setLayout(buttonLayout);
 		

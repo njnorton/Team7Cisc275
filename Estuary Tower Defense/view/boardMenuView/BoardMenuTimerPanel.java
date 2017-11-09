@@ -11,28 +11,27 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import gameController.GameController;
-import main.PlayerModel;
 
 public class BoardMenuTimerPanel extends JPanel implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 
-	// Take three listed below out at Beta
 	public long time; // the time that is passed in
-	private long remainingTime; // current state of the clock
 	private static String timeString; // the time string representation of the countdown
 	boolean isRoundActive;
 
 	private Font timerFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font
 
-	private final int WIDTH = 150; // not until Beta but for graphic timer
-	private final int HEIGHT = 20; // not until Beta but for graphic timer
-	private final int X = 140; // not until Beta but for graphic timer
-	private final int Y = 13; // not until Beta but for graphic timer
+	private final int WIDTH = 115; // width of timer bar graphics
+	private final int HEIGHT = 20; // height of timer bar graphics 
+	private final int X = 140; // location x coordinate of graphics timer 
+	private final int Y = 11; // location y coordinate of graphics timer 
+	
+	private final int TIMERSTRING_XCOORD = 175;
+	private final int TIMERSTRING_YCOORD = 27;
 
-	private int currentWidth = WIDTH; // not until Beta but for graphic timer
-	private long timerBar = 0; // not until Beta but for graphic timer
-	private double currentTimeBar = 0; // not until Beta but for graphic timer
+	private int currentWidth = WIDTH; // current width of the timer bar measured against the moving timer
+	private double currentTimeBar = 0; // total time that is still left on the timer bar 
 
 	Thread timerThread; // the thread that the timer is run on
 
@@ -40,12 +39,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 	public BoardMenuTimerPanel() {
 		timeString = "00:00";
 
-		/*
-		 * this.timerBar = time; currentTimeBar = timerBar; // not until Beta
-		 * but for graphic timer
-		 */
-
-		setPreferredSize(new Dimension(300, 45));
+		setPreferredSize(new Dimension(260, 35));
 		setFont(timerFont);
 		setBackground(Color.WHITE);
 		setLayout(new GridLayout(1, 2));
@@ -60,6 +54,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 	// sets the time into minutes and seconds
 	public void setTime(long roundTime) {
 		time = roundTime;
+		currentTimeBar = time;
 		long minutes = (time / 60) % 60;
 		long seconds = time % 60;
 		timeString = String.format("%02d:%02d", minutes, seconds);
@@ -67,7 +62,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 	}
 
 	// how much of the timer will be undone at a time
-	private void burnTimer(int amount) {
+	private void burnTimerBar(int amount) {
 		currentTimeBar -= amount;
 		if (currentTimeBar < 0) {
 			currentTimeBar = 0;
@@ -77,7 +72,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 
 	// calculates the width of the timer bar on tick event
 	private void calculateWidth() {
-		double percent = currentTimeBar / timerBar;
+		double percent = (double) GameController.model.player.getTimeLeft() / GameController.model.player.getRoundTime();
 		currentWidth = (int) (percent * WIDTH);
 	}
 
@@ -98,29 +93,28 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 
 	// rests the clock to given time
 	public void reset() {
-		// Take out at Beta
-		setTime((int) remainingTime);
-
 		// resets the timer to the full length of the bar
-		/*
-		 * currentTimeBar = timerBar; calculateWidth();
-		 */
+		currentTimeBar = time; 
+		calculateWidth(); 
 	}
 
 	// paints the graphics onto the screen
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		// draw(g); // not used until Beta Creates the graphic timer
-
-		g.drawString(timeString, 150, 30); // take out at Beta
+		draw(g); // not used until Beta Creates the graphic timer
+		g.drawString(timeString, TIMERSTRING_XCOORD, TIMERSTRING_YCOORD); // draws to specified location of timer string
 		repaint();
 	}
 
 	// For Beta to make the time graphic instead of timer
 	// Draws the timer bar onto the screen
 	public void draw(Graphics g) {
-		g.setColor(Color.RED);
+		if(time > (int)GameController.model.player.getRoundTime()*1/4 || time == (int)GameController.model.player.getRoundTime()){
+			g.setColor(Color.GREEN);
+		}else if(time >= 0 || time <= (int)GameController.model.player.getRoundTime()*1/4){
+			g.setColor(Color.RED);
+		}
 		g.fillRect(X, Y, currentWidth, HEIGHT);
 		g.setColor(Color.BLACK);
 		g.drawRect(X, Y, WIDTH, HEIGHT);
@@ -138,6 +132,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 			}
 			GameController.model.player.setTimeLeft(GameController.model.player.getTimeLeft() - 1);
 			setTime(GameController.model.player.getTimeLeft());
+			burnTimerBar(1);
 		}
 //		while (GameController.isRoundActive()) {
 //			GameController.timeTick();
