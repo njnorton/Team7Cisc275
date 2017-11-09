@@ -43,6 +43,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
 	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
 	private JPanel creaturePanel = new JPanel(); // adds the panel for describing creature panel
+	private JPanel informationPanel = new JPanel(); // gives some information about the creatures 
 	private JPanel menuPanel = new JPanel(); // adds the panel for describing the selection of game play
 	
 	// tells what the available list of creatures are for the game 
@@ -97,6 +98,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 		sidePanel.add(timerPanel); // adds the timer panel to the screen on East Side
 		addLabelMiddleTop(); // adds a label to identify creature section
 		addMiddlePanel(); // adds the middle panel for the screen
+		addInformationPanel(); // adds some information about some of the organisms  
 		addBottomLabel(); // adds a label to identify menu selection
 		addBottomPanel(); // adds the bottom panel for the screen
 		add(sidePanel);
@@ -106,12 +108,12 @@ public class BoardMenuSideGamePanel extends JPanel {
 		sidePanel.add(creaturePanel);
 		creaturePanel.add(creatureLabel);
 		creaturePanel.setBackground(Color.LIGHT_GRAY);
-		creaturePanel.setPreferredSize(new Dimension(300, 40));
+		creaturePanel.setPreferredSize(new Dimension(260, 25));
 	}
 
 	// adds the middle panel to the screen on BorderLayout East Side
 	private void addMiddlePanel() {
-		middlePanel.setPreferredSize(new Dimension(300, 400));
+		middlePanel.setPreferredSize(new Dimension(260, 240));
 		middlePanel.setBackground(Color.LIGHT_GRAY);
 		middlePanel.setLayout(creatureLayout);
 		
@@ -122,16 +124,42 @@ public class BoardMenuSideGamePanel extends JPanel {
 		sidePanel.add(middlePanel);
 	}
 	
+	private void addInformationPanel(){
+		
+		informationPanel.setPreferredSize(new Dimension(260,155));
+		informationPanel.setLayout(new GridLayout(4,1));
+		//informationPanel.setBackground(Color.CYAN);
+		
+		JLabel creatureName = new JLabel("Creature Name:");
+		JLabel creatureN = new JLabel("The creature is a Crab");
+		JLabel creatureFact = new JLabel("Creature Fact:");
+		JLabel fact = new JLabel("Estuary is cool");
+
+		JPanel creaturePanel = new JPanel();
+		JPanel factPanel = new JPanel();
+		
+		creaturePanel.add(creatureName); 		
+		creaturePanel.add(creatureN);
+		
+		factPanel.add(creatureFact);
+		factPanel.add(fact);
+		
+		informationPanel.add(creaturePanel);
+		informationPanel.add(factPanel);
+
+		sidePanel.add(informationPanel);
+	}
+	
 	private void addBottomLabel(){
 		sidePanel.add(menuPanel);
-		menuPanel.setPreferredSize(new Dimension(300, 40));
+		menuPanel.setPreferredSize(new Dimension(260, 25));
 		menuPanel.setBackground(Color.YELLOW);
 		menuPanel.add(menuInstruction);
 	}
 	
 	// adds the bottom panel to the screen on BorderLayout East Side
 	private void addBottomPanel() {
-		bottomPanel.setPreferredSize(new Dimension(300, 100));
+		bottomPanel.setPreferredSize(new Dimension(260, 75));
 		bottomPanel.setBackground(Color.YELLOW);
 		bottomPanel.setLayout(buttonLayout);
 		
