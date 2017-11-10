@@ -80,7 +80,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	public BoardMenuScorePanel scorePanel; // creates new score panel for new game
 	public BoardMenuTimerPanel timerPanel; // creates the timerPanel
 	public BoardMenuCenterPanel cen; // allows access to center panel
-	public BoardMenuInfoPanel infoPanel;
+	public BoardMenuInfoPanel infoPanel; // creates the information panel 
 
 	public BoardMenuSideGamePanel() {
 		scorePanel = new BoardMenuScorePanel(Color.WHITE);

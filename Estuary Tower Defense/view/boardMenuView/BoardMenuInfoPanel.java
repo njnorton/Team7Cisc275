@@ -1,6 +1,7 @@
 package boardMenuView;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
@@ -12,8 +13,8 @@ public class BoardMenuInfoPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	private JPanel informationPanel = new JPanel();
-	private JPanel creaturePanel = new JPanel();
+	private JPanel informationPanel = new JPanel(); // the main information panel 
+	private JPanel creaturePanel = new JPanel(); 
 	private JPanel factPanel = new JPanel();
 	private JPanel costPanel = new JPanel();
 	private JPanel damagePanel = new JPanel();
@@ -30,6 +31,9 @@ public class BoardMenuInfoPanel extends JPanel{
 	private JLabel cost = new JLabel(""); 
 	private JLabel damage = new JLabel("");
 	private JLabel range = new JLabel(""); 
+	
+	private Font firstLabelFont = new Font(Font.DIALOG, Font.PLAIN, 14);
+	private Font secondLabelFont = new Font(Font.DIALOG, Font.BOLD, 14);
 		
 	private final double DIVIDE_FACTOR = .70; // tells when the lines should be split
 	
@@ -43,18 +47,32 @@ public class BoardMenuInfoPanel extends JPanel{
 		rangePanel.setLayout(new BoxLayout(rangePanel, BoxLayout.X_AXIS));
 		fact.setEditable(false); // disables the text area from being written in and overridden
 		
+		// sets the Fonts for the first set of labels in the grid 
+		creatureName.setFont(firstLabelFont); creatureFact.setFont(firstLabelFont);
+		creatureCost.setFont(firstLabelFont); creatureDamage.setFont(firstLabelFont);
+		creatureRange.setFont(firstLabelFont);
+		
+		// sets the Fonts for the second set of labels in the grid 
+		creature.setFont(secondLabelFont); cost.setFont(secondLabelFont); 
+		damage.setFont(secondLabelFont); range.setFont(secondLabelFont);
+		
+		// adds the creature panel and labels to the grid
 		creaturePanel.add(creatureName); 		
 		creaturePanel.add(creature);
 		
+		// adds the fact panel and labels to the grid 
 		factPanel.add(creatureFact);
 		factPanel.add(fact);
 		
+		// adds the cost panel and labels to the grid 
 		costPanel.add(creatureCost);
 		costPanel.add(cost);
 		
+		// adds the damage panel and labels to the grid 
 		damagePanel.add(creatureDamage);
 		damagePanel.add(damage); 
 		
+		// adds the range panel and labels to the grid 
 		rangePanel.add(creatureRange);
 		rangePanel.add(range);
 		
