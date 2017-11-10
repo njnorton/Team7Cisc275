@@ -25,15 +25,13 @@ public class BoardMenuInfoPanel extends JPanel{
 	private JLabel creatureDamage = new JLabel("Creature Damage: ");
 	private JLabel creatureRange = new JLabel("Creature Range: ");
 	
-	public JLabel creatureN = new JLabel("The creature is a Crab"); // temporary
-	public JTextArea fact = new JTextArea(); // temporary
-	public JLabel cost = new JLabel("30"); // temporary
-	public JLabel damage = new JLabel("100"); // temporary
-	public JLabel range = new JLabel("2"); // temporary
-	
-	String factU = "Estuary is cool and crabs love to eat";
-	
-	final double DIVIDE_FACTOR = .70;
+	private JLabel creature = new JLabel(""); 
+	private JTextArea fact = new JTextArea(); 
+	private JLabel cost = new JLabel(""); 
+	private JLabel damage = new JLabel("");
+	private JLabel range = new JLabel(""); 
+		
+	private final double DIVIDE_FACTOR = .70; // tells when the lines should be split
 	
 	public BoardMenuInfoPanel(){
 		informationPanel.setPreferredSize(new Dimension(260,225));
@@ -46,11 +44,10 @@ public class BoardMenuInfoPanel extends JPanel{
 		fact.setEditable(false); // disables the text area from being written in and overridden
 		
 		creaturePanel.add(creatureName); 		
-		creaturePanel.add(creatureN);
+		creaturePanel.add(creature);
 		
 		factPanel.add(creatureFact);
 		factPanel.add(fact);
-		fact.setText("" + setText(factU));
 		
 		costPanel.add(creatureCost);
 		costPanel.add(cost);
@@ -69,23 +66,41 @@ public class BoardMenuInfoPanel extends JPanel{
 		informationPanel.add(rangePanel);
 
 		add(informationPanel);
+		creature.setText("30");
 	}
 	
-	public String setText(String text) {
+	public void setCreatureText(String s){
+		creature.setText("" + s);
+	}
+	
+	// sets the text area field of the information panel with a fact description 
+	public void setFactText(String text) {
 		int textLength = text.length();
         String temp = "";
-        String sentence = "";
-
-        String[] array = text.split(" ");
+        String newSentence = "";
         
-        for (String word : array) {
-            if ((temp.length() + word.length()) < textLength*DIVIDE_FACTOR) {  // create a temp variable and check if length with new word exceeds textview width.
-                temp += " "+ word;
+        String[] wordList = text.split(" ");
+               
+        for (String word : wordList) {
+            if ((temp.length() + word.length()) < textLength*DIVIDE_FACTOR) {  
+                temp += " " + word;
             } else {
-                sentence += temp +"\n"; // add new line character
+            	newSentence += temp +"\n"; // add new line character
                 temp = word;
             }
         }
-        return (sentence.replaceFirst(" ", "")+temp);
+		fact.setText("" + (newSentence.replaceFirst(" ", "")+ temp));
     }
+	
+	public void setCost(int costCreature){
+		cost.setText("" + costCreature);
+	}
+	
+	public void setDamage(int damageCreature){
+		damage.setText("" + damageCreature);
+	}
+	
+	public void setRange(int rangeCreature){
+		range.setText("" + rangeCreature);
+	}
 }

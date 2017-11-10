@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,8 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import gameController.GameController;
 
 //TODO take out end round, the round shouldn't end on a button, it should end when time is up
 
@@ -44,14 +40,10 @@ public class BoardMenuSideGamePanel extends JPanel {
 	
 	private JPanel sidePanel = new JPanel(); // creates the side panel for the BorderLayout
 	private JPanel middlePanel = new JPanel(); // adds the middle panel to the screen
-	private JPanel bottomPanel = new JPanel(); // adds the bottom panel to the screen
 	private JPanel creaturePanel = new JPanel(); // adds the panel for describing creature panel
-	private JPanel menuPanel = new JPanel(); // adds the panel for describing the selection of game play
 	
 	// tells what the available list of creatures are for the game 
 	private JLabel creatureLabel = new JLabel("Select from available creatures below:"); 
-	// gives instruction on how the rounds work to play the game 
-	private JLabel menuInstruction = new JLabel("To begin a new round click Start Round");
 	
 	protected JButton startButton = new JButton("Start Round"); // creates the start round button
 	protected JButton endButton = new JButton("End Round"); // creates the end round button
@@ -84,13 +76,11 @@ public class BoardMenuSideGamePanel extends JPanel {
 	protected JLabel birdLabel;
 	
 	private GridLayout creatureLayout = new GridLayout(3,4); // creates the grid for the creature buttons
-	private GridLayout buttonLayout = new GridLayout(2,1); // creates the grid for the enemy buttons
 	
 	public BoardMenuScorePanel scorePanel; // creates new score panel for new game
 	public BoardMenuTimerPanel timerPanel; // creates the timerPanel
 	public BoardMenuCenterPanel cen; // allows access to center panel
 	public BoardMenuInfoPanel infoPanel;
-	//private GameController c1 = new GameController(); // gives access to the controller;
 
 	public BoardMenuSideGamePanel() {
 		scorePanel = new BoardMenuScorePanel(Color.WHITE);
@@ -105,22 +95,21 @@ public class BoardMenuSideGamePanel extends JPanel {
 		sidePanel.add(timerPanel); // adds the timer panel to the screen on East Side
 		addLabelMiddleTop(); // adds a label to identify creature section
 		addMiddlePanel(); // adds the middle panel for the screen
-		sidePanel.add(infoPanel);
-		//addBottomLabel(); // adds a label to identify menu selection
-		//addBottomPanel(); // adds the bottom panel for the screen
+		sidePanel.add(infoPanel); // adds the information panel to the screen
+		
 		add(sidePanel);
 	}
 	
 	private void addLabelMiddleTop(){
 		sidePanel.add(creaturePanel);
 		creaturePanel.add(creatureLabel);
-		creaturePanel.setBackground(Color.LIGHT_GRAY);
+		creaturePanel.setBackground(Color.YELLOW);
 		creaturePanel.setPreferredSize(new Dimension(260, 25));
 	}
 
 	// adds the middle panel to the screen on BorderLayout East Side
 	private void addMiddlePanel() {
-		middlePanel.setPreferredSize(new Dimension(260, 240));
+		middlePanel.setPreferredSize(new Dimension(260, 260));
 		middlePanel.setBackground(Color.LIGHT_GRAY);
 		middlePanel.setLayout(creatureLayout);
 		
@@ -129,46 +118,6 @@ public class BoardMenuSideGamePanel extends JPanel {
 		birdLabel = new JLabel(new ImageIcon(creatureImg[0].getScaledInstance
 				(75, 75, Image.SCALE_SMOOTH)));
 		sidePanel.add(middlePanel);
-	}
-	
-	private void addBottomLabel(){
-		sidePanel.add(menuPanel);
-		menuPanel.setPreferredSize(new Dimension(260, 25));
-		menuPanel.setBackground(Color.YELLOW);
-		menuPanel.add(menuInstruction);
-	}
-	
-	// adds the bottom panel to the screen on BorderLayout East Side
-	private void addBottomPanel() {
-		bottomPanel.setPreferredSize(new Dimension(260, 75));
-		bottomPanel.setBackground(Color.YELLOW);
-		bottomPanel.setLayout(buttonLayout);
-		
-		bottomPanel.add(startButton);
-		bottomPanel.add(endButton);
-	
-		// adds action listener on the button click for the game
-		startButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				startButton.setEnabled(false); // disables the button during the rounds
-				endButton.setEnabled(true); // enables the button during the rounds
-				//GameController.setIsRoundActive(true); again used for uncertainty in MVC-ness
-				timerPanel.startTimer(); // starts the time event for game play	
-			}
-		});
-		
-		endButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				startButton.setEnabled(true); // enables the button after the round is over
-				endButton.setEnabled(false); // disables the end round button during no action
-				
-				GameController.endRound(); // calls commands for ending the game
-			}
-		});
-		
-		sidePanel.add(bottomPanel);
 	}
 	
 	// creates the buttons for the game 
