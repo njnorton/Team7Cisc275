@@ -9,6 +9,39 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+/**
+ * Creates the information panel located on the side panel of the game. It displays facts, 
+ * amounts, and statistics needed for the game for the user playing the game. 
+ * 
+ * @author Ryan Barbera, Aaron George, Nick Norton, Thomas Pennington, Grant Zhao
+ *
+ */
+
+/*
+ * Variable Dictionary:
+ * 
+ * JPanel informationPanel: the base for the main information panel for all components to sit on
+ * JPanel creaturePanel: the panel used to hold information about the name of a creature 
+ * JPanel factPanel: the panel used to hold information about a fact regarding a particular creature
+ * JPanel costPanel: the panel used to hold information about the cost of obtaining different creatures 
+ * JPanel damagePanel: the panel used to hold information about the damage that each creature has 
+ * JPanel rangePanel: the panel used to hold information about the range that a particular creature has 
+ * JLabel creatureName: the label used to provide what the name of a creature heading
+ * JLabel creatureFact: the label used to provide a creature fact heading
+ * JLabel creatureCost: the label used to provide the creature cost heading
+ * JLabel creatureDamage: the label used to provide the creature damage heading 
+ * JLabel creatureRange: the label used to provide the creature range heading 
+ * JLabel creature: the label used to display the name of the creature 
+ * JTextArea fact: the text area used to display a fact about a particular creature 
+ * JLabel cost: the label used to display the cost of a creature 
+ * JLabel damage: the label used to display the damage for each creature 
+ * JLabel range: the label used to display the range that a particular creature has 
+ * Font firstLabelFont: the font used for the first labels used on the left side 
+ * Font secondLabelFont: the font used for the second labels used on the right side 
+ * double DIVIDE_FACTOR: the percentage of the line that will be displayed for the text 
+ * 						 fact before new line created
+ */
+
 public class BoardMenuInfoPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
@@ -37,6 +70,10 @@ public class BoardMenuInfoPanel extends JPanel{
 		
 	private final double DIVIDE_FACTOR = .70; // tells when the lines should be split
 	
+	/**
+	 * Constructor that sets up the entire information panel with the different components.
+	 * It also will add the different components to the JPanel to make the information panel.
+	 */
 	public BoardMenuInfoPanel(){
 		informationPanel.setPreferredSize(new Dimension(260,225));
 		informationPanel.setLayout(new GridLayout(5,1));
@@ -84,14 +121,24 @@ public class BoardMenuInfoPanel extends JPanel{
 		informationPanel.add(rangePanel);
 
 		add(informationPanel);
-		creature.setText("30");
 	}
 	
+	/**
+	 * Sets the label equal to the creature that is selected based upon the button clicked. 
+	 * 
+	 * @param s the text that will be entered to set the name of the creature 
+	 */
 	public void setCreatureText(String s){
 		creature.setText("" + s);
 	}
 	
-	// sets the text area field of the information panel with a fact description 
+	/**
+	 * Sets the creature fact based upon what fact is given for a particular creature. 
+	 * When a condition is met for a new line requirement, this will take care of this 
+	 * automatically and properly display in the text area. 
+	 * 
+	 * @param text the line of text that will be a given creatures fact 
+	 */
 	public void setFactText(String text) {
 		int textLength = text.length();
         String temp = "";
@@ -110,14 +157,29 @@ public class BoardMenuInfoPanel extends JPanel{
 		fact.setText("" + (newSentence.replaceFirst(" ", "")+ temp));
     }
 	
+	/**
+	 * Sets the label to a given creatures cost when a particular creature is clicked on.
+	 * 
+	 * @param costCreature the cost of the creature that is passed in
+	 */
 	public void setCost(int costCreature){
 		cost.setText("" + costCreature);
 	}
 	
+	/**
+	 * Sets the label to a given creatures damage when a particular creature is clicked on.
+	 * 
+	 * @param damageCreature the damage that a particular creature has 
+	 */
 	public void setDamage(int damageCreature){
 		damage.setText("" + damageCreature);
 	}
 	
+	/**
+	 * Sets the label to a given creatures range when a particular creature is clicked on.
+	 * 
+	 * @param rangeCreature the range that a particular creature has 
+	 */
 	public void setRange(int rangeCreature){
 		range.setText("" + rangeCreature);
 	}

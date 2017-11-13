@@ -11,6 +11,27 @@ import javax.swing.JPanel;
 import main.PlayerModel;
 import unit.TowerModel;
 
+/**
+ * Makes the score panel that is located on the side menu panel to give information about 
+ * current score, health left, and sand dollars that are left. Will make updates during the 
+ * game to keep the information current for the user playing the game. 
+ * 
+ * @author Ryan Barbera, Aaron George, Nick Norton, Thomas Pennington, Grant Zhao
+ *
+ */
+
+/*
+ * Variable Dictionary:
+ * 
+ * Font firstLabelFont: the font used for the labels on the left side of the GridLayout
+ * Font secondLabelFont: the font used for the labels on the right side of the GridLayout
+ * int score: the current score of the game 
+ * int sandDollars: the current amount of sand dollars that are remaining in the game 
+ * int health: the current amount of health that is left in the game 
+ * JLabel scoreTotalLabel: the label that is used to display the current score of the game 
+ * JLabel sandDollarsLabel: the label that is used to display the current amount of sand dollars that are left 
+ * JLabel healthLeftLabel: the label that is used to display the current amount of health left in the game 
+ */
 public class BoardMenuScorePanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
@@ -26,7 +47,13 @@ public class BoardMenuScorePanel extends JPanel{
 	private JLabel sandDollarsLabel = new JLabel("0"); // label for sand dollars
 	private JLabel healthLeftLabel = new JLabel("0"); // label for health left 
 				
-	// constructor for the score panel
+	/**
+	 * Constructor that sets up the entire score panel seen on the game side panel. 
+	 * Is able to take in a particular color and will make that the color of the score 
+	 * panel for user appeal. 
+	 * 
+	 * @param panelColor the specified color that the user wants the score panel to be 
+	 */
 	public BoardMenuScorePanel(Color panelColor){
 		setPreferredSize(new Dimension(260, 90)); // sets the size of the panel
 		setBackground(panelColor); // set the background color
@@ -61,25 +88,49 @@ public class BoardMenuScorePanel extends JPanel{
 		add(healthLeftLabel);
 	}
 	
-	// sets the score on the panel
+	/**
+	 * Updates the current score in the game based on what action is taken in the game. 
+	 * Will update the label with the information that it is given. 
+	 * 
+	 * @param playerScore the amount that the score goes up with an update to the game 
+	 */
 	public void updateScore(int playerScore){
 		score += playerScore;
 		scoreTotalLabel.setText("" + score);
 	}
 	
-	// sets the sand dollars on the panel
+	/**
+	 * Updates the current amount of sand dollars based on an action that is taken in the game. 
+	 * This is used for the actions when a turret kills one of the enemies in the game. 
+	 * 
+	 * @param playerMoney the amount of money that is added to the game to update the score panel
+	 */
 	public void updateSandDollars(int playerMoney){
 		sandDollars += playerMoney; // adds the appropriate amount of sand dollars 
 		sandDollarsLabel.setText("" + sandDollars); // updates the label 
 	}
 	
-	// sets the remaining health on the panel
+	/**
+	 * Updates the current amount of health left when an enemy passes through the estuary 
+	 * without being killed. The total amount of health left is based upon the user settings 
+	 * of how much health is taken off. 
+	 * 
+	 * @param healthLost the amount that the health decreases when an enemy passes through the 
+	 * 					 estuary without being killed.
+	 */
 	public void updateHealth(int healthLost){
 		health -= healthLost;
 		healthLeftLabel.setText("" + health);
 	}
 	
-	// allows for the purchase of items from the buttons 
+	/**
+	 * Updates the total amount of sand dollars that are left when a user makes a purchase in 
+	 * the game rounds. It takes in the player model to extract the total sand dollars that are 
+	 * left for the user and the turret model to obtain the cost of a particular creature. 
+	 *  
+	 * @param mod the player model information needed to update the label 
+	 * @param model the turret type information needed to subtract the cost of obtaining the creature
+	 */
 	public void purchaseItem(PlayerModel mod, TowerModel model){
 		int money = mod.getMoney();
 		System.out.println(money);
