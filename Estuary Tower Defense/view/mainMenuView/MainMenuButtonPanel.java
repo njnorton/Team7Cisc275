@@ -11,6 +11,28 @@ import javax.swing.JPanel;
 
 import gameController.GameController;
 
+/**
+ * The button panel that is located on the bottom of the main menu to control how the game 
+ * is played. 
+ * 
+ * @author Ryan Barbera, Aaron George, Nick Norton, Thomas Pennington, Grant Zhao
+ *
+ */
+
+/*
+ * Variable Dictionary:
+ * 
+ * int GAP_SIZE_WIDTH: an integer that represents the width of the buttons created
+ * int GAP_SIZE_HEIGHT: an integer that represents the height of the buttons created
+ * JPanel buttonPanel: the base panel that all components will lay on 
+ * GridLayout buttonLayout: the layout that will be used to create a grid on the base panel
+ * JButton startButton: the button that starts the board menu board to start game play 
+ * JButton quitButton: the button that exits the game when clicked 
+ * JButton tutorialButton: the button that will start the tutorial of the game 
+ * Dimension buttonSize: sets the preferred size of the buttons that are created 
+ * 
+ */
+
 public class MainMenuButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -28,12 +50,21 @@ public class MainMenuButtonPanel extends JPanel {
 	Dimension buttonSize =  startButton.getPreferredSize(); // sets the preferred size of buttons
 	
 
-	// Constructor for the main game panel
+	/**
+	 * The constructor that creates an instance of the button panel. Calls the setButtonPanel 
+	 * method to initialize the button panel and adds it to the screen.
+	 */
 	public MainMenuButtonPanel(){
 		setButtonPanel(); // creates the button panel at the bottom of the screen
 	}
 	
-	// creates the panel for the Button Panel at the Page End Location
+
+	/**
+	 * Sets up the button panel with a GridLayout that will contain the buttons used
+	 * to start the game. Adds three buttons to the panel with action listeners to 
+	 * control what happens when a button is clicked. Then adds the buttonPanel to the 
+	 * PAGE.END position on the JFrame.
+	 */
 	private void setButtonPanel(){
 		
 		buttonPanel.setPreferredSize(new Dimension((int) (buttonSize.getWidth()) + GAP_SIZE_WIDTH,
@@ -72,7 +103,12 @@ public class MainMenuButtonPanel extends JPanel {
 		});		
 	}
 	
-	// sets the preferred size for the JPanel
+	/**
+	 * Returns the overridden size of the JComponent. Sets the preferred size of the
+	 * JPanel for the button panel to sit on.
+	 * 
+	 * @return the preferred size of the JComponent 
+	 */
 	public Dimension getPreferredSize(){
 		Dimension size = new Dimension(0, 48);
 		return size;

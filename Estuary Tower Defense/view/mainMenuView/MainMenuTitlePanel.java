@@ -1,16 +1,29 @@
 package mainMenuView;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JLabel;
 
+/**
+ * Creates the title that runs across the top of the main menu. 
+ * 
+ * @author Ryan Barbera, Aaron George, Nick Norton, Thomas Pennington, Grant Zhao
+ *
+ */
+
 public class MainMenuTitlePanel extends JLabel{
 
 	private static final long serialVersionUID = 1L;
 
-	// Constructor to make the title panel across the top of the screen
+	/**
+	 * Constructor that sets up the title panel based upon the string title. Are able to 
+	 * change to color of the text and panel along with the font. 
+	 * 
+	 * @param titleText the String that will be used to set the title of the screen
+	 */
 	public MainMenuTitlePanel(String titleText){
 		Font titleFont = new Font(Font.DIALOG, Font.BOLD, 32); // creates the font
 		setFont(titleFont); // sets the font
@@ -21,7 +34,13 @@ public class MainMenuTitlePanel extends JLabel{
 		setText(titleText); // sets the text for the tile based on given constructor input
 	}
 	
-	// sets the preferred size of the JPanel
+	
+	/**
+	 * Returns back the preferred size of the JComponent. Sets the preferred size of the 
+	 * JPanel to fit onto the JFrame of the main menu.
+	 * 
+	 * @return the preferred size of the JComponent 
+	 */
 	public Dimension getPreferredSize(){
 		Dimension size = new Dimension(0, 47);
 		return size;
