@@ -1,5 +1,7 @@
 package gameView;
+
 import boardMenuView.BoardMenuView;
+import leaderBoardView.LeaderBoardView;
 import mainMenuView.MainMenuView;
 
 /**
@@ -12,6 +14,7 @@ import mainMenuView.MainMenuView;
 public class GameView {
 	public MainMenuView mainMenu;
 	public BoardMenuView boardMenu;
+	public LeaderBoardView leaderBoard;
 	
 	/**
 	 * Sets up the instances for the main menu and the board menu views. 
@@ -19,5 +22,6 @@ public class GameView {
 	public GameView() {
 		mainMenu = new MainMenuView();
 		boardMenu = new BoardMenuView();
+		leaderBoard = new LeaderBoardView();
 	}
 }

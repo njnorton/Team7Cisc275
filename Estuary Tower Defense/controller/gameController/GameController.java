@@ -15,6 +15,7 @@ public class GameController {
 		boardMenuInit();
 		view.boardMenu.setVisible(false);
 		view.mainMenu.setVisible(true);
+		view.leaderBoard.setVisible(false);
 	}
 
 	public static void modelInit() {
@@ -108,6 +109,14 @@ public class GameController {
 	public static void showMainMenu() {
 		view.boardMenu.setVisible(false);
 		view.mainMenu.setVisible(true);
+	}
+	
+	/**
+	 * Shows the leaderboard with the list of high scores. This makes the JFrame
+	 * visible for the user to view this information. 
+	 */
+	public static void showLeaderBoard(){
+		view.leaderBoard.setVisible(true);
 	}
 
 	// Sees if the player is dead, returns true if he is

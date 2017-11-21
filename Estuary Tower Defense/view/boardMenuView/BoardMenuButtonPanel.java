@@ -84,7 +84,7 @@ public class BoardMenuButtonPanel extends JPanel{
 		saveButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {	
-				//TODO add code to make this do whatever (LeaderBoard)
+				GameController.showLeaderBoard();
 			}
 		});
 		
