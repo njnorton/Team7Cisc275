@@ -32,6 +32,7 @@ import unit.TowerModel;
  * JLabel sandDollarsLabel: the label that is used to display the current amount of sand dollars that are left 
  * JLabel healthLeftLabel: the label that is used to display the current amount of health left in the game 
  */
+
 public class BoardMenuScorePanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
@@ -137,6 +138,15 @@ public class BoardMenuScorePanel extends JPanel{
 		sandDollars =  money - model.getPrice();
 		System.out.println(sandDollars);
 		sandDollarsLabel.setText("" + sandDollars);
+	}
+	
+	/**
+	 * Gets the total number of sandDollars that are left in the game 
+	 * 
+	 * @return the amount of sandDollars that are left in the current game
+	 */
+	public int getSandDollars(){
+		return sandDollars;
 	}
 
 	public void setScore(int playerScore) {

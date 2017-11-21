@@ -13,6 +13,9 @@ public class GameView {
 	public MainMenuView mainMenu;
 	public BoardMenuView boardMenu;
 	
+	/**
+	 * Sets up the instances for the main menu and the board menu views. 
+	 */
 	public GameView() {
 		mainMenu = new MainMenuView();
 		boardMenu = new BoardMenuView();

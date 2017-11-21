@@ -17,17 +17,62 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import gameController.GameController;
+
 //TODO take out end round, the round shouldn't end on a button, it should end when time is up
 
 /*
  * TODO grey out buttons if the player does not have enough money to buy the units
  * TODO trash button to take a unit off the cursor
+ * 
  */
+
+/**
+ * Creates the entire side panel of the game. Includes the scorepanel, timerpanel, buttonpanels,
+ * and the information panel. This is the main control center while the game is running to select 
+ * different options. 
+ * 
+ * @author Ryan Barbera, Aaron George, Nick Norton, Thomas Pennington, Grant Zhao
+ *
+ */
+
+/*
+ * Variable Dictionary:
+ * List<String> creatureList: the file paths of all of the images for the buttons in the game 
+ * BufferedImage[] creatureImg: the images of the creatures used in the game 
+ * JPanel sidePanel: the base panel for the side panel in the game 
+ * JPanel middlePanel: the base panel that is used for the button panel in the game 
+ * JPanel creaturePanel: the button panel that contains all of the buttons used in the game 
+ * JLabel creatureLabel: label that gives information about how the select different images 
+ * JButton genericBirdButton: the generic bird button that allows for interaction in the game 
+ * JButton ospreyButton: the osprey button that allows for interaction in the game 
+ * JButton ruddyTurnstoneButton: the ruddy turn stone button that allows for interaction in the game 
+ * JButton sanderlingButton: the sanderling button that allows for interaction in the game 
+ * JButton genericFishButton: the generic fish button that allows for interaction in the game
+ * JButton blueFishButton: the blue fish button that allows for interaction in the game 
+ * JButton riverHerringButton: the river herring button that allows for interaction in the game 
+ * JButton summerFlounderButton: the summer flounder button that allows for interaction in the game 
+ * JButton genericShellfishButton: the generic shellfish button that allows for interaction in the game 
+ * JButton blueCrabButton: the blue crab button that allows for interaction in the game 
+ * JButton easternOysterButton: the eastern oyster button that allows for interaction in the game 
+ * JButton horseShoeCrabButton: the horseshoe crab button that allows for interaction in the game 
+ * JButton GAME_BUTTONS[]: the array of all the game buttons that are used in the game 
+ * JButton BIRD_BUTTONS[]: the array that contains all of the bird buttons used in the game 
+ * JButton FISH_BUTTONS[]: the array that contains all of the fish buttons used in the game 
+ * JButton SHELLFISHBUTTONS[]: the array that contains all of the shellfish buttons used in the game 
+ * JLabel birdLabel: a bird label for placing an image on the screen
+ * GridLayout creatureLayout: the gridlayout for the list of creatures 
+ * BoardMenuScorePanel scorePanel: an accessor to the scorepanel in the game 
+ * BoardMenuTimerPanel timerPanel: an accessor to the timerpanel in the game 
+ * BoardMenuCenterPanel cen: an accessor to the centerpanel in the game 
+ * BoardMenuInfoPanel infoPanel: an accessor to the information panel in the game 
+ */
+
 public class BoardMenuSideGamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	List<String> creatureList = Arrays.asList(
+	public List<String> creatureList = Arrays.asList(
 		"Images/Turrets/Birds/generic_bird.png","Images/Turrets/Birds/osprey.png", 
 		"Images/Turrets/Birds/ruddy_turnstone.jpg","Images/Turrets/Birds/sanderling.jpg",
 		"Images/Turrets/Fish/generic_fish.png","Images/Turrets/Fish/blue_fish.png", 
@@ -44,9 +89,6 @@ public class BoardMenuSideGamePanel extends JPanel {
 	
 	// tells what the available list of creatures are for the game 
 	private JLabel creatureLabel = new JLabel("Select from available creatures below:"); 
-	
-	protected JButton startButton = new JButton("Start Round"); // creates the start round button
-	protected JButton endButton = new JButton("End Round"); // creates the end round button
 	
 	protected static JButton genericBirdButton = new JButton(); // creates the genericBird button
 	protected static JButton ospreyButton = new JButton(); // creates the osprey button
@@ -82,6 +124,10 @@ public class BoardMenuSideGamePanel extends JPanel {
 	public BoardMenuCenterPanel cen; // allows access to center panel
 	public BoardMenuInfoPanel infoPanel; // creates the information panel 
 
+	/**
+	 * Constructor that sets up the entire board menu side panel. It contains the timer panel,
+	 * score panel, information panel, and necessary labels render everything for this panel. 
+	 */
 	public BoardMenuSideGamePanel() {
 		scorePanel = new BoardMenuScorePanel(Color.WHITE);
 		timerPanel = new BoardMenuTimerPanel();
@@ -99,7 +145,11 @@ public class BoardMenuSideGamePanel extends JPanel {
 		
 		add(sidePanel);
 	}
-	
+	/**
+	 * Adds the label that gives information about how to select creatures from the 
+	 * button panel in the game. Is necessary for user interaction so they know what to 
+	 * do when they start to play the game. 
+	 */
 	private void addLabelMiddleTop(){
 		sidePanel.add(creaturePanel);
 		creaturePanel.add(creatureLabel);
@@ -107,20 +157,29 @@ public class BoardMenuSideGamePanel extends JPanel {
 		creaturePanel.setPreferredSize(new Dimension(260, 25));
 	}
 
-	// adds the middle panel to the screen on BorderLayout East Side
+	/**
+	 * adds the button panel to the side panel of the game. There are 12 total buttons that 
+	 * are added to the panel using a method call. This is where all of the interaction takes 
+	 * place to add creatures to the centerpanel as necessary throughout the game. 
+	 */
 	private void addMiddlePanel() {
 		middlePanel.setPreferredSize(new Dimension(260, 260));
 		middlePanel.setBackground(Color.LIGHT_GRAY);
 		middlePanel.setLayout(creatureLayout);
 		
-		createButtons(); // creates the set of buttons
+		createButtons(); // creates the set of buttons from next method below 
 		placeImageOnButtonsCreature(GAME_BUTTONS); // places the images onto the buttons	
 		birdLabel = new JLabel(new ImageIcon(creatureImg[0].getScaledInstance
 				(75, 75, Image.SCALE_SMOOTH)));
 		sidePanel.add(middlePanel);
 	}
 	
-	// creates the buttons for the game 
+	/**
+	 * Creates the buttons that are added to the centerpanel in the game side panel. 
+	 * It also turns off the last three buttons in every row for a game restriction 
+	 * that the first image must be purchased before the upgrades are able to be used 
+	 * in the game.  
+	 */
 	private void createButtons(){
 		for(int i = 0; i < GAME_BUTTONS.length; i++){
 			middlePanel.add(GAME_BUTTONS[i]);
@@ -139,7 +198,14 @@ public class BoardMenuSideGamePanel extends JPanel {
 		}		
 	}
 
-	// places the images on the JButtons
+	/**
+	 * Adds images to the buttons that are used in the game. It takes in an array of buttons 
+	 * and cycles through them and adds the appropriate image to them. If there is not an equal
+	 * amount of buttons and images, then this method will not run and will throw and error to 
+	 * the user. 
+	 * 
+	 * @param listButtons the array of buttons that will get images added to the buttons 
+	 */
 	private void placeImageOnButtonsCreature(JButton listButtons[]) {
 		estuaryCreatureButtonImages(); // calls the image to initialize the pictures
 		for(int i = 0; i < GAME_BUTTONS.length && i < listButtons.length; i++){
@@ -151,7 +217,11 @@ public class BoardMenuSideGamePanel extends JPanel {
 		}
 	}
 
-	// creates the buttons images on the middle panel
+	/**
+	 * Reads in each of the images contained in the creatureImg array and 
+	 * puts them into a buffered image array to use for other functions of the 
+	 * game. Will throw an IOException if one of the images is not able to be read. 
+	 */
 	private void estuaryCreatureButtonImages() {
 		try {
 			for (int x = 0; x < creatureList.size(); x++) {
@@ -162,9 +232,21 @@ public class BoardMenuSideGamePanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Takes in a list of JButtons that are able to be turned on when a user 
+	 * clicks on the first button and places it on the screen. There also has to 
+	 * be enough money left for the user to enable these buttons and if not they stay off. 
+	 * 
+	 * @param input an array of JButtons that are used in the game 
+	 */
 	public static void turnOnButtons(JButton input[]){
 		for(JButton buttons: input){
-			buttons.setEnabled(true);
+			if(GameController.model.player.getMoney() < GameController.view.boardMenu.sidePanel.scorePanel.getSandDollars()){
+				buttons.setEnabled(false);
+			}
+			else{
+				buttons.setEnabled(true);
+			}
 		}
 	}
 }
