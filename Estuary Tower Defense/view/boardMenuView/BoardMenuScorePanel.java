@@ -148,6 +148,10 @@ public class BoardMenuScorePanel extends JPanel{
 	public int getSandDollars(){
 		return sandDollars;
 	}
+	
+	public int getScore(){
+		return score;
+	}
 
 	public void setScore(int playerScore) {
 		score = playerScore;

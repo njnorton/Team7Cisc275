@@ -3,12 +3,9 @@ package leaderBoardView;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.Date;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import mainMenuView.MainMenuTitlePanel;
@@ -28,8 +25,8 @@ public class LeaderBoardView extends JFrame{
 	private final int LEADER_BOARD_HEIGHT = 500;
 	
 	private MainMenuTitlePanel title;
+	public LeaderBoardCenterPanel centerPanel;
 	
-	private JPanel centerPanel = new JPanel();
 	private JPanel buttonPanel = new JPanel();
 	
 	private JButton exitButton = new JButton("Exit");
@@ -41,6 +38,7 @@ public class LeaderBoardView extends JFrame{
 	 */
 	public LeaderBoardView(){
 		title = new MainMenuTitlePanel("Estuary Tower Defense LeaderBoard");
+		centerPanel = new LeaderBoardCenterPanel();
 		
 		initGUI();
 		setupLeaderBoard();
@@ -56,27 +54,6 @@ public class LeaderBoardView extends JFrame{
 		add(title, BorderLayout.PAGE_START);
 		
 		// adds the centerpanel to the screen
-		centerPanel.setBackground(Color.WHITE);
-		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-		
-		// For Testing Purposes Only!
-		JLabel testLabel = new JLabel();
-		JLabel titleLabel = new JLabel();
-		
-		String name = "Thomas Pennington";
-		int score = 100;
-		Date date = new Date();
-		
-		String testRun = String.format("%-35s%-29d%-25s", name, score, date); // Stays for format! DO NOT DELETE
-		String testTitle = String.format("%20s%28s%50s", "Name", "Score", "Date"); // Stay for format! DO NOT DELETE
-		
-		testLabel.setText(""+ testRun);
-		titleLabel.setText("" + testTitle);
-		
-		centerPanel.add(titleLabel);
-		centerPanel.add(testLabel);
-		
-		// Stays for implementation one line below
 		add(centerPanel, BorderLayout.CENTER);
 		
 		// adds the buttonPanel to the screen
