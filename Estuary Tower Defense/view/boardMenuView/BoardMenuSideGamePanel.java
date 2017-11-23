@@ -241,7 +241,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	 */
 	public static void turnOnButtons(JButton input[]){
 		for(JButton buttons: input){
-			if(GameController.model.player.getMoney() < GameController.view.boardMenu.sidePanel.scorePanel.getSandDollars()){
+			if(GameController.model.player.getMoney() < GameController.model.player.getMoney()){
 				buttons.setEnabled(false);
 			}
 			else{

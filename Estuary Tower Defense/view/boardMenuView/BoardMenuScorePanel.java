@@ -40,7 +40,7 @@ public class BoardMenuScorePanel extends JPanel{
 	private Font firstLabelFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font size for head label
 	private Font secondLabelFont = new Font(Font.DIALOG, Font.PLAIN, 16); // sets font for label
 	
-	private static int score; 
+	public static int score; 
 	private static int sandDollars;
 	private static int health; 
 		
@@ -140,19 +140,6 @@ public class BoardMenuScorePanel extends JPanel{
 		sandDollarsLabel.setText("" + sandDollars);
 	}
 	
-	/**
-	 * Gets the total number of sandDollars that are left in the game 
-	 * 
-	 * @return the amount of sandDollars that are left in the current game
-	 */
-	public int getSandDollars(){
-		return sandDollars;
-	}
-	
-	public int getScore(){
-		return score;
-	}
-
 	public void setScore(int playerScore) {
 		score = playerScore;
 		scoreTotalLabel.setText("" + score);

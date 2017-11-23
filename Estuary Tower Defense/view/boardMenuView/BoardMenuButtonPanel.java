@@ -29,7 +29,7 @@ import gameController.GameController;
  * JPanel buttonPanel: the base panel that the buttons will sit on 
  * JButton quitButton: the button that controls what happens when a user wants to exit
  * JButton startButton: the button that controls what happens when a user wants to start the game 
- * JButton saveButton: the button that shows the leaderboard to view the high scores in the game 
+ * JButton leaderBoardButton: the button that shows the leaderboard to view the high scores in the game 
  * JLabel menuInstruction:  the label that gives information about how to start the game 
  * Dimension buttonSize: the preferred size of the buttons to scale to the screen
  */
@@ -44,7 +44,7 @@ public class BoardMenuButtonPanel extends JPanel{
 	
 	private JButton quitButton = new JButton("Return to Main Menu");
 	protected JButton startButton = new JButton("Start Round"); // creates the start round button	
-	private JButton saveButton = new JButton("Save"); // saves the stuff to a leaderBoard
+	private JButton leaderBoardButton = new JButton("Show High Scorers"); // saves the stuff to a leaderBoard
 	
 	private JLabel menuInstruction = new JLabel("To begin a new round click Start Round");
 
@@ -64,7 +64,7 @@ public class BoardMenuButtonPanel extends JPanel{
 		menuInstruction.setFont(new Font(Font.DIALOG, Font.BOLD, 13)); // sets the font for the menu instruction label
 		
 		buttonPanel.add(startButton); // adds the start button to the panel
-		buttonPanel.add(saveButton); // adds the save button to the panel
+		buttonPanel.add(leaderBoardButton); // adds the leaderBoard button to the panel
 		buttonPanel.add(quitButton); // adds the exit button to the panel
 		buttonPanel.add(menuInstruction); // adds the menu instruction label to the screen
 				
@@ -81,9 +81,9 @@ public class BoardMenuButtonPanel extends JPanel{
 				});
 		
 		// adds action listener on the button click for the save button
-		saveButton.addActionListener(new ActionListener() {
+		leaderBoardButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {	
+			public void actionPerformed(ActionEvent e) {
 				GameController.showLeaderBoard();
 			}
 		});

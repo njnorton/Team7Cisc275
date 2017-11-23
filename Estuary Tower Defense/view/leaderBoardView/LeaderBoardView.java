@@ -3,15 +3,19 @@ package leaderBoardView;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import gameController.GameController;
 import mainMenuView.MainMenuTitlePanel;
 
 /**
- * Creates the leaderboard for the game with the top 10 scorers that play the game. 
+ * Creates the leaderboard for the game and does the initial setup for the leaderboard 
+ * making the view.  
  * 
  * @author Ryan Barbera, Aaron George, Nick Norton, Thomas Pennington, Grant Zhao
  *
@@ -59,6 +63,18 @@ public class LeaderBoardView extends JFrame{
 		// adds the buttonPanel to the screen
 		buttonPanel.setSize(new Dimension(0,48));
 		buttonPanel.setBackground(Color.RED);
+		
+		exitButton.setPreferredSize(new Dimension(100,35));
+		
+		exitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameController.view.leaderBoard.setVisible(false);
+				GameController.showBoardMenu();
+				GameController.view.leaderBoard.dispose();
+			}
+		});
+		
 		buttonPanel.add(exitButton);
 		add(buttonPanel, BorderLayout.PAGE_END);
 	}
