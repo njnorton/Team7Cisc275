@@ -108,7 +108,7 @@ public class LeaderBoardCenterPanel extends JPanel{
 				record = in.readLine();
 			}
 			in.close();
-			displayLeaderBoard();
+			writeToScorePanel();
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -126,7 +126,7 @@ public class LeaderBoardCenterPanel extends JPanel{
 		if(index < 10){
 			String name = JOptionPane.showInputDialog(this, "Enter Your Name", 
 					"High Scorer", JOptionPane.PLAIN_MESSAGE);
-			int score = GameController.model.player.getScore() + 1202;
+			int score = GameController.model.player.getScore();
 			Date date = new Date();
 			String addRecord = String.format("%d%35s%45s", score, name, date);
 			leaders.add(index, addRecord);

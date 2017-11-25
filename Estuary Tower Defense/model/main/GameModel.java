@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 import unit.EnemyModel;
 import unit.TowerModel;
+import unit.towerTypes.TowerCrab;
 
 public class GameModel {
 
@@ -11,6 +12,7 @@ public class GameModel {
 	public PathModel path;
 	public Factory factory;
 	public PlayerModel player;
+	public TowerCrab crab;
 
 	public GameModel() {
 		enemyList = new ArrayList<EnemyModel>();
@@ -18,6 +20,7 @@ public class GameModel {
 		path = new PathModel();
 		factory = new Factory();
 		player = new PlayerModel();
+		crab = new TowerCrab();
 	}
 
 	// Sees if the Reload Count for a tower is zero, if it is it returns true

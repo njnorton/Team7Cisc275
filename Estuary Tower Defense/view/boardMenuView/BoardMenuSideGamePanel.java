@@ -90,15 +90,15 @@ public class BoardMenuSideGamePanel extends JPanel {
 	// tells what the available list of creatures are for the game 
 	private JLabel creatureLabel = new JLabel("Select from available creatures below:"); 
 	
-	protected static JButton genericBirdButton = new JButton(); // creates the genericBird button
+	protected JButton genericBirdButton = new JButton(); // creates the genericBird button
 	protected static JButton ospreyButton = new JButton(); // creates the osprey button
 	protected static JButton ruddyTurnstoneButton = new JButton(); // creates the ruddyTurnstone button
 	protected static JButton sanderlingButton = new JButton(); // creates the sanderling button
-	protected static JButton genericFishButton = new JButton(); // creates the genericFish button
+	protected JButton genericFishButton = new JButton(); // creates the genericFish button
 	protected static JButton blueFishButton = new JButton(); // creates the blueFish button
 	protected static JButton riverHerringButton = new JButton(); // creates the riverHerring button
 	protected static JButton summerFlounderButton = new JButton(); // creates the summerFlounder button
-	protected static JButton genericShellfishButton = new JButton(); // creates the genericShellfish button
+	protected JButton genericShellfishButton = new JButton(); // creates the genericShellfish button
 	protected static JButton blueCrabButton = new JButton(); // creates the blueCrab button
 	protected static JButton easternOysterButton = new JButton(); // creates the easternOyster button
 	protected static JButton horseShoeCrabButton = new JButton(); // creates the horseShoeCrab button
@@ -111,9 +111,9 @@ public class BoardMenuSideGamePanel extends JPanel {
 	
 	// these will allow for the turning of on and off of the buttons when not clicked
 	// in the beginning of the game
-	protected static final JButton BIRD_BUTTONS[] = {ospreyButton, ruddyTurnstoneButton, sanderlingButton};
-	protected static final JButton FISH_BUTTONS[] = {blueFishButton, riverHerringButton, summerFlounderButton};
-	protected static final JButton SHELLFISHBUTTONS[] = {blueCrabButton, easternOysterButton, horseShoeCrabButton};
+	protected final JButton BIRD_BUTTONS[] = {ospreyButton, ruddyTurnstoneButton, sanderlingButton};
+	protected final JButton FISH_BUTTONS[] = {blueFishButton, riverHerringButton, summerFlounderButton};
+	protected final JButton SHELLFISHBUTTONS[] = {blueCrabButton, easternOysterButton, horseShoeCrabButton};
 	
 	protected JLabel birdLabel;
 	
@@ -239,7 +239,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	 * 
 	 * @param input an array of JButtons that are used in the game 
 	 */
-	public static void turnOnButtons(JButton input[]){
+	public void turnOnButtons(JButton input[]){
 		for(JButton buttons: input){
 			if(GameController.model.player.getMoney() < GameController.model.player.getMoney()){
 				buttons.setEnabled(false);
