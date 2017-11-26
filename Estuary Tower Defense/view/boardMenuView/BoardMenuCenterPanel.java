@@ -126,7 +126,7 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 			GameController.model.reducePlayerMoney(100);
 			GameController.view.boardMenu.sidePanel.scorePanel.setSandDollars(GameController.model.player.getMoney());
 			GameController.view.boardMenu.sidePanel.infoPanel.setCreatureText(GameController.model.crab.getName());
-			//GameController.view.boardMenu.sidePanel.infoPanel.setFactText(GameController.model.crab.getFactDescription());
+			GameController.view.boardMenu.sidePanel.infoPanel.setFactText(GameController.model.crab.getFactDescription());
 			GameController.view.boardMenu.sidePanel.infoPanel.setCost(GameController.model.crab.getPrice());
 			GameController.view.boardMenu.sidePanel.infoPanel.setDamage(GameController.model.crab.getDamage());
 			GameController.view.boardMenu.sidePanel.infoPanel.setRange(GameController.model.crab.getRange());

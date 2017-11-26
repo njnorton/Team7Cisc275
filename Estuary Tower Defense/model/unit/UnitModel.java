@@ -30,7 +30,7 @@ public abstract class UnitModel {
 	}
 
 	public void setName(String name) {
-		name = this.name;
+		this.name = name;
 	}
 
 	public int getxCor() {
@@ -54,7 +54,7 @@ public abstract class UnitModel {
 	}
 
 	public void setGameDescription(String gameDescription) {
-		gameDescription = this.gameDescription;
+		this.gameDescription = gameDescription;
 	}
 
 	public String getFactDescription() {
@@ -62,6 +62,6 @@ public abstract class UnitModel {
 	}
 
 	public void setFactDescription(String factDescription) {
-		factDescription = this.factDescription;
+		this.factDescription = factDescription;
 	}
 }

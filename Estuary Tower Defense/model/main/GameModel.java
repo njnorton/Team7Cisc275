@@ -131,7 +131,7 @@ public class GameModel {
 
 	// Checks the players health, if false they are dead
 	public boolean isPlayerDead() {
-		if (0 >= player.getHealth()) {
+		if (player.getHealth() > 0) {
 			return false;
 		} else {
 			return true;
