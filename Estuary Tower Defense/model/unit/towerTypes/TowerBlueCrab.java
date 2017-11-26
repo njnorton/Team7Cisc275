@@ -2,9 +2,9 @@ package unit.towerTypes;
 
 import unit.TowerModel;
 
-public class TowerCrab extends TowerModel {
-	public TowerCrab() {
-		setName("Crab");
+public class TowerBlueCrab extends TowerModel {
+	public TowerBlueCrab() {
+		setName("Blue Crab");
 		setFactDescription("Blue Crab are indigenous to the region");
 		setGameDescription("Look out for his big meaty claws!");
 		setxCor(1);

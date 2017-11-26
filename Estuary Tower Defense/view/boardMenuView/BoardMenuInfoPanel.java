@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
@@ -83,6 +84,7 @@ public class BoardMenuInfoPanel extends JPanel{
 		damagePanel.setLayout(new BoxLayout(damagePanel, BoxLayout.X_AXIS));
 		rangePanel.setLayout(new BoxLayout(rangePanel, BoxLayout.X_AXIS));
 		fact.setEditable(false); // disables the text area from being written in and overridden
+		fact.setLineWrap(true);
 		
 		// sets the Fonts for the first set of labels in the grid 
 		creatureName.setFont(firstLabelFont); creatureFact.setFont(firstLabelFont);

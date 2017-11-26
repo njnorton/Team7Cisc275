@@ -7,6 +7,42 @@ import main.GameModel;
 public class GameModelTest extends GameModel {
 	
 	@Test
+	public void isReloadingTest1(){
+		GameModel game = new GameModel();
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		game.path.setxCorArr(xCoord);
+		game.path.setyCorArr(yCoord);
+		
+		game.spawnTower("Crab", game.path.getxCorAtIndex(0), game.path.getyCorAtIndex(0));
+		game.spawnTower("Crab", game.path.getxCorAtIndex(1), game.path.getyCorAtIndex(1));
+		
+		boolean isLoading = game.isReloading(0);
+		
+		assertFalse("Tower Crab at index 0 is reloading",isLoading);
+	}
+	
+	//TODO need one more reload test to go here 
+	
+	@Test
+	public void resetReloadTest1(){
+		GameModel game = new GameModel();
+		
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		game.path.setxCorArr(xCoord);
+		game.path.setyCorArr(yCoord);
+		
+		game.spawnTower("Crab", game.path.getxCorAtIndex(0), game.path.getyCorAtIndex(0));
+		
+		game.resetReload(0);
+		
+		assertEquals("Test to see if reload time is equal to 2", 2, game.blueCrab.getReloadTime());
+	}
+	
+	@Test
 	public void spawnEnemyTest(){
 		GameModel game = new GameModel();
 		
@@ -16,8 +52,10 @@ public class GameModelTest extends GameModel {
 		game.path.setxCorArr(xCoord);
 		game.path.setyCorArr(yCoord);
 		
-		game.spawnEnemy("EnemyPoo");
+		game.spawnEnemy("Poo");
 		assertEquals("Test enemy creation", "EnemyPoo", game.enemyList.get(0).getName());
+		assertEquals("Test EnemyPoo x coordinate", 0, game.enemyList.get(0).getxCor());
+		assertEquals("Test EnemyPoo y coordinate", 0, game.enemyList.get(0).getyCor());
 	}
 	
 	@Test
@@ -99,7 +137,37 @@ public class GameModelTest extends GameModel {
 		assertEquals("Money was increased by 55", 115, game.player.getMoney());
 	}
 
-	//TODO test gain bounty when the classes are defined 
+	@Test
+	public void gainBountyTest1(){
+		GameModel game = new GameModel();
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		game.path.setxCorArr(xCoord);
+		game.path.setyCorArr(yCoord);
+		
+		game.spawnEnemy("Poo");
+		game.player.setMoney(45);
+		game.gainBounty(0);
+		
+		assertEquals("Test Bounty gained from Poo", 55, game.player.getMoney());
+	}
+	
+	@Test
+	public void gainBountyTest2(){
+		GameModel game = new GameModel();
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		game.path.setxCorArr(xCoord);
+		game.path.setyCorArr(yCoord);
+		
+		game.spawnEnemy("Poo");
+		game.player.setMoney(105);
+		game.gainBounty(0);
+		
+		assertEquals("Test Bounty gained from Poo", 115, game.player.getMoney());
+	}
 	
 	@Test
 	public void isPlayerDeadTest1(){

@@ -3,7 +3,7 @@ package main;
 import unit.EnemyModel;
 import unit.TowerModel;
 import unit.enemyTypes.EnemyPoo;
-import unit.towerTypes.TowerCrab;
+import unit.towerTypes.TowerBlueCrab;
 /**
  * A utilization of the factory design pattern to generate gameplay objects
  * such as turrets and enemies.
@@ -41,7 +41,7 @@ public class Factory {
 		
 		switch(towerName) {
 			case "Crab" :
-				newTower = new TowerCrab();
+				newTower = new TowerBlueCrab();
 				break;
 			default:
 				break;
