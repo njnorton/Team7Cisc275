@@ -3,7 +3,7 @@ package main;
 import unit.EnemyModel;
 import unit.TowerModel;
 import unit.enemyTypes.EnemyPoo;
-import unit.towerTypes.TowerBlueCrab;
+import unit.towerTypes.TowerGenericShellfish;
 import unit.towerTypes.TowerGenericBird;
 import unit.towerTypes.TowerGenericFish;
 /**
@@ -45,8 +45,8 @@ public class Factory {
 			case "Generic Bird" :
 				newTower = new TowerGenericBird();
 				break;
-			case "Blue Crab" :
-				newTower = new TowerBlueCrab();
+			case "Generic Shellfish" :
+				newTower = new TowerGenericShellfish();
 				break;
 			case "Generic Fish" :
 				newTower = new TowerGenericFish();

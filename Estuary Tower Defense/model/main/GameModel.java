@@ -3,7 +3,7 @@ package main;
 import java.util.ArrayList;
 import unit.EnemyModel;
 import unit.TowerModel;
-import unit.towerTypes.TowerBlueCrab;
+import unit.towerTypes.TowerGenericShellfish;
 import unit.towerTypes.TowerGenericBird;
 import unit.towerTypes.TowerGenericFish;
 
@@ -11,22 +11,52 @@ public class GameModel {
 
 	public ArrayList<EnemyModel> enemyList;
 	public ArrayList<TowerModel> towerList;
+	public ArrayList<EnemyModel> enemyModelList;
+	public ArrayList<TowerModel> towerModelList;
 	public PathModel path;
 	public Factory factory;
 	public PlayerModel player;
-	public TowerBlueCrab blueCrab; 
-	public TowerGenericFish genericFish;
-	public TowerGenericBird genericBird;
+	
 
 	public GameModel() {
 		enemyList = new ArrayList<EnemyModel>();
 		towerList = new ArrayList<TowerModel>();
+		enemyModelList = new ArrayList<EnemyModel>(7);
+		towerModelList = new ArrayList<TowerModel>(12);
+		fillTowerModelList();
+		fillEnenmyModelList();
 		path = new PathModel();
 		factory = new Factory();
 		player = new PlayerModel();
-		blueCrab = new TowerBlueCrab(); 
-		genericFish = new TowerGenericFish(); 
-		genericBird = new TowerGenericBird();
+		
+		
+	}
+	
+	private void fillEnenmyModelList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	//TODO finish this
+	private void fillTowerModelList() {
+		for(int counter = 0; counter < 12; counter++) {
+			switch(counter) {
+				case 0 :
+					towerModelList.add(new TowerGenericBird());
+					break;
+					
+				case 4 :
+					towerModelList.add(new TowerGenericFish());
+					break;
+					
+				case 8 :
+					towerModelList.add(new TowerGenericShellfish());
+					break;
+					
+				default:
+					break;
+			}
+		}
 	}
 
 	// Sees if the Reload Count for a tower is zero, if it is it returns true

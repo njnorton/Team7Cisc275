@@ -1,5 +1,6 @@
 package boardMenuView;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -78,13 +79,21 @@ public class BoardMenuInfoPanel extends JPanel{
 	public BoardMenuInfoPanel(){
 		informationPanel.setPreferredSize(new Dimension(260,225));
 		informationPanel.setLayout(new GridLayout(5,1));
+		informationPanel.setBackground(Color.WHITE);
 		creaturePanel.setLayout(new BoxLayout(creaturePanel, BoxLayout.X_AXIS));
+		creaturePanel.setBackground(Color.WHITE);
 		factPanel.setLayout(new BoxLayout(factPanel, BoxLayout.X_AXIS));
+		factPanel.setBackground(Color.WHITE);
 		costPanel.setLayout(new BoxLayout(costPanel, BoxLayout.X_AXIS));
+		costPanel.setBackground(Color.WHITE);
 		damagePanel.setLayout(new BoxLayout(damagePanel, BoxLayout.X_AXIS));
+		damagePanel.setBackground(Color.WHITE);
 		rangePanel.setLayout(new BoxLayout(rangePanel, BoxLayout.X_AXIS));
+		rangePanel.setBackground(Color.WHITE);
 		fact.setEditable(false); // disables the text area from being written in and overridden
 		fact.setLineWrap(true);
+		fact.setBackground(Color.WHITE);
+		fact.setFont(firstLabelFont);
 		
 		// sets the Fonts for the first set of labels in the grid 
 		creatureName.setFont(firstLabelFont); creatureFact.setFont(firstLabelFont);

@@ -2,8 +2,14 @@ package boardMenuView;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gameController.GameController;
+import unit.TowerModel;
 
 //TODO take out end round, the round shouldn't end on a button, it should end when time is up
 
@@ -123,6 +130,7 @@ public class BoardMenuSideGamePanel extends JPanel {
 	public BoardMenuTimerPanel timerPanel; // creates the timerPanel
 	public BoardMenuCenterPanel cen; // allows access to center panel
 	public BoardMenuInfoPanel infoPanel; // creates the information panel 
+
 
 	/**
 	 * Constructor that sets up the entire board menu side panel. It contains the timer panel,
@@ -248,5 +256,14 @@ public class BoardMenuSideGamePanel extends JPanel {
 				buttons.setEnabled(true);
 			}
 		}
+		/*
+		 * if click on tower in center panel
+		 * 		if player money >= cost of upgrade
+		 * 			enable buttons in that row that are affordable
+		 * 		else 
+		 * 			disable buttons in that row that are not affordable
+		 * else 
+		 * 		disable all buttons in all rows except base unit buttons
+		 */
 	}
 }

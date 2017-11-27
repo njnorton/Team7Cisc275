@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gameController.GameController;
+import unit.TowerModel;
 import unit.towerTypes.*;
 
 /*
@@ -42,7 +43,7 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 
 	private static final long serialVersionUID = 1L;
 
-	public static JPanel centerPanel = new JPanel();
+	public JPanel centerPanel = new JPanel();
 	
 	//Bloons TD 2 TracksEdit. 25 Oct. 2017. Citation for the image used in panel
 	private final String centerImage = "images/mediumTrack.png";
@@ -51,9 +52,6 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 	private static BufferedImage image;
 	public BufferedImage birdImg;
 	protected static JLabel birdLabel; 
-	
-	
-	private TowerBlueCrab crab = new TowerBlueCrab();
 	
 	private boolean showCreature = false;
 	private int showDrawCreature = 0;
@@ -68,38 +66,35 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		addCenterPanel();
-	}
-
-	public void addCenterPanel() {
 		add(centerPanel);
 	}
 
-	
 	public void paintComponent(Graphics g) {
+		
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		addMouseListener(this);
 		
 		// gives all the game buttons for species action listeners 
 		for(int i = 0; i < GameController.view.boardMenu.sidePanel.GAME_BUTTONS.length; i++){
 			GameController.view.boardMenu.sidePanel.GAME_BUTTONS[i].addActionListener(this);
-			GameController.view.boardMenu.sidePanel.GAME_BUTTONS[i].addMouseListener(this);
 			GameController.view.boardMenu.sidePanel.GAME_BUTTONS[i].addMouseMotionListener(this);
 		}
 		
 		// draws images onto the screen based upon button clicks
 		if(showCreature){
+			//TODO update the index values
 		switch(showDrawCreature){
 		case 0:
 			g.drawImage(GameController.view.boardMenu.sidePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH), 
-					crab.getxCor(), crab.getyCor(), null);
+					GameController.model.towerModelList.get(0).getxCor(), GameController.model.towerModelList.get(0).getyCor(), null);
 			break;
 		case 4:
 			g.drawImage(GameController.view.boardMenu.sidePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
-					crab.getxCor(), crab.getyCor(), null);
+					GameController.model.towerModelList.get(1).getxCor(), GameController.model.towerModelList.get(1).getyCor(), null);
 			break;
 		case 8:
 			g.drawImage(GameController.view.boardMenu.sidePanel.creatureImg[showDrawCreature].getScaledInstance(75, 75, Image.SCALE_SMOOTH),
-					crab.getxCor(), crab.getyCor(), null);
+					GameController.model.towerModelList.get(2).getxCor(), GameController.model.towerModelList.get(2).getyCor(), null);
 			break;
 		}
 	}
@@ -109,25 +104,19 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 		} */
 	}
 	
-	//redraw every enemy 
-	public static void draw(){
-		
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 		if(e.getSource() == GameController.view.boardMenu.sidePanel.genericBirdButton){
 			showCreature = true;
 			showDrawCreature = 0;
-			GameController.view.boardMenu.sidePanel.turnOnButtons(
-					GameController.view.boardMenu.sidePanel.BIRD_BUTTONS);
 			
-			GameController.view.boardMenu.sidePanel.infoPanel.setCreatureText(GameController.model.genericBird.getName());
-			GameController.view.boardMenu.sidePanel.infoPanel.setFactText(GameController.model.genericBird.getFactDescription());
-			GameController.view.boardMenu.sidePanel.infoPanel.setCost(GameController.model.genericBird.getPrice());
-			GameController.view.boardMenu.sidePanel.infoPanel.setDamage(GameController.model.genericBird.getDamage());
-			GameController.view.boardMenu.sidePanel.infoPanel.setRange(GameController.model.genericBird.getRange());
+			TowerModel t1 = GameController.model.factory.makeTower("Generic Bird");
+			
+			GameController.view.boardMenu.sidePanel.infoPanel.setCreatureText(t1.getName());
+			GameController.view.boardMenu.sidePanel.infoPanel.setFactText(t1.getFactDescription());
+			GameController.view.boardMenu.sidePanel.infoPanel.setCost(t1.getPrice());
+			GameController.view.boardMenu.sidePanel.infoPanel.setDamage(t1.getDamage());
+			GameController.view.boardMenu.sidePanel.infoPanel.setRange(t1.getRange());
 		}
 		/*else if(e.getSource() == BoardMenuSideGamePanel.ospreyButton){
 			//crab.setCoordinates(50, 200);
@@ -147,14 +136,14 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 		else if(e.getSource() == GameController.view.boardMenu.sidePanel.genericFishButton){
 			showCreature = true;
 			showDrawCreature = 4;
-			GameController.view.boardMenu.sidePanel.turnOnButtons(
-					GameController.view.boardMenu.sidePanel.FISH_BUTTONS);
 			
-			GameController.view.boardMenu.sidePanel.infoPanel.setCreatureText(GameController.model.genericFish.getName());
-			GameController.view.boardMenu.sidePanel.infoPanel.setFactText(GameController.model.genericFish.getFactDescription());
-			GameController.view.boardMenu.sidePanel.infoPanel.setCost(GameController.model.genericFish.getPrice());
-			GameController.view.boardMenu.sidePanel.infoPanel.setDamage(GameController.model.genericFish.getDamage());
-			GameController.view.boardMenu.sidePanel.infoPanel.setRange(GameController.model.genericFish.getRange());
+			TowerModel t1 = GameController.model.factory.makeTower("Generic Fish");
+			
+			GameController.view.boardMenu.sidePanel.infoPanel.setCreatureText(t1.getName());
+			GameController.view.boardMenu.sidePanel.infoPanel.setFactText(t1.getFactDescription());
+			GameController.view.boardMenu.sidePanel.infoPanel.setCost(t1.getPrice());
+			GameController.view.boardMenu.sidePanel.infoPanel.setDamage(t1.getDamage());
+			GameController.view.boardMenu.sidePanel.infoPanel.setRange(t1.getRange());
 		}
 		/*else if(e.getSource() == BoardMenuSideGamePanel.blueFishButton){
 			//crab.setCoordinates(50, 200);
@@ -175,22 +164,31 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 		else if(e.getSource() == GameController.view.boardMenu.sidePanel.genericShellfishButton){
 			showCreature = true;
 			showDrawCreature = 8;
-			GameController.view.boardMenu.sidePanel.turnOnButtons(
-					GameController.view.boardMenu.sidePanel.SHELLFISHBUTTONS);
+			
+			TowerModel t1 = GameController.model.factory.makeTower("Generic Shellfish");
+			
+			GameController.view.boardMenu.sidePanel.infoPanel.setCreatureText(t1.getName());
+			GameController.view.boardMenu.sidePanel.infoPanel.setFactText(t1.getFactDescription());
+			GameController.view.boardMenu.sidePanel.infoPanel.setCost(t1.getPrice());
+			GameController.view.boardMenu.sidePanel.infoPanel.setDamage(t1.getDamage());
+			GameController.view.boardMenu.sidePanel.infoPanel.setRange(t1.getRange());
 		}
 		
-		else if(e.getSource() == BoardMenuSideGamePanel.blueCrabButton){
+		/*
+		else if(e.getSource() == blueCrabButton){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
 			showDrawCreature = 9;
 			
-			GameController.view.boardMenu.sidePanel.infoPanel.setCreatureText(GameController.model.blueCrab.getName());
-			GameController.view.boardMenu.sidePanel.infoPanel.setFactText(GameController.model.blueCrab.getFactDescription());
-			GameController.view.boardMenu.sidePanel.infoPanel.setCost(GameController.model.blueCrab.getPrice());
-			GameController.view.boardMenu.sidePanel.infoPanel.setDamage(GameController.model.blueCrab.getDamage());
-			GameController.view.boardMenu.sidePanel.infoPanel.setRange(GameController.model.blueCrab.getRange());
+			TowerModel t1 = GameController.model.factory.makeTower("Blue Crab");
+			
+			GameController.view.boardMenu.sidePanel.infoPanel.setCreatureText(t1.getName());
+			GameController.view.boardMenu.sidePanel.infoPanel.setFactText(t1.getFactDescription());
+			GameController.view.boardMenu.sidePanel.infoPanel.setCost(t1.getPrice());
+			GameController.view.boardMenu.sidePanel.infoPanel.setDamage(t1.getDamage());
+			GameController.view.boardMenu.sidePanel.infoPanel.setRange(t1.getRange());
 		}
-		/*
+
 		else if(e.getSource() == BoardMenuSideGamePanel.easternOysterButton){
 			//crab.setCoordinates(50, 200);
 			showCreature = true;
@@ -203,6 +201,14 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 		}*/
 		repaint();
 	}
+	
+
+
+	
+	//redraw every enemy 
+	public static void draw(){
+		
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -210,7 +216,7 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 
 	@Override
 	public void mousePressed(MouseEvent e) {	
-		crab.setCoordinates(e.getX(), e.getY());
+		
 	}
 
 	@Override
