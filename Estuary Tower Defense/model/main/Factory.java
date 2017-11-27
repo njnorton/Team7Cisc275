@@ -4,6 +4,8 @@ import unit.EnemyModel;
 import unit.TowerModel;
 import unit.enemyTypes.EnemyPoo;
 import unit.towerTypes.TowerBlueCrab;
+import unit.towerTypes.TowerGenericBird;
+import unit.towerTypes.TowerGenericFish;
 /**
  * A utilization of the factory design pattern to generate gameplay objects
  * such as turrets and enemies.
@@ -40,8 +42,14 @@ public class Factory {
 		TowerModel newTower = null;
 		
 		switch(towerName) {
-			case "Crab" :
+			case "Generic Bird" :
+				newTower = new TowerGenericBird();
+				break;
+			case "Blue Crab" :
 				newTower = new TowerBlueCrab();
+				break;
+			case "Generic Fish" :
+				newTower = new TowerGenericFish();
 				break;
 			default:
 				break;

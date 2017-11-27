@@ -15,8 +15,8 @@ public class GameModelTest extends GameModel {
 		game.path.setxCorArr(xCoord);
 		game.path.setyCorArr(yCoord);
 		
-		game.spawnTower("Crab", game.path.getxCorAtIndex(0), game.path.getyCorAtIndex(0));
-		game.spawnTower("Crab", game.path.getxCorAtIndex(1), game.path.getyCorAtIndex(1));
+		game.spawnTower("Blue Crab", game.path.getxCorAtIndex(0), game.path.getyCorAtIndex(0));
+		game.spawnTower("Blue Crab", game.path.getxCorAtIndex(1), game.path.getyCorAtIndex(1));
 		
 		boolean isLoading = game.isReloading(0);
 		
@@ -35,11 +35,102 @@ public class GameModelTest extends GameModel {
 		game.path.setxCorArr(xCoord);
 		game.path.setyCorArr(yCoord);
 		
-		game.spawnTower("Crab", game.path.getxCorAtIndex(0), game.path.getyCorAtIndex(0));
+		game.spawnTower("Blue Crab", game.path.getxCorAtIndex(0), game.path.getyCorAtIndex(0));
 		
 		game.resetReload(0);
 		
 		assertEquals("Test to see if reload time is equal to 2", 2, game.blueCrab.getReloadTime());
+	}
+	
+	@Test
+	public void damageEnemyTest1(){
+		GameModel game = new GameModel();
+		
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		game.path.setxCorArr(xCoord);
+		game.path.setyCorArr(yCoord);
+		
+		game.spawnEnemy("Poo");
+		game.spawnTower("Generic Fish", game.path.getxCorAtIndex(0), game.path.getyCorAtIndex(0));
+		game.damageEnemy(0, 0);
+	
+		assertEquals("Test damage health against enemy", 105, game.enemyList.get(0).getCurrentHealth());
+	}
+	
+	@Test
+	public void moveEnemyTest1(){
+		GameModel game = new GameModel();
+		
+		int[] xCoord = {0,1,2,3,4,5};
+		int[] yCoord = {0,1,2,3,4,5};
+		
+		game.path.setxCorArr(xCoord);
+		game.path.setyCorArr(yCoord);
+		
+		game.spawnEnemy("Poo");
+		game.spawnEnemy("Poo");
+		game.spawnEnemy("Poo");
+		game.spawnEnemy("Poo");
+		game.spawnEnemy("Poo");
+		game.moveEnemy(0);
+		
+		assertEquals("Test position index moved 5", 5, game.enemyList.get(0).getPositionIndex());
+	}
+	
+	@Test
+	public void moveEnemyTest2(){
+		GameModel game = new GameModel();
+		
+		int[] xCoord = {0,13,22,33,44,55};
+		int[] yCoord = {0,21,32,23,34,15};
+		
+		game.path.setxCorArr(xCoord);
+		game.path.setyCorArr(yCoord);
+		
+		game.spawnEnemy("Poo");
+		game.spawnEnemy("Poo");
+		game.spawnEnemy("Poo");
+		game.spawnEnemy("Poo");
+		game.spawnEnemy("Poo");
+		game.moveEnemy(1);
+		
+		assertEquals("Test position index moved 5", 5, game.enemyList.get(1).getPositionIndex());
+	}
+	
+	@Test 
+	public void isOutOfBoundsTest1(){
+		GameModel game = new GameModel();
+		
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		game.path.setxCorArr(xCoord);
+		game.path.setyCorArr(yCoord);
+		
+		game.spawnEnemy("Poo");
+		
+		boolean bounds = game.isOutOfBounds(0);
+		
+		assertTrue("Enemy is within bounds", bounds);
+	}
+	
+	@Test 
+	public void isOutOfBoundsTest2(){
+		GameModel game = new GameModel();
+		
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		game.path.setxCorArr(xCoord);
+		game.path.setyCorArr(yCoord);
+		game.path.setSize(3);
+		game.spawnEnemy("Poo");
+		
+		boolean bounds = game.isOutOfBounds(0);
+		
+		assertFalse("Enemy is not within bounds", bounds);
 	}
 	
 	@Test
@@ -68,9 +159,9 @@ public class GameModelTest extends GameModel {
 		game.path.setxCorArr(xCoord);
 		game.path.setyCorArr(yCoord);
 				
-		game.spawnTower("Crab", game.path.getxCorAtIndex(1), game.path.getyCorAtIndex(1));
+		game.spawnTower("Generic Bird", game.path.getxCorAtIndex(1), game.path.getyCorAtIndex(1));
 				
-		assertEquals("Test Crab tower name check","Crab", game.towerList.get(0).getName());
+		assertEquals("Test Crab tower name check","Generic Bird", game.towerList.get(0).getName());
 		assertEquals("Test Crab x Coordinate", 1, game.towerList.get(0).getxCor());
 		assertEquals("Test Crab y Coordinate", 1, game.towerList.get(0).getyCor());
 	}

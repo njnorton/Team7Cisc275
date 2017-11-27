@@ -12,7 +12,7 @@ public class TowerGenericBird extends TowerModel{
 		setyCor(1);
 		setReloadCount(0);
 		setReloadTime(3);
-		setDamage(60);
+		setDamage(30);
 		setPrice(110);
 		setRange(17);
 		setUpgrade(null);
