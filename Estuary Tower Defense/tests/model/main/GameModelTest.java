@@ -125,7 +125,26 @@ public class GameModelTest extends GameModel {
 	
 	@Test
 	public void isInRangeTest2(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		TowerModel tower = fac.makeTower("GenericShellfish");
+		game.path = path;
+		game.factory = fac;
+		game.enemyList.add(enemy);
+		game.towerList.add(tower);
+		tower.setxCor(102);
 		
+		int[] xCoord = {0,150};
+		int[] yCoord = {175,401};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+		
+		boolean inRange = game.isInRange(0, 0);
+		
+		assertTrue("testing to see if the tower is in range of the enemy", inRange);
 	}
 	
 	@Test
