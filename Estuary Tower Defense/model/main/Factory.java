@@ -2,6 +2,7 @@ package main;
 
 import unit.EnemyModel;
 import unit.TowerModel;
+import unit.enemyTypes.EnemyPathogens;
 import unit.enemyTypes.EnemyPoo;
 import unit.towerTypes.TowerGenericShellfish;
 import unit.towerTypes.TowerGenericBird;
@@ -26,6 +27,9 @@ public class Factory {
 			case "Poo" :
 				newEnemy = new EnemyPoo();
 				break;
+			case "Pathogen":
+				newEnemy = new EnemyPathogens();
+				break;
 			default:
 				break;
 		}
@@ -42,13 +46,13 @@ public class Factory {
 		TowerModel newTower = null;
 		
 		switch(towerName) {
-			case "Generic Bird" :
+			case "GenericBird" :
 				newTower = new TowerGenericBird();
 				break;
-			case "Generic Shellfish" :
+			case "GenericShellfish" :
 				newTower = new TowerGenericShellfish();
 				break;
-			case "Generic Fish" :
+			case "GenericFish" :
 				newTower = new TowerGenericFish();
 				break;
 			default:

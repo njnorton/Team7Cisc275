@@ -13,115 +13,234 @@ import unit.TowerModel;
 import unit.enemyTypes.EnemyPoo;
 
 public class GameModelTest extends GameModel {	
-//	@Test
-//	public void isReloadingTest1(){
-//		GameModel game = new GameModel();
-//		int[] xCoord = {0,1};
-//		int[] yCoord = {0,1};
-//		
-//		game.path.setxCorArr(xCoord);
-//		game.path.setyCorArr(yCoord);
-//		
-//		game.spawnTower("Blue Crab", game.path.getxCorAtIndex(0), game.path.getyCorAtIndex(0));
-//		game.spawnTower("Blue Crab", game.path.getxCorAtIndex(1), game.path.getyCorAtIndex(1));
-//		
-//		boolean isLoading = game.isReloading(0);
-//		
-//		assertFalse("Tower Crab at index 0 is reloading",isLoading);
-//	}
-//	
-//	//TODO need one more reload test to go here 
-//	
-//	@Test
-//	public void resetReloadTest1(){
-//		GameModel game = new GameModel();
-//		
-//		int[] xCoord = {0,1};
-//		int[] yCoord = {0,1};
-//		
-//		game.path.setxCorArr(xCoord);
-//		game.path.setyCorArr(yCoord);
-//		
-//		game.spawnTower("Blue Crab", game.path.getxCorAtIndex(0), game.path.getyCorAtIndex(0));
-//		
-//		game.resetReload(0);
-//		
-//		assertEquals("Test to see if reload time is equal to 2", 2, game.blueCrab.getReloadTime());
-//	}
-//	
-//	@Test
-//	public void damageEnemyTest1(){
-//		GameModel game = new GameModel();
-//		
-//		int[] xCoord = {0,1};
-//		int[] yCoord = {0,1};
-//		
-//		game.path.setxCorArr(xCoord);
-//		game.path.setyCorArr(yCoord);
-//		
-//		game.spawnEnemy("Poo");
-//		game.spawnTower("Generic Fish", game.path.getxCorAtIndex(0), game.path.getyCorAtIndex(0));
-//		game.damageEnemy(0, 0);
-//	
-//		assertEquals("Test damage health against enemy", 105, game.enemyList.get(0).getCurrentHealth());
-//	}
-//	
-//	@Test
-//	public void moveEnemyTest1(){
-//		GameModel game = new GameModel();
-//		
-//		int[] xCoord = {0,1,2,3,4,5};
-//		int[] yCoord = {0,1,2,3,4,5};
-//		
-//		game.path.setxCorArr(xCoord);
-//		game.path.setyCorArr(yCoord);
-//		
-//		game.spawnEnemy("Poo");
-//		game.spawnEnemy("Poo");
-//		game.spawnEnemy("Poo");
-//		game.spawnEnemy("Poo");
-//		game.spawnEnemy("Poo");
-//		game.moveEnemy(0);
-//		
-//		assertEquals("Test position index moved 5", 5, game.enemyList.get(0).getPositionIndex());
-//	}
-//	
-//	@Test
-//	public void moveEnemyTest2(){
-//		GameModel game = new GameModel();
-//		
-//		int[] xCoord = {0,13,22,33,44,55};
-//		int[] yCoord = {0,21,32,23,34,15};
-//		
-//		game.path.setxCorArr(xCoord);
-//		game.path.setyCorArr(yCoord);
-//		
-//		game.spawnEnemy("Poo");
-//		game.spawnEnemy("Poo");
-//		game.spawnEnemy("Poo");
-//		game.spawnEnemy("Poo");
-//		game.spawnEnemy("Poo");
-//		game.moveEnemy(1);
-//		
-//		assertEquals("Test position index moved 5", 5, game.enemyList.get(1).getPositionIndex());
-//	}
-//	
-//	@Test 
-//	public void isOutOfBoundsTest1(){
-//		GameModel game = new GameModel();
-//		
-//		int[] xCoord = {0,1};
-//		int[] yCoord = {0,1};
-//		
-//		game.path.setxCorArr(xCoord);
-//		game.path.setyCorArr(yCoord);
-//		
-//		game.spawnEnemy("Poo");
-//		
-//		boolean bounds = game.isOutOfBounds(0);
-//		
-//		assertTrue("Enemy is within bounds", bounds);
-//	}
+	
+	@Test
+	public void isReloadingTest1(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		TowerModel tower = fac.makeTower("GenericBird");
+		game.path = path;
+		game.factory = fac;
+		game.towerList.add(tower);
+		
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+		
+		boolean isLoading = game.isReloading(0);
+		
+		assertFalse("Tower Crab at index 0 is reloading", isLoading);
+	}
+	
+	@Test
+	public void isReloadingTest2(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		TowerModel tower = fac.makeTower("GenericBird");
+		tower.setReloadCount(3);
+		game.path = path;
+		game.factory = fac;
+		game.towerList.add(tower);
+		
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+		
+		boolean isLoading = game.isReloading(0);
+		
+		assertTrue("Tower Crab at index 0 is reloading", isLoading);
+	}
+	
+	@Test
+	public void resetReloadTest1(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		TowerModel tower = fac.makeTower("GenericShellfish");
+		game.path = path;
+		game.factory = fac;
+		game.towerList.add(tower);
+		
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+			
+		game.resetReload(0);
+		
+		assertEquals("Test to see if reload time is equal to 2", 2, game.towerList.get(0).getReloadTime());
+	}
+	
+	@Test
+	public void resetReloadTest2(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		TowerModel tower = fac.makeTower("GenericFish");
+		game.path = path;
+		game.factory = fac;
+		game.towerList.add(tower);
+		
+		int[] xCoord = {0,1};
+		int[] yCoord = {0,1};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+			
+		game.resetReload(0);
+		
+		assertEquals("Test to see if reload time is equal to 2", 3, game.towerList.get(0).getReloadTime());
+	}
+	
+	// TODO do isInRange testing x2
+	@Test
+	public void isInRangeTest1(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		TowerModel tower = fac.makeTower("GenericFish");
+		game.path = path;
+		game.factory = fac;
+		game.enemyList.add(enemy);
+		game.towerList.add(tower);
+		
+		int[] xCoord = {20,21};
+		int[] yCoord = {40,41};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+		
+		boolean inRange = game.isInRange(0, 0);
+		
+		assertFalse("testing to see if the tower is in range of the enemy", inRange);
+	}
+	
+	@Test
+	public void isInRangeTest2(){
+		
+	}
+	
+	@Test
+	public void damageEnemyTest1(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		TowerModel tower = fac.makeTower("GenericFish");
+		game.path = path;
+		game.factory = fac;
+		game.enemyList.add(enemy);
+		game.towerList.add(tower);
+		
+		int[] xCoord = {20,21};
+		int[] yCoord = {40,41};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+		
+		game.damageEnemy(0, 0);
+	
+		assertEquals("Test damage health against enemy", 130, game.enemyList.get(0).getCurrentHealth());
+	}
+	
+	@Test
+	public void damageEnemyTest2(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		enemy.setCurrentHealth(50);
+		TowerModel tower = fac.makeTower("GenericShellfish");
+		game.path = path;
+		game.factory = fac;
+		game.enemyList.add(enemy);
+		game.towerList.add(tower);
+		
+		int[] xCoord = {20,21};
+		int[] yCoord = {40,41};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+		
+		game.damageEnemy(0, 0);
+	
+		assertEquals("Test damage health against enemy", 0, game.enemyList.size());
+	}
+	
+	@Test
+	public void moveEnemyTest1(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		EnemyModel enemy = fac.makeEnemy("Poo");
+		game.path = path;
+		game.factory = fac;
+		game.enemyList.add(enemy);
+		
+		int[] xCoord = {0,1,2,3,4,5};
+		int[] yCoord = {0,1,2,3,4,5};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+	
+		game.moveEnemy(0);
+		
+		assertEquals("Test position index moved 5", 5, enemy.getPositionIndex());
+	}
+	
+	@Test
+	public void moveEnemyTest2(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		EnemyModel enemy2 = fac.makeEnemy("Poo");
+		game.path = path;
+		game.factory = fac;
+		game.enemyList.add(enemy);
+		game.enemyList.add(enemy2);
+		
+		int[] xCoord = {0,13,22,33,44,55};
+		int[] yCoord = {0,21,32,23,34,15};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+		
+		game.moveEnemy(0);
+		
+		assertEquals("Test position index moved 5", 4, enemy.getPositionIndex());
+	}
+	
+	@Test 
+	public void isOutOfBoundsTest1(){
+		GameModel game = new GameModel();
+		PathModel path = new PathModel();
+		Factory fac = new Factory();
+		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		game.path = path;
+		game.factory = fac;
+		game.enemyList.add(enemy);
+		
+		int[] xCoord = {20,31};
+		int[] yCoord = {60,21};
+		
+		path.setxCorArr(xCoord);
+		path.setyCorArr(yCoord);
+		path.setSize(1);
+		enemy.setPositionIndex(2);
+		
+		boolean bounds = game.isOutOfBounds(0);
+		
+		assertTrue("Enemy is within bounds", bounds);
+	}
 	
 	@Test 
 	public void isOutOfBoundsTest2(){
@@ -175,7 +294,7 @@ public class GameModelTest extends GameModel {
 	public void spawnTowerTest(){
 		GameModel game = new GameModel();
 		Factory fac = new Factory();
-		TowerModel tower = fac.makeTower("Generic Bird");
+		TowerModel tower = fac.makeTower("GenericBird");
 		PathModel path = new PathModel();
 		game.factory = fac;
 		game.path = path;
@@ -190,7 +309,7 @@ public class GameModelTest extends GameModel {
 		tower.setxCor(path.getxCorAtIndex(1));
 		tower.setyCor(path.getyCorAtIndex(0));
 				
-		game.spawnTower("Generic Bird", 1, 1);
+		game.spawnTower("GenericBird", 1, 1);
 				
 		assertEquals("Test Crab tower name check","Generic Bird", game.towerList.get(0).getName());
 		assertEquals("Test Crab x Coordinate", 21, game.towerList.get(0).getxCor());
