@@ -2,10 +2,9 @@ package unit.enemyTypes;
 
 import unit.EnemyModel;
 
-public class EnemyPathogens extends EnemyModel{
-
-	public EnemyPathogens(){
-		setName("EnemyPathogen");
+public class EnemyIce extends EnemyModel {
+	public EnemyIce(){
+		setName("EnemyIce");
 		setxCor(0);
 		setyCor(0);
 		setBounty(15);
