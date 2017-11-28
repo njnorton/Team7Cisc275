@@ -1,5 +1,7 @@
 package boardMenuView;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -51,7 +53,7 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 	private final String centerImage = "images/mediumTrack.png";
 	private final String birdImage = "Images/Turrets/Birds/generic_bird.png";
 
-	private static BufferedImage image;
+	private static JLabel map;
 	public BufferedImage birdImg;
 	protected static JLabel birdLabel;
 
@@ -59,19 +61,24 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 	private int showDrawCreature = 0;
 
 	public BoardMenuCenterPanel() {
+		ImageIcon mapImg = null;
 		try {
-			image = ImageIO.read(new File(centerImage));
+			mapImg = new ImageIcon("images/mediumTrack.png");
+
 			birdImg = ImageIO.read(new File(birdImage));
 			birdLabel = new JLabel(new ImageIcon(birdImg.getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		map = new JLabel(mapImg);
+		map.setOpaque(true);
+		map.setPreferredSize(new Dimension(837, 589));
+		centerPanel.add(map, new Integer(0));
 		add(centerPanel);
 	}
 
 	public void paintComponent(Graphics g) {
 
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		//addMouseListener(this);
 
 		// gives all the game buttons for species action listeners
