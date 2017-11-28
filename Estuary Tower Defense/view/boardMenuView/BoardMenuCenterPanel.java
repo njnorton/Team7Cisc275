@@ -1,5 +1,7 @@
 package boardMenuView;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -15,6 +17,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -46,39 +49,37 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 
 	private static final long serialVersionUID = 1L;
 
-	public JLayeredPane centerPanel = new JLayeredPane();
-
 	// Bloons TD 2 TracksEdit. 25 Oct. 2017. Citation for the image used in
 	// panel
 	private final String centerImage = "images/mediumTrack.png";
 	private final String birdImage = "Images/Turrets/Birds/generic_bird.png";
 
-	private static JLabel map;
 	public BufferedImage birdImg;
+	public BufferedImage mapImage;
 	protected static JLabel birdLabel;
+	private JLabel mapLabel;
 
 	private boolean showCreature = false;
 	private int showDrawCreature = 0;
+		
+	public JLayeredPane centerLayerPane = new JLayeredPane();
+	private JPanel centerPanel = new JPanel();
 
 	public BoardMenuCenterPanel() {
-		ImageIcon mapImg = null;
 		try {
-			mapImg = new ImageIcon("images/mediumTrack.png");
-
+			mapImage = ImageIO.read(new File(centerImage));
+			mapLabel = new JLabel(new ImageIcon(mapImage.getScaledInstance(948,640, Image.SCALE_SMOOTH)));
 			birdImg = ImageIO.read(new File(birdImage));
 			birdLabel = new JLabel(new ImageIcon(birdImg.getScaledInstance(75, 75, Image.SCALE_SMOOTH)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		map = new JLabel(mapImg);
-		map.setOpaque(true);
-		map.setPreferredSize(new Dimension(837, 589));
-		centerPanel.add(map, new Integer(0));
+		
 		add(centerPanel);
 	}
 
 	public void paintComponent(Graphics g) {
-
+		g.drawImage(mapImage, 0, 0, getWidth(), getHeight(), null);
 		//addMouseListener(this);
 
 		// gives all the game buttons for species action listeners
@@ -153,7 +154,7 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 			GameController.view.boardMenu.sidePanel.infoPanel
 					.setRange(GameController.model.towerModelList.get(0).getRange());
 
-			TowerModel tm1 = GameController.model.factory.makeTower("Generic Bird");
+			TowerModel tm1 = GameController.model.factory.makeTower("GenericBird");
 
 			int xCor = Integer.parseInt(
 					JOptionPane.showInputDialog(null, "Please enter an x-coordinate for the tower placement or click cancel."));
