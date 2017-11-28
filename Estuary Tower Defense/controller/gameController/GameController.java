@@ -3,11 +3,30 @@ package gameController;
 import gameView.GameView;
 import main.GameModel;
 
+/**
+ * Controls the game play with updates from the model that are passed along to the view. 
+ * 
+ * @author Ryan Barbera, Aaron George, Nick Norton, Thomas Pennington, Grant Zhao
+ *
+ */
+
+/*
+ * Variable Dictionary:
+ * GameModel model: an instance of the GameModel
+ * GameView view: an instance of the GameView that sets up the 3 views in the game
+ * boolean isRoundActive: tells if the current round is active in the game 
+ */
+
 public class GameController {
 	public static GameModel model;
 	public static GameView view;
 	static boolean isRoundActive;
 
+	/**
+	 * Constructor that sets up everything that is needed to run the game. Creates an 
+	 * instance of the model and the views. Also makes the main menu visible to the user 
+	 * and hides relevant views that are not needed. 
+	 */
 	public GameController() {
 		model = new GameModel();
 		modelInit();
@@ -18,6 +37,11 @@ public class GameController {
 		view.leaderBoard.setVisible(false);
 	}
 
+	/**
+	 * Initializes the model with the path assignments and sets up the player model with 
+	 * health, money, score, and round times for each round and uses this information until
+	 * the end of the game.
+	 */
 	public static void modelInit() {
 		model.player.setHealth(30);
 		model.player.setMoney(1000);
@@ -41,6 +65,11 @@ public class GameController {
 
 	}
 
+	/**
+	 * Updates the view with the player model information given from the previous method
+	 * above. This information will be displayed when the user is in the boardMenuView JFrame
+	 * after clicking on the start button from the main menu.
+	 */
 	public static void boardMenuInit() {
 		view.boardMenu.sidePanel.scorePanel.setScore(model.player.getScore());
 		view.boardMenu.sidePanel.scorePanel.setHealth(model.player.getHealth());
@@ -61,11 +90,21 @@ public class GameController {
 		model.player.setTimeLeft(model.player.getRoundTime());
 	}
 	
+	/**
+	 * The sequence of events that take place when the round is over after the time 
+	 * is up in a particular round. 
+	 */
 	public static void endRound() {
 		// model.resetScorePanel(); // resets the scorePanel in the game
 		System.out.println("Game over man!");
 	}
 
+	/**
+	 * Resolves the actions that the towers are able to make relative to the location of 
+	 * the enemies on the screen. If the tower is in the range to shoot an enemy, then it 
+	 * shoots the enemy causing it to lose health and the score to be updated when it hits an
+	 * enemy. 
+	 */
 	public static void resolveTowerActions() {
 		// Iterates through every turret
 		for (int i = 0; i < model.towerList.size(); i++) {
@@ -90,6 +129,11 @@ public class GameController {
 		}
 	}
 
+	/**
+	 * Resolves the actions of the enemies that are currently on the board. If the enemy 
+	 * goes off of the game board, then a player will lose health and removes the enemy 
+	 * from the arrayList of enemies.
+	 */
 	// Moves the enemy, if the enemy has successfully gotten out of bounds
 	// the player loses life
 	public static void resolveEnemyActions() {
@@ -101,11 +145,17 @@ public class GameController {
 		}
 	}
 	
+	/**
+	 * Shows the boardMenu JFrame and hides the mainMenu JFrame for the game.
+	 */
 	public static void showBoardMenu() {
 		view.boardMenu.setVisible(true);
 		view.mainMenu.setVisible(false);
 	}
 
+	/**
+	 * Shows the mainMenu JFrame and hides the boardMenu JFrame for the game. 
+	 */
 	public static void showMainMenu() {
 		view.boardMenu.setVisible(false);
 		view.mainMenu.setVisible(true);
@@ -119,15 +169,32 @@ public class GameController {
 		view.leaderBoard.setVisible(true);
 	}
 
+	/**
+	 * Checks to see if the current player is dead by running out of health. 
+	 * Returns a true or false value depending on the state of the player. 
+	 */
 	// Sees if the player is dead, returns true if he is
 	public static boolean checkPlayerIsDead() {
 		return model.isPlayerDead();
 	}
-
+	
+	/**
+	 * Sets the current round to either active or not active based upon the value 
+	 * that is given for the input. Allows the round to continue while the round is 
+	 * active.
+	 * 
+	 * @param updateIsRoundActive true/false value that sets the round to active or inactive
+	 */
 	public static void setIsRoundActive(boolean updateIsRoundActive) {
 		isRoundActive = updateIsRoundActive;
 	}
 
+	/**
+	 * Checks to see if the current round is active and will return a true or 
+	 * false value depending on this check.
+	 * 
+	 * @return is the current round active with a boolean true/false value.
+	 */
 	public static boolean isRoundActive() {
 		return isRoundActive;
 	}
