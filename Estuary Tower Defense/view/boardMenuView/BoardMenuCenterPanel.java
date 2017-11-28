@@ -14,6 +14,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -43,7 +44,7 @@ public class BoardMenuCenterPanel extends JPanel implements ActionListener, Mous
 
 	private static final long serialVersionUID = 1L;
 
-	public JPanel centerPanel = new JPanel();
+	public JLayeredPane centerPanel = new JLayeredPane();
 
 	// Bloons TD 2 TracksEdit. 25 Oct. 2017. Citation for the image used in
 	// panel
