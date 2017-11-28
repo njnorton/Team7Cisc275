@@ -24,7 +24,7 @@ import gameController.GameController;
 
 /**
  * Creates the centerpanel for the leaderboard to display the top 10 scorers in the 
- * game ranked from the highest score to the lowest score. 
+ * game. 
  * 
  * @author Ryan Barbera, Aaron George, Nick Norton, Thomas Pennington, Grant Zhao
  *

@@ -7,24 +7,6 @@ import unit.towerTypes.TowerGenericShellfish;
 import unit.towerTypes.TowerGenericBird;
 import unit.towerTypes.TowerGenericFish;
 
-/**
- * 
- * 
- * @author Ryan Barbera, Aaron George, Nick Norton, Thomas Pennington, Grant Zhao
- *
- */
-
-/*
- * Variable Dictionary:
- * ArrayList<EnemyModel> enemyList: an arrayList of the enemies that appear on the screen
- * ArrayList<TowerModel> towerList: an arrayList of the towers that appear on the screen
- * ArrayList<EnemyModel> enemyModelList: an arrayList of the enemyModel that are able to be generated 
- * ArrayList<TowerModel> towerModelList: an arrayList of the towerModel that are able to be generated
- * PathModel path: an instance of the path model
- * Factory factory: an instance of the factory 
- * PlayerModel player: an instance of the player model
- */
-
 public class GameModel {
 
 	public ArrayList<EnemyModel> enemyList;

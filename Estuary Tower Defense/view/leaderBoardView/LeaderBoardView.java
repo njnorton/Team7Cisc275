@@ -21,16 +21,6 @@ import mainMenuView.MainMenuTitlePanel;
  *
  */
 
-/*
- * Variable Dictionary:
- * int LEADER_BOARD_WIDTH: the width of the leaderboard
- * int LEADER_BOARD_HEIGHT: the height of the leaderboard
- * JPanel buttonPanel: the panel that the buttons sit on for the leaderboard
- * JButton exitButton: the exit button that is placed on the button panel
- * MainMenuTitlePanel title: an instance of the main menu title panel
- * LeaderBoardCenterPanel centerPanel: an instance of the board menu center panel 
- */
-
 public class LeaderBoardView extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
