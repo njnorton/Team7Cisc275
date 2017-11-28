@@ -80,12 +80,12 @@ public class BoardMenuSideGamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	public List<String> creatureList = Arrays.asList(
-		"Images/Turrets/Birds/generic_bird.png","Images/Turrets/Birds/osprey.png", 
-		"Images/Turrets/Birds/ruddy_turnstone.jpg","Images/Turrets/Birds/sanderling.jpg",
-		"Images/Turrets/Fish/generic_fish.png","Images/Turrets/Fish/blue_fish.png", 
-		"Images/Turrets/Fish/river_herring.gif", "Images/Turrets/Fish/summer_flounder.gif",
-		"Images/Turrets/Shellfish/generic_shellfish.png","Images/Turrets/Shellfish/blue_crab.png", 
-		"Images/Turrets/Shellfish/eastern_oyster.jpeg","Images/Turrets/Shellfish/horseshoe_crab.gif");
+		"images/Turrets/Birds/generic_bird.png","images/Turrets/Birds/osprey.png", 
+		"images/Turrets/Birds/ruddy_turnstone.jpg","images/Turrets/Birds/sanderling.jpg",
+		"images/Turrets/Fish/generic_fish.png","images/Turrets/Fish/blue_fish.png", 
+		"images/Turrets/Fish/river_herring.gif", "images/Turrets/Fish/summer_flounder.gif",
+		"images/Turrets/Shellfish/generic_shellfish.png","images/Turrets/Shellfish/blue_crab.png", 
+		"images/Turrets/Shellfish/eastern_oyster.jpeg","images/Turrets/Shellfish/horseshoe_crab.gif");
 
 	// creates the list for the bufferedImages to place on buttons
 	protected BufferedImage[] creatureImg = new BufferedImage[creatureList.size()];

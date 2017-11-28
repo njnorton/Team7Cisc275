@@ -118,8 +118,9 @@ public class GameModel {
 	}
 
 	// spawns an enemy onto the game
-	public void spawnEnemy(String enemyName) {
-		EnemyModel enemy = factory.makeEnemy(enemyName);
+	public void spawnEnemy() {
+		int rand1 = (int)Math.random() % 7 + 1;
+		EnemyModel enemy = factory.makeEnemy(rand1);
 		enemy.setxCor(path.getxCorAtIndex(0));
 		enemy.setxCor(path.getyCorAtIndex(0));
 		enemyList.add(enemy);
@@ -179,5 +180,4 @@ public class GameModel {
 	public void increaseScore(int inc) {
 		player.setScore(player.getScore() + inc);
 	}
-	
 }

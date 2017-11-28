@@ -2,9 +2,8 @@ package unit.enemyTypes;
 
 import unit.EnemyModel;
 
-public class EnemyPathogens extends EnemyModel{
-
-	public EnemyPathogens(){
+public class EnemyChemical extends EnemyModel {
+	public EnemyChemical(){
 		setName("EnemyPathogen");
 		setxCor(0);
 		setyCor(0);

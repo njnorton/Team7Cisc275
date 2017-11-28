@@ -5,12 +5,18 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import gameController.GameController;
+import unit.EnemyModel;
+import unit.TowerModel;
 /**
  * Keeps track of the time that is left in the game. It runs off of a thread so that 
  * the computers time is not the primary source of time so it can count down 1 second 
@@ -88,7 +94,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 	 * @param roundTime the amount of time in seconds that will appear on the screen
 	 */
 	public void setTime(long roundTime) {
-		time = roundTime;
+		time = roundTime/33;
 		currentTimeBar = time;
 		long minutes = (time / 60) % 60;
 		long seconds = time % 60;
@@ -163,7 +169,20 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
+		
+		for(EnemyModel em1 : GameController.model.enemyList) {
+			String enemyName = em1.getName();
+			BufferedImage enemyImg = null;
+			switch(enemyName) {
+				case "EnemyPoo":
+					try {
+						enemyImg = ImageIO.read(new File(GameController.view.boardMenu.enemiesList.get(0)));
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					g.drawImage(enemyImg, em1.getxCor(), em1.getyCor(), null);
+			}
+		}
 		draw(g); // draws the timer graphic bar onto the screen for the timer panel 
 		g.drawString(timeString, TIMERSTRING_XCOORD, TIMERSTRING_YCOORD); // draws to specified location of timer string
 		repaint();
@@ -197,15 +216,32 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 		
 		while (GameController.model.player.getTimeLeft() > 0) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(33);
 				System.out.println(GameController.model.player.getTimeLeft());
 			} catch (InterruptedException e) {
 				return;
 			}
+			
+			if(GameController.model.player.getTimeLeft() % 150 == 0) {
+				GameController.model.spawnEnemy();
+			}
+			
+			for(EnemyModel em1 : GameController.model.enemyList) {
+				em1.setxCor(em1.getxCor() + 1);
+				em1.setyCor(em1.getyCor() + 1);
+			}
+			//update all enemies x and y coordinates
+			//if in range of enemy, fire
+			//play animation
+			//repaint
+			
 			GameController.model.player.setTimeLeft(GameController.model.player.getTimeLeft() - 1);
 			setTime(GameController.model.player.getTimeLeft());
 			burnTimerBar(1);
+			
+			repaint();
 		}
+		
 //		while (GameController.isRoundActive()) {
 //			GameController.timeTick();
 //			try {
@@ -229,7 +265,7 @@ public class BoardMenuTimerPanel extends JPanel implements Runnable {
 		timesUp();
 
 	}
-
+	
 	//TODO when time is up, enable start round button again
 	/**
 	 * Displays a pop-up message when the time has reached zero letting the user know that 

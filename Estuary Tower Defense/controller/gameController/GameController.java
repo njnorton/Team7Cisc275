@@ -46,8 +46,8 @@ public class GameController {
 		model.player.setHealth(30);
 		model.player.setMoney(1000);
 		model.player.setScore(0);
-		model.player.setRoundTime(45);
-		model.player.setTimeLeft(45);
+		model.player.setRoundTime(1485);
+		model.player.setTimeLeft(1485);
 
 		// Do path assignment here
 		int[] xpath = new int[1000];
