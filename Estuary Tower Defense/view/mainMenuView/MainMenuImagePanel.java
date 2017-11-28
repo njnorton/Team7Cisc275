@@ -23,6 +23,7 @@ import javax.swing.JPanel;
  * String imageFile: the String representation of the image file path to load into the panel
  * 
  */
+
 public class MainMenuImagePanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
