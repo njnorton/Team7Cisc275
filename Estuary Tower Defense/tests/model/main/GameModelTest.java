@@ -105,7 +105,7 @@ public class GameModelTest extends GameModel {
 		GameModel game = new GameModel();
 		PathModel path = new PathModel();
 		Factory fac = new Factory();
-		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		EnemyModel enemy = fac.makeEnemy(1);
 		TowerModel tower = fac.makeTower("GenericFish");
 		game.path = path;
 		game.factory = fac;
@@ -128,7 +128,7 @@ public class GameModelTest extends GameModel {
 		GameModel game = new GameModel();
 		PathModel path = new PathModel();
 		Factory fac = new Factory();
-		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		EnemyModel enemy = fac.makeEnemy(1);
 		TowerModel tower = fac.makeTower("GenericShellfish");
 		game.path = path;
 		game.factory = fac;
@@ -152,7 +152,7 @@ public class GameModelTest extends GameModel {
 		GameModel game = new GameModel();
 		PathModel path = new PathModel();
 		Factory fac = new Factory();
-		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		EnemyModel enemy = fac.makeEnemy(1);
 		TowerModel tower = fac.makeTower("GenericFish");
 		game.path = path;
 		game.factory = fac;
@@ -175,7 +175,7 @@ public class GameModelTest extends GameModel {
 		GameModel game = new GameModel();
 		PathModel path = new PathModel();
 		Factory fac = new Factory();
-		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		EnemyModel enemy = fac.makeEnemy(1);
 		enemy.setCurrentHealth(50);
 		TowerModel tower = fac.makeTower("GenericShellfish");
 		game.path = path;
@@ -199,7 +199,7 @@ public class GameModelTest extends GameModel {
 		GameModel game = new GameModel();
 		PathModel path = new PathModel();
 		Factory fac = new Factory();
-		EnemyModel enemy = fac.makeEnemy("Poo");
+		EnemyModel enemy = fac.makeEnemy(0);
 		game.path = path;
 		game.factory = fac;
 		game.enemyList.add(enemy);
@@ -220,8 +220,8 @@ public class GameModelTest extends GameModel {
 		GameModel game = new GameModel();
 		PathModel path = new PathModel();
 		Factory fac = new Factory();
-		EnemyModel enemy = fac.makeEnemy("Pathogen");
-		EnemyModel enemy2 = fac.makeEnemy("Poo");
+		EnemyModel enemy = fac.makeEnemy(1);
+		EnemyModel enemy2 = fac.makeEnemy(0);
 		game.path = path;
 		game.factory = fac;
 		game.enemyList.add(enemy);
@@ -243,7 +243,7 @@ public class GameModelTest extends GameModel {
 		GameModel game = new GameModel();
 		PathModel path = new PathModel();
 		Factory fac = new Factory();
-		EnemyModel enemy = fac.makeEnemy("Pathogen");
+		EnemyModel enemy = fac.makeEnemy(1);
 		game.path = path;
 		game.factory = fac;
 		game.enemyList.add(enemy);
@@ -266,7 +266,7 @@ public class GameModelTest extends GameModel {
 		GameModel game = new GameModel();
 		PathModel path = new PathModel();
 		Factory fac = new Factory();
-		EnemyModel enemy = fac.makeEnemy("Poo");
+		EnemyModel enemy = fac.makeEnemy(0);
 		game.path = path;
 		game.factory = fac;
 		game.enemyList.add(enemy);
@@ -288,7 +288,7 @@ public class GameModelTest extends GameModel {
 	public void spawnEnemyTest(){
 		GameModel game = new GameModel();
 		Factory fac = new Factory();
-		EnemyModel enemy = fac.makeEnemy("Poo");
+		EnemyModel enemy = fac.makeEnemy(0);
 		PathModel path = new PathModel();
 		game.factory = fac;
 		game.path = path;
@@ -303,7 +303,7 @@ public class GameModelTest extends GameModel {
 		enemy.setxCor(path.getxCorAtIndex(0));
 		enemy.setyCor(path.getyCorAtIndex(1));
 		
-		game.spawnEnemy("Poo");
+		game.spawnEnemy();
 		assertEquals("Test enemy creation", "EnemyPoo", game.enemyList.get(0).getName());
 		assertEquals("Test EnemyPoo x coordinate", 20, game.enemyList.get(0).getxCor());
 		assertEquals("Test EnemyPoo y coordinate", 41, game.enemyList.get(0).getyCor());

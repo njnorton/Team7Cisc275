@@ -3,6 +3,9 @@ package boardMenuView;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.swing.JFrame;
 
 import mainMenuView.MainMenuTitlePanel;
@@ -38,6 +41,12 @@ public class BoardMenuView extends JFrame {
 	public BoardMenuCenterPanel centerPanel;
 	public BoardMenuSideGamePanel sidePanel;
 	public BoardMenuButtonPanel buttonPanel;
+	
+	public List<String> enemiesList = Arrays.asList(
+			"images/Enemies/animal_poop.png", "images/Enemies/litter.png",
+			"images/Enemies/pathogens.png", "images/Enemies/chemical_waste.png",
+			"images/Enemies/algae_overgrowth.png", "images/Enemies/ice.png",
+			"images/Enemies/storm_runoff.png");
 	
 	
 	/**

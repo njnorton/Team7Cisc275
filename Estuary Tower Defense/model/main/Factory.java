@@ -20,14 +20,14 @@ public class Factory {
 	 * @param	enemyName	a string describing the enemy to be generated
 	 * @return	EnemyModel	an instance of the enemy corresponding to the passed in string 
 	 */
-	public EnemyModel makeEnemy(String enemyName) {
+	public EnemyModel makeEnemy(int enemyInt) {
 		EnemyModel newEnemy = null;
 		
-		switch(enemyName) {
-			case "Poo" :
+		switch(enemyInt) {
+			case 0:
 				newEnemy = new EnemyPoo();
 				break;
-			case "Pathogen":
+			case 1:
 				newEnemy = new EnemyPathogens();
 				break;
 			default:
